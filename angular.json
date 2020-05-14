@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "imdb"
+    }
+  },
+  "defaultProject": "imdb",
+  "cli": {
+    "analytics": false
+  }
 }
