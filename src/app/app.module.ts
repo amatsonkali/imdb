@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MovieGridComponent } from './movie-grid/movie-grid.component';
+import { MovieHomeComponent } from './movie-home/movie-home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MovieGridComponent,
+    MovieHomeComponent
   ],
   imports: [
     BrowserModule,
