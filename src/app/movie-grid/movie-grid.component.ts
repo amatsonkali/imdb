@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ImageService } from '../imageService/image.service';
 export interface Tile {
   color: string;
   cols: number;
@@ -19,10 +20,37 @@ export class MovieGridComponent implements OnInit {
     {text: 'Peli4', cols: 2, rows: 2, color: '#DDBDF1'},
     {text: 'Peli5', cols: 1, rows: 1, color: '#DDBDF1'}
   ];
-  constructor() { }
+
+  isImageLoading=false;
+  imageToShow: any;
+  constructor(public imageService: ImageService) { }
 
   ngOnInit(): void {
+    this.getImageFromService();
   }
+
+  getImageFromService() {
+    this.isImageLoading = true;
+    this.imageService.getImage("https://loremflickr.com/320/240").subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+}
+
+
+createImageFromBlob(image: Blob) {
+   let reader = new FileReader();
+   reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+   }, false);
+
+   if (image) {
+      reader.readAsDataURL(image);
+   }
+}
 
   @ViewChild('pic', { static: false }) pic: ElementRef;
    onLoad() {

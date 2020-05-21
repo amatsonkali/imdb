@@ -11,6 +11,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { LoginComponent } from './User/login/login.component';
 import { RegisterComponent } from './User/register/register.component';
 import { SecondviewComponent } from './SecondView/secondview/secondview.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SecondviewComponent } from './SecondView/secondview/secondview.componen
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
