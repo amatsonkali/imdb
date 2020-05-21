@@ -3,11 +3,11 @@ var config = require('../helpers/config');
 //var conexion = mysql.createConnection(config);
 
 module.exports.usuarios_list = (req, res, next) => {
-    let sql = `SELECT * FROM usuario`;
-    config.query(sql, (error, results, fields) =>{
-        if(error){
-            res.send(error);
-        }
-        res.json(results);
-    });
+  let sql = `SELECT * FROM usuario`;
+  config.query(sql, (error, results, fields) =>{
+      if(error){
+        res.send(error);
+      }
+      res.json(results);
+  });
 };
