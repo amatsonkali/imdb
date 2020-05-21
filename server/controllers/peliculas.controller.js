@@ -7,7 +7,7 @@ module.exports.peliculasList = (req, res, next) =>{
       res.send(error);
     }
     res.json(results);
-  })
+  });
 };
 
 module.exports.peliculasByGenero = (req,res,next)=>{
@@ -17,8 +17,8 @@ module.exports.peliculasByGenero = (req,res,next)=>{
       res.send(error);
     }
     res.json(results);
-  })
-}
+  });
+};
 
 module.exports.peliculasByClasificacion = (req,res,next) => {
   let sql= `select idPelicula, titulo, imagenPortada, AVG(calificacion) as calificacionAvg from calificacion join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula join clasificacion c on p.Clasificacion_idClasificacion = c.idClasificacion where c.tipoClasificacion = ?`;
@@ -27,5 +27,5 @@ module.exports.peliculasByClasificacion = (req,res,next) => {
       res.send(error);
     }
     res.json(results);
-  })
-}
+  });
+};
