@@ -1,12 +1,7 @@
-<nav class="grey darken-4" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IMDB</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">NombreUsuario</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+<mat-toolbar color="primary" class="app-header">
+  <div><a target="_blank">IMDB</a></div>
+      <span class="nav-tool-items" >
+          <a mat-button mat-raised-button routerLink="" routerLinkActive="active">Log in</a>
+          <a mat-button routerLink="" routerLinkActive="active">Register</a>
+      </span>
+</mat-toolbar>

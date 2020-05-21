@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+.container {
+  width: 80%;
+  margin: 6px auto;
+}
 
 .icon-block {
     padding: 0 15px;
@@ -7,3 +11,5 @@
   .icon-block .material-icons {
       font-size: inherit;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family:'Roboto, monospace'; }

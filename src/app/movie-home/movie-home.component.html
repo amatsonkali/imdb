@@ -1,24 +1,17 @@
-<div class="col s12 center">
-    <div><img src="https://placeimg.com/1980/540/people" class="responsive-img"></div>
-</div>
+
+<mat-grid-list cols="1" rowHeight="11:3">
+  <mat-grid-tile><img mat-card-image src="https://placeimg.com/1980/540/any"></mat-grid-tile>
+
+</mat-grid-list>
+
 
 <div class="container">
-    <div class="section no-pad-bot" id="index-banner">
-        
-          <br><br>
-          <h1 class="header center orange-text">Bienvenido a IMDB</h1>
-          <div class="row center">
-            <h5 class="header col s12 light">Aqui calificas y comentas tus pelis favoritas</h5>
-          </div>
-          <div class="row center">
-            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Califica</a>
-          </div>
-          <br><br>
+  <h1 class="mat-display-4">Bienvenido a IMDB</h1>
+  <h2 class="mat-display-1">Aqui calificas y comentas tus pelis favoritas</h2>
+
+  <a mat-button href="" target="_blank" class="mat-display-1">Califica</a>     
     
-        
-      </div>
-    
-    <app-movie-grid></app-movie-grid>
+  <app-movie-grid></app-movie-grid>
 
 </div>
 
