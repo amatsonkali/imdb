@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  isLoading = false;
+  public loginForm: FormGroup;
+  public submitted: Boolean = false;
+  public error: {code: number, message: string} = null;
   constructor() { }
 
-  ngOnInit(): void {
+  onLogin(form: NgForm){
   }
+
+  ngOnInit() {
+  }
+
+  private correctLogin(){
+  }
+
 
 }
