@@ -1,0 +1,27 @@
+<div class="row" *ngIf="!loading">
+
+  <div class="col s4" *ngFor="let columna of pelisPerColums">
+    <div class="row" >
+        <div class="card hoverable" (click)="viewPeli(peli.idPelicula)" *ngFor="let peli of columna">
+          <div class="card-image" >
+            <img [src]="peli.img" alt="Photo of a Shiba Inu">
+            <span class="card-title">{{peli.titulo}}</span>
+            <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+          </div>
+          <div class="card-content">
+            <p>{{peli.sinopsis}}</p>
+          </div>
+          <!-- <div class="card-action">
+            <a href="#">This is a link</a>
+          </div> -->
+        </div>  
+
+      </div>
+    </div>
+    
+    
+  </div> 
+  <div class="row">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
+  </div>
