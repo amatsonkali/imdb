@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ImageService } from '../imageService/image.service';
+import { ImageService } from '../../imageService/image.service';
+import { Pelicula } from 'src/app/models/pelicula';
+import { MovieService } from '../movie-service/movie.service';
 export interface Tile {
   color: string;
   cols: number;
@@ -14,26 +16,44 @@ export interface Tile {
 })
 export class MovieGridComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'Peli1', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Peli2', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Peli3', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Peli4', cols: 2, rows: 2, color: '#DDBDF1'},
-    {text: 'Peli5', cols: 1, rows: 1, color: '#DDBDF1'}
-  ];
+  pelis: Pelicula[] = [
+    {idPelicula: 1,
+      titulo: "Pelicula 1",
+      sinopsis: "lorem ipsum",
+      clasificacion: "B-15",
+      calificacion: 10.00
+    },
+    {idPelicula: 2,
+      titulo: "Pelicula 2",
+      sinopsis: "lorem ipsum",
+      clasificacion: "B-15",
+      calificacion: 9.00
+    },{idPelicula: 3,
+      titulo: "Pelicula 3",
+      sinopsis: "lorem ipsum",
+      clasificacion: "B-14",
+      calificacion: 8.00
+    },
+    {idPelicula: 4,
+      titulo: "Pelicula 4",
+      sinopsis: "lorem ipsum",
+      clasificacion: "AA",
+      calificacion: 6.50
+    },
+    ];
 
   loading=true;
   imageToShow: any;
   numColumnas: number = 3;
-  tilesPerColums: any[]=[];
-  constructor(public imageService: ImageService) { }
+  pelisPerColums: any[]=[];
+  constructor(public imageService: ImageService, public movieService:MovieService) { }
 
   ngOnInit(): void {
     this.getImageFromService();
   }
 
   getImageFromService() {
-    this.tiles.forEach( (item,index)=>{
+    this.pelis.forEach( (item,index)=>{
       this.imageService.getImage("https://loremflickr.com/"+this.getRandomInt(240,400)+"/"+this.getRandomInt(240,400)).subscribe(data => {
         this.createImageFromBlob(data,index);
       }, error => {
@@ -48,13 +68,13 @@ export class MovieGridComponent implements OnInit {
 
 convertirArregloDado(){ //lo divide en el numero de tiles
   let modCounter;
-  this.tiles.forEach((tile,index)=>{
-    if(!this.tilesPerColums[index%3])
-      this.tilesPerColums[index%3]=[];
+  this.pelis.forEach((tile,index)=>{
+    if(!this.pelisPerColums[index%3])
+      this.pelisPerColums[index%3]=[];
 
-    this.tilesPerColums[index%3].push(tile); 
+    this.pelisPerColums[index%3].push(tile); 
   });
-  console.log(this.tilesPerColums);
+  console.log(this.pelisPerColums);
   this.loading=false;
 }
 
@@ -62,12 +82,17 @@ createImageFromBlob(image: Blob, index: number) {
    let reader = new FileReader();
    reader.addEventListener("load", () => {
       //this.imageToShow = reader.result;
-      this.tiles[index].img= reader.result;
+      this.pelis[index].img= reader.result;
    }, false);
 
    if (image) {
       reader.readAsDataURL(image);
    }
+}
+
+viewPeli(idPeli: number){
+  console.log("Ver peli:" + idPeli);
+  this.movieService.viewMovieDetails(idPeli);
 }
 
 // //   @ViewChild('pic', { static: false }) pic: ElementRef;
