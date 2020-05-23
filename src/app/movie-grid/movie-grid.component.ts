@@ -5,6 +5,7 @@ export interface Tile {
   cols: number;
   rows: number;
   text: string;
+  img?: any;
 }
 @Component({
   selector: 'app-movie-grid',
@@ -21,8 +22,10 @@ export class MovieGridComponent implements OnInit {
     {text: 'Peli5', cols: 1, rows: 1, color: '#DDBDF1'}
   ];
 
-  isImageLoading=false;
+  loading=true;
   imageToShow: any;
+  numColumnas: number = 3;
+  tilesPerColums: any[]=[];
   constructor(public imageService: ImageService) { }
 
   ngOnInit(): void {
@@ -30,21 +33,36 @@ export class MovieGridComponent implements OnInit {
   }
 
   getImageFromService() {
-    this.isImageLoading = true;
-    this.imageService.getImage("https://loremflickr.com/320/240").subscribe(data => {
-      this.createImageFromBlob(data);
-      this.isImageLoading = false;
-    }, error => {
-      this.isImageLoading = false;
-      console.log(error);
-    });
+    this.tiles.forEach( (item,index)=>{
+      this.imageService.getImage("https://loremflickr.com/"+this.getRandomInt(240,400)+"/"+this.getRandomInt(240,400)).subscribe(data => {
+        this.createImageFromBlob(data,index);
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+      
+    })
+
+    this.convertirArregloDado();
 }
 
+convertirArregloDado(){ //lo divide en el numero de tiles
+  let modCounter;
+  this.tiles.forEach((tile,index)=>{
+    if(!this.tilesPerColums[index%3])
+      this.tilesPerColums[index%3]=[];
 
-createImageFromBlob(image: Blob) {
+    this.tilesPerColums[index%3].push(tile); 
+  });
+  console.log(this.tilesPerColums);
+  this.loading=false;
+}
+
+createImageFromBlob(image: Blob, index: number) {
    let reader = new FileReader();
    reader.addEventListener("load", () => {
-      this.imageToShow = reader.result;
+      //this.imageToShow = reader.result;
+      this.tiles[index].img= reader.result;
    }, false);
 
    if (image) {
@@ -52,10 +70,15 @@ createImageFromBlob(image: Blob) {
    }
 }
 
-  @ViewChild('pic', { static: false }) pic: ElementRef;
-   onLoad() {
-   console.log((this.pic.nativeElement as HTMLImageElement).naturalWidth);
-   console.log((this.pic.nativeElement as HTMLImageElement).naturalHeight);
- }
+// //   @ViewChild('pic', { static: false }) pic: ElementRef;
+// //    onLoad() {
+// //    console.log( (this.pic.nativeElement as HTMLImageElement).getAttribute("id")  );
+// //    console.log((this.pic.nativeElement as HTMLImageElement).naturalWidth);
+// //    console.log((this.pic.nativeElement as HTMLImageElement).naturalHeight);
+// //  }
+
+ getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 }
