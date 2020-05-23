@@ -12,7 +12,7 @@ module.exports.peliculasList = (req, res, next) =>{
 
 module.exports.peliculasByGenero = (req,res,next)=>{
   let sql= `select idPelicula, titulo, imagenPortada, AVG(calificacion) as calificacionAvg from calificacion join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula join peliculagenero p2 on p.idPelicula = p2.Pelicula_idPelicula join genero g on p2.Genero_idGenero = g.idGenero where g.tipoGenero = ?`;
-  config.query(sql, [req.params.g.tipoGenero], (error, results, fields) =>{
+  config.query(sql, [req.params.tipoGenero], (error, results, fields) =>{
     if(error){
       res.send(error);
     }
@@ -22,7 +22,7 @@ module.exports.peliculasByGenero = (req,res,next)=>{
 
 module.exports.peliculasByClasificacion = (req,res,next) => {
   let sql= `select idPelicula, titulo, imagenPortada, AVG(calificacion) as calificacionAvg from calificacion join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula join clasificacion c on p.Clasificacion_idClasificacion = c.idClasificacion where c.tipoClasificacion = ?`;
-  config.query(sql, [req.params.c.tipoClasificacion], (error, results, fields) =>{
+  config.query(sql, [req.params.tipoClasificacion], (error, results, fields) =>{
     if(error){
       res.send(error);
     }
