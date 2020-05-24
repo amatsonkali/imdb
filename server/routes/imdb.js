@@ -12,5 +12,6 @@ router.post('/cars', carController.car_save);
 router.delete('/cars/:id', carController.car_delete);
 */
 router.get('/usuarios', usuariosController.usuarios_list);
+router.post('/register', usuariosController.usuario_save);
 
 module.exports = router;

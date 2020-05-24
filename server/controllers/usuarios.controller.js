@@ -11,3 +11,14 @@ module.exports.usuarios_list = (req, res, next) => {
       res.json(results);
   });
 };
+
+module.exports.usuario_save=(req, res, next) => {
+  var data = req.body;
+  let sql = 'CALL crearUsuario(?,?,?,?)';
+  config.query(sql, data, (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
