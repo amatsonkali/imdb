@@ -13,6 +13,7 @@ import { RegisterComponent } from './User/register/register.component';
 import { SecondviewComponent } from './SecondView/secondview/secondview.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie/movie-details/movie-details.component';
+import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MovieDetailsComponent } from './movie/movie-details/movie-details.compo
     LoginComponent,
     RegisterComponent,
     SecondviewComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    MovieCreateComponent
   ],
   imports: [
     BrowserModule,
