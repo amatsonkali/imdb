@@ -1,0 +1,208 @@
+
+
+
+
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <mat-card>
+        <tr>
+        <td>
+          <mat-form-field  class="input-headline">
+          <mat-label>Título</mat-label>
+          <input type="text" maxlength="60" matInput>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Duración</mat-label>
+            <input type="time" matInput >
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Fecha de emisión</mat-label>
+            <input type="date" matInput>
+            </mat-form-field>
+        </td>
+      </tr>
+      </mat-card>
+      <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Sinopsis</mat-label>
+            <textarea matInput
+                      cdkTextareaAutosize
+                      #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="10"></textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Link del trailer</mat-label>
+            <input type="url" matInput>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
+            <input class="ng-hide" id="portada" multiple type="file" />
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Clasificación</mat-label>
+            <mat-select value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>País</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Tipo Material</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Género</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Directores</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Otro</mat-label>
+            <input type="text" maxlength="60" matInput>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Escritores</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Otro</mat-label>
+            <input type="text" maxlength="60" matInput>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Estrellas</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Otro</mat-label>
+            <input type="text" maxlength="60" matInput>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    <mat-card>
+      <tr>
+        <td>
+          <mat-form-field class="input-headline">
+            <mat-label>Actores</mat-label>
+            <mat-select #fontSize value="selected">
+              <mat-option value="10px">10px</mat-option>
+              <mat-option value="12px">12px</mat-option>
+              <mat-option value="14px">14px</mat-option>
+              <mat-option value="16px">16px</mat-option>
+              <mat-option value="18px">18px</mat-option>
+              <mat-option value="20px">20px</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field  class="input-headline">
+            <mat-label>Otro</mat-label>
+            <input type="text" maxlength="60" matInput>
+            </mat-form-field>
+        </td>
+      </tr>
+    </mat-card>
+    </table>
+    </form>
+
+
