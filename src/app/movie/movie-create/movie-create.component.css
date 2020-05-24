@@ -1,0 +1,27 @@
+input[type=time]::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+
+.input-headline {
+  font-size: 25px;
+  line-height: 20px;
+  font-weight: 400;
+  width: 100%;
+  margin: 6px;
+  margin-right: 100px;
+}
+
+td {
+  padding-right: 30px;
+}
+
+.mat-form-field{
+  padding-right: 20px;
+}
+
+.mat-card{
+  width: 70%;
+  justify-self: center;
+  margin: 6px auto;
+  padding-right: 40px;
+ }
