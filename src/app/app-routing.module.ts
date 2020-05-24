@@ -13,8 +13,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'home', component: MovieHomeComponent},
   {path: 'secondView', component: SecondviewComponent},
-  {path: 'movie',component: MovieDetailsComponent},
-  {path: 'movie',component: MovieDetailsComponent}
+  {path: 'movie', component: MovieDetailsComponent},
+  {path: 'crear', component: MovieCreateComponent}
 ];
 
 @NgModule({
