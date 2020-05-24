@@ -1,5 +1,3 @@
-//Simply to import to app.module.ts and start to use all angular
-// by this way is easier to maintenance you app.module
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';

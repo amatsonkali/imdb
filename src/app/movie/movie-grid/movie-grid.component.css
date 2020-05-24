@@ -1,0 +1,44 @@
+/* .cuerpo{
+    margin: 0;
+    padding :0;
+    background: #333;
+}
+.contenedor{ 
+    width: 1200px;
+    margin: 20px auto;
+    columns: 3;
+    column-gap: 40px;
+}
+
+.contenedor .box{
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.contenedor .box img{
+    max-width: 100%;
+}
+
+.contenedor .box h2{
+    margin:10px 0 0;
+    padding:0 0 210px;
+    font-size: 16px;
+}
+
+
+
+@media (max-width: 1200px){
+    .contenedor{ 
+        columns: 2;
+        width: calc(100%-40px);
+        box-sizing: border-box;
+        padding: 20px 20px 20x 0;
+    }
+}
+ */
+.card{
+    margin: 0.5rem;
+}

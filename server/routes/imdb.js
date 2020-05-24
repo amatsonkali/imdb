@@ -13,8 +13,4 @@ router.delete('/cars/:id', carController.car_delete);
 */
 router.get('/usuarios', usuariosController.usuarios_list);
 
-
-
-
-
 module.exports = router;
