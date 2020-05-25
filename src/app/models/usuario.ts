@@ -1,6 +1,9 @@
-export class usuario {
-  public nombre: string;
-  public email: string;
-  public username: string;
-  public password: string;
+export interface usuarioLogin {
+   username: string;
+   password: string;
+}
+
+export interface usuario extends usuarioLogin {
+  nombre: string;
+  email: string;
 }

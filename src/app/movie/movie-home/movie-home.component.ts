@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieHomeComponent implements OnInit {
 
+  dato = localStorage.getItem('usuario');
+
+
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.dato);
   }
 
 }

@@ -5,11 +5,10 @@
       <img mat-mat-card-xl-image src="assets/images/movies.jpg" alt="">
     </div>
 
-    <form class="login100-form validate-form">
+    <form class="login100-form" (submit)="onLogin(loginForm)" #loginForm="ngForm" validate-form>
       <span class="login100-form-title p-b-34">Account Login </span>
-
       <div class="wrap-input100 rs1-wrap-input100  m-b-20">
-        <input class="input100" matInput name="user" type="text" ngModel placeholder="Username" #usernameInput="ngModel" required>
+        <input class="input100" matInput name="username" type="text" ngModel placeholder="Username" #usernameInput="ngModel" required>
         <span class="focus-input100"></span>
       </div>
       <div class="wrap-input100 rs2-wrap-input100  m-b-20">

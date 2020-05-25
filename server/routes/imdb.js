@@ -14,9 +14,12 @@ router.put('/cars', carController.car_update);
 router.post('/cars', carController.car_save);
 router.delete('/cars/:id', carController.car_delete);
 */
+
+
 //Usuarios
 router.get('/usuarios', usuariosController.usuarios_list);
-router.post('/register', usuariosController.usuario_save);
+router.post('/usuarios', usuariosController.usuario_save);
+router.post('/usuarios/login', usuariosController.usuario_login);
 
 
 //Peliculas

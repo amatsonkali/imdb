@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -7,20 +8,23 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  isLoading = false;
-  public loginForm: FormGroup;
-  public submitted: Boolean = false;
-  public error: {code: number, message: string} = null;
-  constructor() { }
+
+
+  constructor(public LoginService: AuthenticationService) { }
 
   onLogin(form: NgForm){
+     if (form.invalid) {
+      return;
+     }
+     this.LoginService.loginUsuario(form.value.username, form.value.password);
+     console.log(form.value);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    localStorage.clear();
+    console.log(localStorage.clear());
   }
 
-  private correctLogin(){
-  }
 
 
 }
