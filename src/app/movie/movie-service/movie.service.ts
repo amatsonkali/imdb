@@ -13,13 +13,18 @@ export class MovieService {
 
   urlPelisRating: string = "api/peliculas";
   urlPelisGenero: string = "api/peliculas/peliculasGenero/";
-  urlPelisEdad: string = "api/peliculas/peliculasClasificacion/"
+  urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
+  urlPeliDetails: string = "api/peliculas/pelicula/";
+  urlGenerosById: string = "api//peliculas/genero/"
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
   private pelisEdadUpdated = new Subject < Pelicula[] > ();
+  private selectedPeliUpdated= new Subject<Pelicula>();
   pelisCalif: Pelicula[];
   pelisGenero: Pelicula[];
   pelisEdad : Pelicula[];
+  selectedPeli:Pelicula;
+  
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   viewMovieDetails(idPeli: number){
@@ -48,7 +53,7 @@ export class MovieService {
     );
   }
 
-  getPelisGenero(genero: string){
+  getPelisByGenero(genero: string){
     this.http.get<any[]>(this.urlPelisGenero+genero).subscribe(
       (peliculasData)=>{
         this.pelisGenero=[];
@@ -84,6 +89,40 @@ export class MovieService {
     );
   }
 
+  getSelectedPeli(){
+    this.http.get<any>(this.urlPeliDetails+this.selectedIdPeli).subscribe(
+      (peliculaData)=>{
+        let peli= peliculaData[0];
+        console.log(peliculaData);
+        this.selectedPeli={
+          idPelicula: peli.idPelicula,
+          titulo: peli.titulo,
+          duracion: peli.duracion,
+          fechaEmision: peli.fechaEmision,
+          sinopsis: peli.sinopsis,
+          linkTrailer: peli.linkTrailer,
+          img: this.getUrlFromBlob(peli.imagenPortada.data),
+          pais: peli.nombrePais,
+          clasificacion: peli.tipoClasificacion,
+          tipoMaterial: peli.tipo,
+          calificacion: peli.calificacionAvg,
+          generos:[]
+        }
+        this.getGenerosById(this.selectedPeli.idPelicula);
+      
+    });
+  }
+
+  getGenerosById(idPeli: number){
+    this.http.get<{tipoGenero:string}[]>(this.urlGenerosById+idPeli).subscribe(
+      (generos)=>{
+        generos.forEach((genero,index)=>{
+          this.selectedPeli.generos.push(genero.tipoGenero);
+        });
+        this.selectedPeliUpdated.next({...this.selectedPeli});
+    });
+  }
+
   getPelisCalifListener(){
     return this.pelisCalifUpdated.asObservable();
   }
@@ -94,6 +133,10 @@ export class MovieService {
 
   getPelisEdadListener(){
     return this.pelisEdadUpdated.asObservable();
+  }
+
+  getSelectedPeliListener(){
+    return this.selectedPeliUpdated.asObservable();
   }
 
   getUrlFromBlob(blobData){

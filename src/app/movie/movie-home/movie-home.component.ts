@@ -23,7 +23,7 @@ export class MovieHomeComponent implements OnInit {
     console.log(this.dato);
 
     this.movieService.getPelisCalif();
-    this.movieService.getPelisGenero("Acción");
+    this.movieService.getPelisByGenero("Acción");
     this.movieService.getPelisEdad("AA");
     this.susbscribeToAll();
   }

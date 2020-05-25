@@ -50,9 +50,44 @@ module.exports.peliculasByCalificacion = (req,res,next) => {
   });
 };
 
+module.exports.peliculaById = (req,res,next) =>{
+  let= sql = `select idPelicula, titulo, duracion,
+  fechaEmision, sinopsis, linkTrailer,
+  imagenPortada, nombrePais,
+  tipoClasificacion, tipo,
+  IFNULL(AVG(calificacion),-1) as calificacionAvg
+  from calificacion join pelicula p on
+  calificacion.Pelicula_idPelicula =
+  p.idPelicula join clasificacion c on
+  p.Clasificacion_idClasificacion =
+  c.idClasificacion join pais p2 on
+  p.Pais_idPais = p2.idPais join
+  tipomaterial t on
+  p.TipoMaterial_idTipoMaterial =
+  t.idTipoMaterial where
+  idPelicula=?;`
+  config.query(sql, [req.params.id], (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
 
-
-
+module.exports.generoByPeliId = (req,res,next) =>{
+  let sql= `select tipoGenero from genero join
+  peliculagenero p on
+  genero.idGenero =
+  p.Genero_idGenero join pelicula p2
+  on p.Pelicula_idPelicula =
+  p2.idPelicula where idPelicula=?;`
+  config.query(sql, [req.params.id], (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+}
 
 //POST
 

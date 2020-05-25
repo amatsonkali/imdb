@@ -9,5 +9,6 @@ export interface Pelicula {
     calificacion?: number,
     pais?:string,
     tipoMaterial?:string
-    img?: any
+    img?: any,
+    generos?: string[]
   }
