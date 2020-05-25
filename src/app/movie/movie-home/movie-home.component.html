@@ -12,9 +12,16 @@
   <a mat-button href="" target="_blank" class="mat-display-1">Califica</a>
 
   <mat-tab-group>
-    <mat-tab label="Peliculas"> <app-movie-grid></app-movie-grid> </mat-tab>
-    <mat-tab label="Series"> <app-movie-grid></app-movie-grid> </mat-tab>
-    <mat-tab label="Documentales"> <app-movie-grid></app-movie-grid> </mat-tab>
+    <div *ngIf="pelisCalif">
+      <mat-tab label="Las favoritas"> <app-movie-grid [pelis]="pelisCalif"></app-movie-grid> </mat-tab>
+    </div>
+    <div *ngIf="pelisGenero">
+      <mat-tab label="Accion"> <app-movie-grid [pelis]="pelisGenero"></app-movie-grid> </mat-tab>
+    </div>
+    <div *ngIf="pelisEdad">
+        <mat-tab label="Para niños"> <app-movie-grid [pelis]="pelisEdad"></app-movie-grid> </mat-tab>
+    </div>
+
   </mat-tab-group>
 
 
