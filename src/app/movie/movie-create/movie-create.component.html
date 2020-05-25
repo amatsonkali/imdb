@@ -1,116 +1,125 @@
 
-
-
-
-    <form class="example-form">
+  <form>
       <table class="example-full-width" cellspacing="0">
-        <mat-card>
-        <tr>
-        <td>
-          <mat-form-field  class="input-headline">
-          <mat-label>Título</mat-label>
-          <input type="text" maxlength="60" matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Duración</mat-label>
-            <input type="time" matInput >
-            </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Fecha de emisión</mat-label>
-            <input type="date" matInput>
-            </mat-form-field>
-        </td>
-      </tr>
-      </mat-card>
-      <mat-card>
+          <div class="card">
+            <tr>
+            <td>
+              <div class="form-group">
+                <mat-form-field  class="input-headline">
+                  <mat-label>Título</mat-label>
+                  <input type="text" class="form-control" name="titulo" maxlength="60" matInput>
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <mat-form-field  class="input-headline">
+                  <mat-label>Duración</mat-label>
+                  <input type="time" class="form-control" name="duracion" matInput>
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <mat-form-field  class="input-headline">
+                  <mat-label>Fecha de emisión</mat-label>
+                  <input type="date" class="form-control" name="fechaEmision" matInput>
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <mat-form-field class="input-headline">
+                  <mat-label>Sinopsis</mat-label>
+                  <textarea matInput
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="10" class="form-control" name="sinopsis"></textarea>
+                </mat-form-field>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <mat-form-field class="input-headline">
+                  <mat-label>Link del trailer</mat-label>
+                  <input type="url"  class="form-control" name="linkTrailer"  matInput>
+                  </mat-form-field>
+              </div>
+            </td>
+          </tr>
+        </div>
+      <div class="card">
       <tr>
         <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Sinopsis</mat-label>
-            <textarea matInput
-                      cdkTextareaAutosize
-                      #autosize="cdkTextareaAutosize"
-                      cdkAutosizeMinRows="1"
-                      cdkAutosizeMaxRows="10"></textarea>
-          </mat-form-field>
+            <div class="form-group">
+              <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
+              <input class="ng-hide" id="portada" multiple type="file" />
+            </div>
+          </td>
+        <td>
+          <div class="form-group">
+            <mat-form-field class="input-headline">
+              <mat-label>Clasificación</mat-label>
+              <mat-select class="form-control" name="clasificacion" value="selected">
+                <mat-option value="10px">10px</mat-option>
+                <mat-option value="12px">12px</mat-option>
+                <mat-option value="14px">14px</mat-option>
+                <mat-option value="16px">16px</mat-option>
+                <mat-option value="18px">18px</mat-option>
+                <mat-option value="20px">20px</mat-option>
+              </mat-select>
+              </mat-form-field>
+          </div>
         </td>
         <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Link del trailer</mat-label>
-            <input type="url" matInput>
+          <div class="form-group">
+            <mat-form-field class="input-headline">
+              <mat-label>País</mat-label>
+              <mat-select class="form-control" name="pais" value="selected">
+                <mat-option value="10px">10px</mat-option>
+                <mat-option value="12px">12px</mat-option>
+                <mat-option value="14px">14px</mat-option>
+                <mat-option value="16px">16px</mat-option>
+                <mat-option value="18px">18px</mat-option>
+                <mat-option value="20px">20px</mat-option>
+              </mat-select>
+              </mat-form-field>
+            </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <mat-form-field class="input-headline">
+              <mat-label>Tipo Material</mat-label>
+              <mat-select  class="form-control" name="tipoMaterial" value="selected">
+                <mat-option value="10px">10px</mat-option>
+                <mat-option value="12px">12px</mat-option>
+                <mat-option value="14px">14px</mat-option>
+                <mat-option value="16px">16px</mat-option>
+                <mat-option value="18px">18px</mat-option>
+                <mat-option value="20px">20px</mat-option>
+              </mat-select>
             </mat-form-field>
+          </div>
         </td>
         <td>
-            <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
-            <input class="ng-hide" id="portada" multiple type="file" />
+          <div class="form-group">
+            <mat-form-field class="input-headline">
+              <mat-label>Género</mat-label>
+              <mat-select class="form-control" name="genero" value="selected">
+                <mat-option value="10px">10px</mat-option>
+                <mat-option value="12px">12px</mat-option>
+                <mat-option value="14px">14px</mat-option>
+                <mat-option value="16px">16px</mat-option>
+                <mat-option value="18px">18px</mat-option>
+                <mat-option value="20px">20px</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </td>
       </tr>
-    </mat-card>
-    <mat-card>
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Clasificación</mat-label>
-            <mat-select value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>País</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Tipo Material</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-      </tr>
-    </mat-card>
-    <mat-card>
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Género</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-      </tr>
-    </mat-card>
-    <mat-card>
+    </div>
+    <div class="card">
       <tr>
         <td>
           <mat-form-field class="input-headline">
@@ -126,14 +135,24 @@
             </mat-form-field>
         </td>
         <td>
+          <div class="example-button-container">
+            <button mat-fab color="accent" aria-label="Add">
+              <mat-icon><span class="material-icons">add</span></mat-icon>
+            </button>
+          </div>
+        </td>
+        <td>
           <mat-form-field  class="input-headline">
             <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput>
+            <input type="text" maxlength="60" matInput placeholder="Nombre del Director">
             </mat-form-field>
         </td>
+        <td>
+          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
+        </td>
       </tr>
-    </mat-card>
-    <mat-card>
+    </div>
+    <div class="card">
       <tr>
         <td>
           <mat-form-field class="input-headline">
@@ -149,14 +168,24 @@
             </mat-form-field>
         </td>
         <td>
+          <div class="example-button-container">
+            <button mat-fab color="accent" aria-label="Add">
+              <mat-icon><span class="material-icons">add</span></mat-icon>
+            </button>
+          </div>
+        </td>
+        <td>
           <mat-form-field  class="input-headline">
             <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput>
+            <input type="text" maxlength="60" matInput  placeholder="Nombre del Escritor">
             </mat-form-field>
         </td>
+        <td>
+          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
+        </td>
       </tr>
-    </mat-card>
-    <mat-card>
+    </div>
+    <div class="card">
       <tr>
         <td>
           <mat-form-field class="input-headline">
@@ -172,14 +201,24 @@
             </mat-form-field>
         </td>
         <td>
+          <div class="example-button-container">
+            <button mat-fab color="accent" aria-label="Add">
+              <mat-icon><span class="material-icons">add</span></mat-icon>
+            </button>
+          </div>
+        </td>
+        <td>
           <mat-form-field  class="input-headline">
             <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput>
+            <input type="text" maxlength="60" matInput placeholder="Nombre de la Estrella">
             </mat-form-field>
         </td>
+        <td>
+          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
+        </td>
       </tr>
-    </mat-card>
-    <mat-card>
+    </div>
+    <div class="card">
       <tr>
         <td>
           <mat-form-field class="input-headline">
@@ -195,14 +234,27 @@
             </mat-form-field>
         </td>
         <td>
+          <div class="example-button-container">
+            <button mat-fab color="accent" aria-label="Add">
+              <mat-icon><span class="material-icons">add</span></mat-icon>
+            </button>
+          </div>
+        </td>
+        <td>
           <mat-form-field  class="input-headline">
             <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput>
+            <input type="text" maxlength="60" matInput placeholder="Nombre del Actor">
             </mat-form-field>
         </td>
+        <td>
+          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
+        </td>
       </tr>
-    </mat-card>
-    </table>
-    </form>
+    </div>
+  </table>
+    <div class="but">
+    <button mat-raised-button color="accent"><span class="material-icons">done</span>Guardar pelicula</button>
+    </div>
+  </form>
 
 
