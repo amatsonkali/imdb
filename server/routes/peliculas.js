@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var router = express.Router();
 
 var peliculasController = require('../controllers/peliculas.controller');
@@ -8,5 +8,5 @@ router.get('/peliculas/peliculasGenero', peliculasController.peliculasByGenero);
 router.get('/peliculas/peliculasClasificacion', peliculasController.peliculasByClasificacion);
 
 
-module.exports = router;
+module.exports = router;*/
 

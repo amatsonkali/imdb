@@ -10,29 +10,28 @@
                   <div class="form-row">
                       <div class="form-group">
                           <label for="name">Nombre :</label>
-                          <input type="text" name="name" id="name" required/>
-                      </div>
-                      <div class="form-group">
-                          <label for="father_name">Apellido/s:</label>
-                          <input type="text" name="father_name" id="father_name" required/>
+                          <input matInput placeholder="Nombre" name="nombre" ngModel #nombreInput="ngModel" required/>
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="email">Email ID :</label>
-                      <input type="email" name="email" id="email" />
+                      <input matInput placeholder="Email" name="correo" ngModel #emailInput="ngModel" required email/>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Username :</label>
+                    <input matInput placeholder="Username" name="user" ngModel #usernameInput="ngModel" required  />
                   </div>
                   <div class="form-group">
                     <label for="pincode">Password :</label>
-                    <input type="password" name="password" id="password">
+                    <input matInput placeholder="Password" name="password" ngModel #passwordInput="ngModel" type= "password" required>
                   </div>
-                  <div class="form-group">
+            <!--  <div class="form-group">
                     <label for="pincode">Repeat Password :</label>
                     <input type="password" name="password" id="password" >
-
-                  </div>
+                  </div> -->
                   <div class="form-submit">
-                      <button type="submit" class="submit" name="reset" id="reset"> Reset All</button>
-                      <button type="submit" class="submit" name="submit" id="submit"> Submit </button>
+                      <!-- <button type="submit" class="submit" name="reset" id="reset"> Reset All</button> -->
+                      <button type="submit" class="submit" name="submit" id="submit"> Enviar</button>
                   </div>
               </form>
           </div>

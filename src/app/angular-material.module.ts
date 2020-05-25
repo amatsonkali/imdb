@@ -71,7 +71,7 @@ import { NgModule } from '@angular/core';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule, 
+    MatPaginatorModule,
     MatDividerModule
   ]
 })
