@@ -24,8 +24,8 @@ router.post('/usuarios/login', usuariosController.usuario_login);
 
 //Peliculas
 router.get('/peliculas', peliculasController.peliculasList);
-router.get('/peliculas/peliculasGenero', peliculasController.peliculasByGenero);
-router.get('/peliculas/peliculasClasificacion', peliculasController.peliculasByClasificacion);
+router.get('/peliculas/peliculasGenero/:genero', peliculasController.peliculasByGenero);
+router.get('/peliculas/peliculasClasificacion/:clasi', peliculasController.peliculasByClasificacion);
 router.post('/peliculas/pelicula', peliculasController.pelicula_save);
 router.post('/peliculas/peliculaGenero', peliculasController.peliculaGenero_save);
 

@@ -2,7 +2,8 @@ var config = require('../helpers/config');
 
 //GET
 module.exports.peliculasList = (req, res, next) =>{
-  let sql= `select idPelicula, titulo, imagenPortada, AVG(calificacion) as calificacionAvg from calificacion join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula order by calificacionAvg desc`;
+  let sql ='select idPelicula, titulo, imagenPortada, IFNULL(AVG(calificacion),-1) as calificacionAvg from calificacion right outer join pelicula p on calificacion.Pelicula_idPelicula =p.idPelicula group by p.idPelicula order by calificacionAvg desc;'
+  
   config.query(sql, (error, results, fields) =>{
     if(error){
       res.send(error);
@@ -15,8 +16,10 @@ module.exports.peliculasByGenero = (req,res,next)=>{
   let sql= `select p.idPelicula, p.titulo,
   p.imagenPortada,IFNULL( AVG(c.calificacion),-1 ) from pelicula p left outer join calificacion c on c.Pelicula_idPelicula = p.idPelicula
   inner join peliculagenero p2 on p.idPelicula = p2.Pelicula_idPelicula
-  inner join genero g on p2.Genero_idGenero = g.idGenero and g.tipoGenero='Romance' GROUP BY p.idPelicula`;
-  config.query(sql, (error, results, fields) =>{
+  inner join genero g on p2.Genero_idGenero = g.idGenero and g.tipoGenero=? GROUP BY p.idPelicula`;
+
+  var genero= req.params.genero;
+  config.query(sql,[genero], (error, results, fields) =>{
     if(error){
       res.send(error);
     }
@@ -28,7 +31,7 @@ module.exports.peliculasByClasificacion = (req,res,next) => {
   let sql= `select idPelicula, titulo, imagenPortada, IFNULL(AVG(calificacion), -1) as calificacionAvg from
   pelicula p left outer join calificacion on  p.idPelicula = calificacion.Pelicula_idPelicula
 join clasificacion c on p.Clasificacion_idClasificacion = c.idClasificacion where c.tipoClasificacion = ? group by p.idPelicula`;
-  config.query(sql, [req.params.tipoClasificacion], (error, results, fields) =>{
+  config.query(sql, [req.params.clasi], (error, results, fields) =>{
     if(error){
       res.send(error);
     }
