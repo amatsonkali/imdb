@@ -34,5 +34,9 @@ router.post('/peliculas/peliculaGenero', peliculasController.peliculaGenero_save
 //Personas
 router.get('/personas/aleatorio', personasController.personasAleatorias);
 
+//Catalogos
+router.get('/clasificaciones', peliculasController.clasificaciones);
+router.get('/paises', peliculasController.paises);
+router.get('/tipoMaterial', peliculasController.tipoMaterial);
 
 module.exports = router;

@@ -3,7 +3,7 @@ var config = require('../helpers/config');
 //GET
 module.exports.peliculasList = (req, res, next) =>{
   let sql ='select idPelicula, titulo, imagenPortada, IFNULL(AVG(calificacion),-1) as calificacionAvg from calificacion right outer join pelicula p on calificacion.Pelicula_idPelicula =p.idPelicula group by p.idPelicula order by calificacionAvg desc;'
-  
+
   config.query(sql, (error, results, fields) =>{
     if(error){
       res.send(error);
@@ -89,9 +89,37 @@ module.exports.generoByPeliId = (req,res,next) =>{
   });
 }
 
+module.exports.clasificaciones = (req,res,next) =>{
+  let sql= `SELECT idClasificacion, tipoClasificacion FROM clasificacion;`;
+  config.query(sql, (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
+
+module.exports.paises = (req,res,next) =>{
+  let sql= `SELECT idPais, nombrePais FROM pais;`
+  config.query(sql, (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
+
+module.exports.tipoMaterial = (req,res,next) =>{
+  let sql= `SELECT idTipoMaterial, tipo FROM tipomaterial;`
+  config.query(sql, (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
+
 //POST
-
-
 
 //Agrega en la tabla pelicula
 module.exports.pelicula_save = (req, res, next) => {
