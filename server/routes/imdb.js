@@ -30,9 +30,15 @@ router.get('/peliculas/pelicula/:id',peliculasController.peliculaById);
 router.get('/peliculas/genero/:id',peliculasController.generoByPeliId);
 router.post('/peliculas/pelicula', peliculasController.pelicula_save);
 router.post('/peliculas/peliculaGenero', peliculasController.peliculaGenero_save);
+router.post('/peliculas/calificacion', peliculasController.calificacion_save);
 
 //Personas
 router.get('/personas/aleatorio', personasController.personasAleatorias);
+router.get('/personas/estrellas/:idPelicula', personasController.estrellasPeli);
+router.get('/personas/actores/:idPelicula', personasController.actoresPeli);
+router.get('/personas/directores/:idPelicula', personasController.directoresPeli);
+router.get('/personas/escritores/:idPelicula', personasController.escritoresPeli);
+
 
 
 module.exports = router;

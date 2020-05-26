@@ -3,7 +3,7 @@ var config = require('../helpers/config');
 //GET
 module.exports.peliculasList = (req, res, next) =>{
   let sql ='select idPelicula, titulo, imagenPortada, IFNULL(AVG(calificacion),-1) as calificacionAvg from calificacion right outer join pelicula p on calificacion.Pelicula_idPelicula =p.idPelicula group by p.idPelicula order by calificacionAvg desc;'
-  
+
   config.query(sql, (error, results, fields) =>{
     if(error){
       res.send(error);
@@ -117,7 +117,16 @@ module.exports.peliculaGenero_save = (req, res, next) => {
   })
 }
 
-
+module.exports.calificacion_save = (req, res, next) => {
+  var calif = req.body;
+  let sql= 'insert into calificacion (calificacion, fechaCalif, subtitulo, comentario, Pelicula_idPelicula, Usuario_idUsuario) VALUES (?, CURDATE(),? ,?  ,? ,?)';
+  config.query(sql, [calif.calificacion, calif.subtitulo, calif.comentario, calif.idPelicula, calif.idUsuario] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
 
 /*
 module.exports.office_update = (req, res, next) => {
