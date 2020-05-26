@@ -45,7 +45,8 @@ export class MovieService {
           this.pelisCalif.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data)
+            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            calificacion: peli.calificacionAvg
           });
         });
         this.pelisCalifUpdated.next([...this.pelisCalif]);
@@ -61,7 +62,8 @@ export class MovieService {
           this.pelisGenero.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data)
+            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            calificacion: peli.calificacionAvg
           });
         });
         this.pelisGeneroUpdated.next([...this.pelisGenero]);
@@ -79,7 +81,8 @@ export class MovieService {
           this.pelisEdad.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data)
+            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            calificacion: peli.calificacionAvg
           })
           
         });

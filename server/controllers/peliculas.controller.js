@@ -14,7 +14,7 @@ module.exports.peliculasList = (req, res, next) =>{
 
 module.exports.peliculasByGenero = (req,res,next)=>{
   let sql= `select p.idPelicula, p.titulo,
-  p.imagenPortada,IFNULL( AVG(c.calificacion),-1 ) from pelicula p left outer join calificacion c on c.Pelicula_idPelicula = p.idPelicula
+  p.imagenPortada,IFNULL( AVG(c.calificacion),-1 ) as calificacionAvg from pelicula p left outer join calificacion c on c.Pelicula_idPelicula = p.idPelicula
   inner join peliculagenero p2 on p.idPelicula = p2.Pelicula_idPelicula
   inner join genero g on p2.Genero_idGenero = g.idGenero and g.tipoGenero=? GROUP BY p.idPelicula`;
 
