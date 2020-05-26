@@ -15,6 +15,7 @@ import { SecondviewComponent } from './SecondView/secondview/secondview.componen
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie/movie-details/movie-details.component';
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MovieCreateComponent } from './movie/movie-create/movie-create.componen
     AngularMaterialModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AlifeFileToBase64Module
   ],
   providers: [],
   bootstrap: [AppComponent]
