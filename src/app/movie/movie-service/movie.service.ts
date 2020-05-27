@@ -158,7 +158,7 @@ export class MovieService {
 
   getUrlFromBlob(blobData){
     let TYPED_ARRAY = new Uint8Array(blobData);
-    const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+    const STRING_CHAR = this.utf8ArrayToStr(blobData); // String.fromCharCode.apply(null, TYPED_ARRAY);
           //console.log("STRING_CHAR:");
           //console.log(STRING_CHAR);
           /*let base64String = btoa(STRING_CHAR);
@@ -171,13 +171,9 @@ export class MovieService {
           if(STRING_CHAR != ""){
             if(!STRING_CHAR.startsWith('data:')){
               image = 'data:image/jpg;base64,' + STRING_CHAR;
-              console.log("Añadiendo terminacion");
               imageUrl = this.getImgContent(image);
             }else imageUrl= STRING_CHAR;
-            console.log(imageUrl);
-          }else {
-            console.log(STRING_CHAR);
-            console.log("Lo anterior será place holder")
+          
           }
           return imageUrl;
   }
@@ -200,4 +196,39 @@ export class MovieService {
   savePelicula(peli: Peli) {
     return this.http.post<Pelicula>(this.urlsavePelicula, peli);
   }
+
+
+  utf8ArrayToStr = (function () {
+    var charCache = new Array(128);  // Preallocate the cache for the common single byte chars
+    var charFromCodePt = String.fromCodePoint || String.fromCharCode;
+    var result = [];
+
+    return function (array) {
+        var codePt, byte1;
+        var buffLen = array.length;
+
+        result.length = 0;
+
+        for (var i = 0; i < buffLen;) {
+            byte1 = array[i++];
+
+            if (byte1 <= 0x7F) {
+                codePt = byte1;
+            } else if (byte1 <= 0xDF) {
+                codePt = ((byte1 & 0x1F) << 6) | (array[i++] & 0x3F);
+            } else if (byte1 <= 0xEF) {
+                codePt = ((byte1 & 0x0F) << 12) | ((array[i++] & 0x3F) << 6) | (array[i++] & 0x3F);
+            } else if (String.fromCodePoint) {
+                codePt = ((byte1 & 0x07) << 18) | ((array[i++] & 0x3F) << 12) | ((array[i++] & 0x3F) << 6) | (array[i++] & 0x3F);
+            } else {
+                codePt = 63;    // Cannot convert four byte code points, so use "?" instead
+                i += 3;
+            }
+
+            result.push(charCache[codePt] || (charCache[codePt] = charFromCodePt(codePt)));
+        }
+
+        return result.join('');
+    };
+})();
 }

@@ -8,9 +8,10 @@ const port = 3000;
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
+//app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '250kb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '250kb', extended: true}))
 app.use('/api', imdb);
 
 
