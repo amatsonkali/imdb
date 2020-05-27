@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Pelicula } from 'src/app/models/pelicula';
+import { Peli } from 'src/app/models/peli';
+import { Clasificacion } from 'src/app/models/clasificacion';
+import { Pais } from 'src/app/models/pais';
+import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -15,7 +19,8 @@ export class MovieService {
   urlPelisGenero: string = "api/peliculas/peliculasGenero/";
   urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
   urlPeliDetails: string = "api/peliculas/pelicula/";
-  urlGenerosById: string = "api//peliculas/genero/"
+  urlGenerosById: string = "api//peliculas/genero/";
+
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
   private pelisEdadUpdated = new Subject < Pelicula[] > ();
@@ -24,7 +29,16 @@ export class MovieService {
   pelisGenero: Pelicula[];
   pelisEdad : Pelicula[];
   selectedPeli:Pelicula;
-  
+
+  private urlClasificaciones = 'api/clasificaciones';
+  private urlPaises = 'api/paises';
+  private urlTipoMaterial = 'api/tipoMaterial';
+  private urlsavePelicula = 'api/peliculas/pelicula';
+
+  clasificacion: Clasificacion[];
+  pais: Pais[];
+  tipoMaterial: TipoMaterial[];
+
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   viewMovieDetails(idPeli: number){
@@ -81,7 +95,7 @@ export class MovieService {
             titulo: peli.titulo,
             img: this.getUrlFromBlob(peli.imagenPortada.data)
           })
-          
+
         });
         this.pelisEdadUpdated.next([...this.pelisEdad]);
       }
@@ -109,7 +123,7 @@ export class MovieService {
           generos:[]
         }
         this.getGenerosById(this.selectedPeli.idPelicula);
-      
+
     });
   }
 
@@ -159,5 +173,21 @@ export class MovieService {
   }
   getImgContent(imgFile): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(imgFile);
+  }
+
+  catalogoClasificaciones() {
+    return this.http.get<Clasificacion[]>(this.urlClasificaciones);
+  }
+
+  catalogoPaises() {
+    return this.http.get<Pais[]>(this.urlPaises);
+  }
+
+  catalogoTipoMaterial() {
+    return this.http.get<TipoMaterial[]>(this.urlTipoMaterial);
+  }
+
+  savePelicula(peli: Peli) {
+    return this.http.post<Pelicula>(this.urlsavePelicula, peli);
   }
 }

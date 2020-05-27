@@ -42,5 +42,9 @@ router.get('/personas/escritores/:idPelicula', personasController.escritoresPeli
 router.get('/personas', personasController.personasTotal);
 
 
+//Catalogos
+router.get('/clasificaciones', peliculasController.clasificaciones);
+router.get('/paises', peliculasController.paises);
+router.get('/tipoMaterial', peliculasController.tipoMaterial);
 
 module.exports = router;
