@@ -101,7 +101,7 @@ module.exports.calificacionesPelicula = (req,res,next) =>{
 };
 
 module.exports.paises = (req,res,next) =>{
-  let sql= `SELECT idPais, nombrePais FROM pais;`
+  let sql= `SELECT idPais, nombrePais FROM pais ORDER BY nombrePais`;
   config.query(sql, (error, results, fields) =>{
     if(error){
       res.send(error);

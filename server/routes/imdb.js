@@ -40,6 +40,8 @@ router.get('/personas/actores/:idPelicula', personasController.actoresPeli);
 router.get('/personas/directores/:idPelicula', personasController.directoresPeli);
 router.get('/personas/escritores/:idPelicula', personasController.escritoresPeli);
 router.get('/personas', personasController.personasTotal);
+router.post('/personas', personasController.persona_save);
+router.post('/personas/pelicula', personasController.personaPelicula_save);
 
 
 //Catalogos

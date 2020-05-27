@@ -63,3 +63,25 @@ module.exports.personasTotal = (req,res,next) =>{
     res.json(results);
   });
 }
+
+module.exports.persona_save = (req, res, next)=>{
+  var persona = req.body;
+  let sql='call Crear_Persona(?,?,?,?,?)';
+  config.query(sql, [persona.nombre, persona.fechaNacimiento, persona.miniBiografia, persona.imagenPersona, persona.idPais] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
+
+module.exports.personaPelicula_save = (req, res, next)=>{
+  var perPeli = req.body;
+  let sql='call insertPersonaPelicula(?,?)';
+  config.query(sql, [perPeli.idPelicula, perPeli.idPersona] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
