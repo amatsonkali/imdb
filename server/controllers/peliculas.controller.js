@@ -120,6 +120,16 @@ module.exports.tipoMaterial = (req,res,next) =>{
   });
 };
 
+module.exports.clasificaciones = (req,res,next) =>{
+  let sql= `SELECT idClasificacion, tipoClasificacion FROM clasificacion;`;
+  config.query(sql, (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
+
 //POST
 
 //Agrega en la tabla pelicula
