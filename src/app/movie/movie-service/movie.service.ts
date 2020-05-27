@@ -19,7 +19,7 @@ export class MovieService {
   urlPelisGenero: string = "api/peliculas/peliculasGenero/";
   urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
   urlPeliDetails: string = "api/peliculas/pelicula/";
-  urlGenerosById: string = "api//peliculas/genero/";
+  urlGenerosById: string = "api/peliculas/genero/";
 
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
@@ -158,19 +158,26 @@ export class MovieService {
 
   getUrlFromBlob(blobData){
     let TYPED_ARRAY = new Uint8Array(blobData);
-          const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+    const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+          //console.log("STRING_CHAR:");
+          //console.log(STRING_CHAR);
           /*let base64String = btoa(STRING_CHAR);
           console.log("TYPED_ARRAY:");
           console.log(TYPED_ARRAY);
-          console.log("STRING_CHAR:");
-          console.log(STRING_CHAR);
           console.log("base64String:");
           console.log(base64String);*/
           let image="";
           let imageUrl;
           if(STRING_CHAR != ""){
-            image = 'data:image/jpg;base64,' + STRING_CHAR;
-            imageUrl = this.getImgContent(image);
+            if(!STRING_CHAR.startsWith('data:')){
+              image = 'data:image/jpg;base64,' + STRING_CHAR;
+              console.log("Añadiendo terminacion");
+              imageUrl = this.getImgContent(image);
+            }else imageUrl= STRING_CHAR;
+            console.log(imageUrl);
+          }else {
+            console.log(STRING_CHAR);
+            console.log("Lo anterior será place holder")
           }
           return imageUrl;
   }
