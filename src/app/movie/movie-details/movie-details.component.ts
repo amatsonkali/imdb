@@ -13,21 +13,22 @@ export class MovieDetailsComponent implements OnInit {
   peli: Pelicula = {
     idPelicula: -1,
     titulo: "Aun no carga el titulo gg",
+    linkTrailer: "Sigue cargando",
     duracion: "Sin duracion",
     clasificacion: "Sin clasificacion"
   };
   generos: string[]=["Accion","Aventura","Anime"];
   peliSub: Subscription;
-  loading: boolean = true;
+  loading = true;
 
   constructor(public movieService: MovieService, public imageService: ImageService) {}
 
   ngOnInit(): void {
     this.movieService.getSelectedPeli();
     this.peliSub = this.movieService.getSelectedPeliListener().subscribe(
-      (pelicula: Pelicula)=>{
-        this.peli= pelicula;
-        this.loading=false;
+      (pelicula: Pelicula) => {
+        this.peli = pelicula;
+        this.loading = false;
     });
   }
 
