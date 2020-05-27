@@ -89,9 +89,10 @@ module.exports.generoByPeliId = (req,res,next) =>{
   });
 }
 
-module.exports.clasificaciones = (req,res,next) =>{
-  let sql= `SELECT idClasificacion, tipoClasificacion FROM clasificacion;`;
-  config.query(sql, (error, results, fields) => {
+//Sacar calificaciones de una pelicula con idPelicula
+module.exports.calificacionesPelicula = (req,res,next) =>{
+  let sql= 'select nombre, calificacion, fechaCalif, subtitulo, comentario from calificacion join usuario u on calificacion.Usuario_idUsuario = u.idUsuario join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula where idPelicula=?';
+  config.query(sql,[req.params.idPelicula],(error, results, fields) => {
     if(error){
       res.send(error);
     }
@@ -100,7 +101,7 @@ module.exports.clasificaciones = (req,res,next) =>{
 };
 
 module.exports.paises = (req,res,next) =>{
-  let sql= `SELECT idPais, nombrePais FROM pais;`
+  let sql= `SELECT idPais, nombrePais FROM pais ORDER BY nombrePais`;
   config.query(sql, (error, results, fields) =>{
     if(error){
       res.send(error);
@@ -112,6 +113,16 @@ module.exports.paises = (req,res,next) =>{
 module.exports.tipoMaterial = (req,res,next) =>{
   let sql= `SELECT idTipoMaterial, tipo FROM tipomaterial;`
   config.query(sql, (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+};
+
+module.exports.clasificaciones = (req,res,next) =>{
+  let sql= `SELECT idClasificacion, tipoClasificacion FROM clasificacion;`;
+  config.query(sql, (error, results, fields) => {
     if(error){
       res.send(error);
     }
