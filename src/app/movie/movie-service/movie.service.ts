@@ -173,7 +173,7 @@ export class MovieService {
               image = 'data:image/jpg;base64,' + STRING_CHAR;
               imageUrl = this.getImgContent(image);
             }else imageUrl= STRING_CHAR;
-          
+
           }
           return imageUrl;
   }
