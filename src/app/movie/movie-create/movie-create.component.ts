@@ -38,7 +38,7 @@ export class MovieCreateComponent implements OnInit {
   }
 
   onFileChanges(files){
-    console.log("File is not null :: ", files);
+    console.log("File is not null ::", files);
     this.direccion = files[0].base64;
   }
 

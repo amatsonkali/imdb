@@ -36,3 +36,16 @@ td {
   margin-bottom: 30px;
   margin-top: 20px;
 }
+
+.titulo
+{
+  text-align: center;
+  margin: 20px;
+}
+
+h1 {
+  color: #df9629;
+  font-family: arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
