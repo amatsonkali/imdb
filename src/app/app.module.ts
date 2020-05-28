@@ -11,7 +11,6 @@ import { MovieHomeComponent } from './movie/movie-home/movie-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './User/login/login.component';
 import { RegisterComponent } from './User/register/register.component';
-import { SecondviewComponent } from './SecondView/secondview/secondview.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie/movie-details/movie-details.component';
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
@@ -25,7 +24,6 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     MovieHomeComponent,
     LoginComponent,
     RegisterComponent,
-    SecondviewComponent,
     MovieDetailsComponent,
     MovieCreateComponent
   ],
