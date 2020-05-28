@@ -42,11 +42,15 @@ router.get('/personas/escritores/:idPelicula', personasController.escritoresPeli
 router.get('/personas', personasController.personasTotal);
 router.post('/personas', personasController.persona_save);
 router.post('/personas/pelicula', personasController.personaPelicula_save);
+router.post('/personas/actor', personasController.actorEstrella_save);
+router.post('/personas/director', personasController.director_save);
+router.post('/personas/escritor', personasController.escritor_save);
 
 
 //Catalogos
 router.get('/clasificaciones', peliculasController.clasificaciones);
 router.get('/paises', peliculasController.paises);
 router.get('/tipoMaterial', peliculasController.tipoMaterial);
+router.get('/generos', peliculasController.generos);
 
 module.exports = router;

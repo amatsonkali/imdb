@@ -85,3 +85,37 @@ module.exports.personaPelicula_save = (req, res, next)=>{
     res.json(results)
   })
 }
+
+
+module.exports.director_save = (req, res, next)=>{
+  var direct = req.body;
+  let sql = 'call insertDirector(?)';
+  config.query(sql, [direct._idPersonaPelicula] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
+
+module.exports.escritor_save = (req, res, next)=>{
+  var escrit = req.body;
+  let sql = 'call insertEscritor(?)';
+  config.query(sql, [escrit._idPersonaPelicula] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
+
+module.exports.actorEstrella_save = (req, res, next)=>{
+  var actor = req.body;
+  let sql = 'call insertActorEstrella(?,?,?)';
+  config.query(sql, [actor._nombrePapel, actor._star, actor._idPersonaPelicula] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}

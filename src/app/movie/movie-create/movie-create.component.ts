@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie-service/movie.service';
-import { Peli } from 'src/app/models/peli';
+import { Pelicula } from 'src/app/models/pelicula';
 import { Clasificacion } from 'src/app/models/clasificacion';
 import { Pais } from 'src/app/models/pais';
 import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import Swal from 'sweetalert2';
+import { Genero } from 'src/app/models/genero';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-create',
@@ -14,12 +16,14 @@ import Swal from 'sweetalert2';
 })
 export class MovieCreateComponent implements OnInit {
 
-  pelicula: Peli;
+  pelicula: Pelicula;
   clasificaciones: Clasificacion[]=[];
-  paises: Pais[];
+  paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
   direccion: string;
 
+  generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
+  generosSub: Subscription;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -38,15 +42,15 @@ export class MovieCreateComponent implements OnInit {
   }
 
   onFileChanges(files){
-    console.log("File is not null :: ", files);
+    console.log("File is not null ::", files);
     this.direccion = files[0].base64;
   }
 
-  saveMovie(pelicula: Peli){
+  saveMovie(pelicula: Pelicula){
       if(this.direccion){
-        pelicula.imagenPortada = this.direccion;
+        pelicula.img = this.direccion;
       }else{
-        pelicula.imagenPortada = "";
+        pelicula.img = "";
       }
       this.movieService.savePelicula(pelicula).subscribe(data => { });
       Swal.fire({
