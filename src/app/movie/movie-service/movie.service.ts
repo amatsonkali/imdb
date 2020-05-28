@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Pelicula } from 'src/app/models/pelicula';
-import { Peli } from 'src/app/models/peli';
 import { Clasificacion } from 'src/app/models/clasificacion';
 import { Pais } from 'src/app/models/pais';
 import { TipoMaterial } from 'src/app/models/tipoMaterial';
@@ -193,8 +192,8 @@ export class MovieService {
     return this.http.get<TipoMaterial[]>(this.urlTipoMaterial);
   }
 
-  savePelicula(peli: Peli) {
-    return this.http.post<Pelicula>(this.urlsavePelicula, peli);
+  savePelicula(pelicula: Pelicula) {
+    return this.http.post<Pelicula>(this.urlsavePelicula, pelicula);
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie-service/movie.service';
-import { Peli } from 'src/app/models/peli';
+import { Pelicula } from 'src/app/models/pelicula';
 import { Clasificacion } from 'src/app/models/clasificacion';
 import { Pais } from 'src/app/models/pais';
 import { TipoMaterial } from 'src/app/models/tipoMaterial';
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class MovieCreateComponent implements OnInit {
 
-  pelicula: Peli;
+  pelicula: Pelicula;
   clasificaciones: Clasificacion[]=[];
   paises: Pais[];
   tipoMateriales: TipoMaterial[];
@@ -42,11 +42,11 @@ export class MovieCreateComponent implements OnInit {
     this.direccion = files[0].base64;
   }
 
-  saveMovie(pelicula: Peli){
+  saveMovie(pelicula: Pelicula){
       if(this.direccion){
-        pelicula.imagenPortada = this.direccion;
+        pelicula.img = this.direccion;
       }else{
-        pelicula.imagenPortada = "";
+        pelicula.img = "";
       }
       this.movieService.savePelicula(pelicula).subscribe(data => { });
       Swal.fire({
