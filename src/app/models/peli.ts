@@ -1,5 +1,5 @@
 export interface Peli {
-  titulo: string,
+  titulo: string;
   duracion?: string,
   fechaEmision?: Date,
   sinopsis?: string,

@@ -58,24 +58,61 @@
 				<section class="trailer">
 					<h3>Trailer</h3>
 					<div class="trailer_frame">
-						<iframe width="560" height="315" src="peli.linkTrailer" frameborder="0" allowfullscreen></iframe>
+						<iframe width="560" height="315" [src]="peli.linkTrailer" frameborder="0" allowfullscreen></iframe>
 					</div>
 				</section>
 				<section class="Descripcion">
-					<img src="peli.img">
+					<img [src]="peli.img">
 					<ul>
-						<li>{{peli.titulo}}</li>
+						<li>{{peli.titulo}} {{peli.fechaEmision}}</li>
 						<li>{{peli.sinopsis}}</li>
-						<li><a >Adventure</a>, <a>Action</a> </li>
-						<li><a>Harrison Ford</a>, <a>Sean Connery</a></li>
+            <li><a>{{peli.generos}}</a></li>
+            <li><a> Clasificación: {{peli.clasificacion}}</a></li>
+            <li><a> Directores: {{peli.clasificacion}}</a></li>
+            <li><a> Escritores: {{peli.clasificacion}}</a></li>
+						<li> <a>Stars: </a> <a>Harrison Ford</a>, <a>Sean Connery</a></li>
 						<li>34,000 Views</li>
 					</ul>
         </section>
         <section class="Casts">
-					<h3>Casts</h3>
+          <div class= "row">
+            <h3>Cast</h3>
+          </div>
+					<mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/images/Indiana.jpg"/>
+            </mat-panel-title>
+            <mat-panel-description>
+              Nombre del actor
+            </mat-panel-description>
+            <mat-panel-description>
+                Papel del actor
+            </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Fecha de Nacimiento</p>
+            <p>Minibiografia</p>
+          </mat-expansion-panel>
+
+
 				</section>
         <section class="Comments">
-					<h3>Comments</h3>
+          <div class= "row">
+            <h3>Comments</h3>
+          </div>
+          <mat-card class="card-container">
+            <img src="../../../assets/images/silueta.png" />
+            <mat-card-header>
+              <mat-card-title class="card-container-titulo">Nombre del usuario</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+          </mat-card>
 				</section>
 			</div>
 		</main>

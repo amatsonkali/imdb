@@ -24,7 +24,7 @@ export class MovieService {
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
   private pelisEdadUpdated = new Subject < Pelicula[] > ();
-  private selectedPeliUpdated= new Subject<Pelicula>();
+  private selectedPeliUpdated = new Subject<Pelicula>();
   pelisCalif: Pelicula[];
   pelisGenero: Pelicula[];
   pelisEdad : Pelicula[];
@@ -107,17 +107,17 @@ export class MovieService {
   }
 
   getSelectedPeli(){
-    this.http.get<any>(this.urlPeliDetails+this.selectedIdPeli).subscribe(
+    this.http.get<any>(this.urlPeliDetails + this.selectedIdPeli).subscribe(
       (peliculaData)=>{
-        let peli= peliculaData[0];
+        let peli = peliculaData[0];
         console.log(peliculaData);
-        this.selectedPeli={
+        this.selectedPeli = {
           idPelicula: peli.idPelicula,
           titulo: peli.titulo,
           duracion: peli.duracion,
           fechaEmision: peli.fechaEmision,
           sinopsis: peli.sinopsis,
-          linkTrailer: peli.linkTrailer,
+          linkTrailer: this.getVideoIframe(peli.linkTrailer),
           img: this.getUrlFromBlob(peli.imagenPortada.data),
           pais: peli.nombrePais,
           clasificacion: peli.tipoClasificacion,
@@ -131,7 +131,7 @@ export class MovieService {
   }
 
   getGenerosById(idPeli: number){
-    this.http.get<{tipoGenero:string}[]>(this.urlGenerosById+idPeli).subscribe(
+    this.http.get<{tipoGenero:string}[]>(this.urlGenerosById + idPeli).subscribe(
       (generos)=>{
         generos.forEach((genero,index)=>{
           this.selectedPeli.generos.push(genero.tipoGenero);
@@ -173,10 +173,23 @@ export class MovieService {
               image = 'data:image/jpg;base64,' + STRING_CHAR;
               imageUrl = this.getImgContent(image);
             }else imageUrl= STRING_CHAR;
-          
+
           }
           return imageUrl;
   }
+
+  getVideoIframe(url) {
+    var video, results;
+
+    if (url === null) {
+        return '';
+    }
+    results = url.match('[\\?&]v=([^&#]*)');
+    video   = (results === null) ? url : results[1];
+
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
+}
+
   getImgContent(imgFile): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(imgFile);
   }

@@ -4,6 +4,7 @@ import { MovieService } from '../movie-service/movie.service';
 import { ImageService } from 'src/app/imageService/image.service';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -13,16 +14,15 @@ export class MovieDetailsComponent implements OnInit {
   peli: Pelicula = {
     idPelicula: -1,
     titulo: "Aun no carga el titulo gg",
-    linkTrailer: "Sigue cargando",
     duracion: "Sin duracion",
     clasificacion: "Sin clasificacion"
   };
-  generos: string[]=["Accion","Aventura","Anime"];
   peliSub: Subscription;
   loading = true;
 
-  constructor(public movieService: MovieService, public imageService: ImageService) {}
-
+  constructor(public movieService: MovieService, public imageService: ImageService) {
+  }
+  
   ngOnInit(): void {
     this.movieService.getSelectedPeli();
     this.peliSub = this.movieService.getSelectedPeliListener().subscribe(
@@ -31,5 +31,6 @@ export class MovieDetailsComponent implements OnInit {
         this.loading = false;
     });
   }
+
 
 }
