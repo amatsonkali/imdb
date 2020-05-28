@@ -42,3 +42,8 @@
 .card{
     margin: 0.5rem;
 }
+
+.card-title{
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
