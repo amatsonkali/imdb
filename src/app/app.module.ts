@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie/movie-details/movie-details.component';
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
-import { PersonaModalComponent } from './movie-create/persona-modal/persona-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { PersonaModalComponent } from './movie-create/persona-modal/persona-moda
     RegisterComponent,
     SecondviewComponent,
     MovieDetailsComponent,
-    MovieCreateComponent,
-    PersonaModalComponent
+    MovieCreateComponent
   ],
   imports: [
     BrowserModule,
