@@ -1,4 +1,6 @@
-  <h1>Agregar nueva pelicula</h1>
+  <div class="titulo">
+    <h1>Agregar nueva pelicula</h1>
+  </div>
   <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well">
       <table class="example-full-width" cellspacing="0">
           <div class="card">
@@ -111,6 +113,14 @@
               <mat-checkbox *ngFor="let genero of generosCatalogo"  [(ngModel)]="genero.isChecked">
                 {{genero.tipoGenero}}
               </mat-checkbox>
+          </div>
+        </td>
+
+        <td>
+          <div class="example-button-container">
+            <button mat-fab color="accent" aria-label="Add">
+              <mat-icon><span class="material-icons">add</span></mat-icon>
+            </button>
           </div>
         </td>
       </tr>
