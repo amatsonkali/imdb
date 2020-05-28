@@ -5,6 +5,8 @@ import { Clasificacion } from 'src/app/models/clasificacion';
 import { Pais } from 'src/app/models/pais';
 import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import Swal from 'sweetalert2';
+import { Genero } from 'src/app/models/genero';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-create',
@@ -16,10 +18,12 @@ export class MovieCreateComponent implements OnInit {
 
   pelicula: Peli;
   clasificaciones: Clasificacion[]=[];
-  paises: Pais[];
+  paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
   direccion: string;
 
+  generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
+  generosSub: Subscription;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
