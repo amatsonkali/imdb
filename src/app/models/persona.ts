@@ -1,4 +1,6 @@
 export interface Persona{
-  idPersona: number,
-  nombre: string
+  idPersona?: number,
+  nombre: string,
+  fechaNacimiento?: Date,
+  
 }

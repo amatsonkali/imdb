@@ -5,6 +5,7 @@ import { Clasificacion } from 'src/app/models/clasificacion';
 import { Pais } from 'src/app/models/pais';
 import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import Swal from 'sweetalert2';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-create',
@@ -20,7 +21,7 @@ export class MovieCreateComponent implements OnInit {
   tipoMateriales: TipoMaterial[];
   direccion: string;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.movieService.catalogoClasificaciones().subscribe((clasificacion: Clasificacion[])=>{
@@ -34,6 +35,14 @@ export class MovieCreateComponent implements OnInit {
     this.movieService.catalogoTipoMaterial().subscribe((tipoMaterial: TipoMaterial[])=>{
       console.log(tipoMaterial);
       this.tipoMateriales = tipoMaterial;
+    });
+  }
+
+  openModal() {
+    const dialogRef = this.dialog.open(PersonaModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -57,3 +66,10 @@ export class MovieCreateComponent implements OnInit {
       });
   }
 }
+
+@Component({
+  selector: 'app-persona-modal',
+  templateUrl: './persona-modal/persona-modal.component.html',
+})
+
+export class PersonaModalComponent {}
