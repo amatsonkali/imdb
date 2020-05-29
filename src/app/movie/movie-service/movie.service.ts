@@ -7,6 +7,7 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Persona, Star } from 'src/app/models/persona';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class MovieService {
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
   private pelisEdadUpdated = new Subject < Pelicula[] > ();
   private selectedPeliUpdated = new Subject<Pelicula>();
+
   pelisCalif: Pelicula[];
   pelisGenero: Pelicula[];
   pelisEdad : Pelicula[];
@@ -37,6 +39,19 @@ export class MovieService {
   clasificacion: Clasificacion[];
   pais: Pais[];
   tipoMaterial: TipoMaterial[];
+
+
+  urlGETPersonas = 'api/personas/aleatorio'
+  urlGETDirectores = 'api/personas/directores/'
+  urlGETEscritores = 'api/personas/escritores/'
+
+  private selectedPersonaUpdated = new Subject<Persona>();
+  private selectEscritoresUpdated = new Subject<Persona>();
+
+  Allpersonas: Star
+  personaDirector: Persona[]
+  personaEscritor: Persona[]
+
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -54,7 +69,6 @@ export class MovieService {
       (peliculasData)=>{
         this.pelisCalif=[];
         peliculasData.forEach( (peli,index)=>{
-
           this.pelisCalif.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
@@ -97,11 +111,9 @@ export class MovieService {
             img: this.getUrlFromBlob(peli.imagenPortada.data),
             calificacion: peli.calificacionAvg
           })
-
         });
         this.pelisEdadUpdated.next([...this.pelisEdad]);
       }
-
     );
   }
 
@@ -125,13 +137,13 @@ export class MovieService {
           generos:[]
         }
         this.getGenerosById(this.selectedPeli.idPelicula);
-
     });
   }
 
   getGenerosById(idPeli: number){
     this.http.get<{tipoGenero:string}[]>(this.urlGenerosById + idPeli).subscribe(
       (generos)=>{
+
         generos.forEach((genero,index)=>{
           this.selectedPeli.generos.push(genero.tipoGenero);
         });
@@ -165,16 +177,15 @@ export class MovieService {
           console.log(TYPED_ARRAY);
           console.log("base64String:");
           console.log(base64String);*/
-          let image="";
-          let imageUrl;
-          if(STRING_CHAR != ""){
-            if(!STRING_CHAR.startsWith('data:')){
-              image = 'data:image/jpg;base64,' + STRING_CHAR;
-              imageUrl = this.getImgContent(image);
-            }else imageUrl= STRING_CHAR;
-
-          }
-          return imageUrl;
+    let image = "" ;
+    let imageUrl;
+    if (STRING_CHAR != "") {
+      if (!STRING_CHAR.startsWith('data:')) {
+         image = 'data:image/jpg;base64,' + STRING_CHAR;
+         imageUrl = this.getImgContent(image);
+      }else{ imageUrl = STRING_CHAR; }
+    }
+    return imageUrl;
   }
 
   getVideoIframe(url) {
@@ -243,4 +254,66 @@ export class MovieService {
         return result.join('');
     };
 })();
+
+
+/* PERSONAS */
+
+getPersonaDirectores(){
+  this.http.get<{nombre:string}[]>(this.urlGETDirectores + this.getselectedIdPeli()).subscribe(
+    (nombreDirectores)=>{
+      //this.personaDirector=[];
+      nombreDirectores.forEach( (persona,index)=>{
+        this.Allpersonas.nombreDirectores.push(persona.nombre)
+        console.log(this.Allpersonas.nombreDirectores);
+      });
+      this.selectedPersonaUpdated.next({...this.Allpersonas});
+    });
 }
+
+getPersonaEscritores(){
+  this.http.get<{nombre:string}[]>(this.urlGETEscritores + this.getselectedIdPeli()).subscribe(
+    (personasData)=>{
+      //this.personaEscritor=[];
+      personasData.forEach( (persona,index)=>{
+        this.Allpersonas.nombreEscritores.push(persona.nombre)
+        console.log(this.Allpersonas.nombreEscritores);
+      });
+      this.selectEscritoresUpdated.next({...this.Allpersonas});
+    });
+}
+
+getSelectedPersona(){
+  this.http.get<any>(this.urlGETPersonas).subscribe(
+    (personaData)=>{
+
+      let perso = personaData[0];
+      console.log(personaData);
+      this.Allpersonas = {
+        idPersona: perso.idPersona,
+        nombre: perso.nombre,
+        fechaNacimiento: perso.fechaNacimiento,
+        miniBiografia: perso.miniBiografia,
+        nombrePapel: perso.nombrePapel,
+        nombreDirectores: [],
+        nombreEscritores: []
+        //imagenPersona: this.getUrlFromBlob(perso.imagenPersona.data),
+      }
+      this.getPersonaDirectores();
+      this.getPersonaEscritores();
+      });
+}
+
+
+getSelectedPersonaListener(){
+  return this.selectedPersonaUpdated.asObservable();
+}
+
+getSelectedEscritorListener(){
+  return this.selectEscritoresUpdated.asObservable();
+}
+
+}
+
+
+
+
