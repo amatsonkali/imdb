@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-  peli: Pelicula = {
+    peli: Pelicula = {
     idPelicula: -1,
     titulo: "Aun no carga el titulo gg",
     duracion: "Sin duracion",

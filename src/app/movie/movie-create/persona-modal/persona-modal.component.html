@@ -1,16 +1,44 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
+<h1 mat-dialog-title>Crear Persona</h1>
 <div mat-dialog-content>
-  My favorite animal is:
-  <ul>
-    <li>
-      <span *ngIf="">&#10003;</span> Panda
-    </li>
-    <li>
-      <span *ngIf="">&#10003;</span> Unicorn
-    </li>
-    <li>
-      <span *ngIf="">&#10003;</span> Lion
-    </li>
-  </ul>
+  <form>
+    <table>
+      <tr>
+      <td>
+        <h2>Nombre</h2>
+        <input type="text" required name="nombre" maxlength="60" matInput ngModel>
+      </td>
+      <td>
+        <h2>Fecha de nacimiento</h2>
+        <input type="date" required name="fechaNacimiento" matInput ngModel>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>Biografía</h2>
+        <textarea required name="miniBiografia" ngModel></textarea>
+      </td>
+      <td>
+        <h2>Imagen</h2>
+        <input type="file"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>País</h2>
+        <input type="text" required name="nombre" maxlength="60" matInput ngModel>
+      </td>
+      <td>
+        <h2>Profesión</h2>
+        <select name="select">
+          <option value="value1">Value 1</option>
+          <option value="value2" selected>Value 2</option>
+          <option value="value3">Value 3</option>
+        </select>
+      </td>
+    </tr>
+    </table>
+
+  </form>
+
 </div>
 

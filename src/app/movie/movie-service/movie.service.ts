@@ -58,7 +58,7 @@ export class MovieService {
           this.pelisCalif.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            imagenPortada: this.getUrlFromBlob(peli.imagenPortada.data),
             calificacion: peli.calificacionAvg
           });
         });
@@ -75,7 +75,7 @@ export class MovieService {
           this.pelisGenero.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            imagenPortada: this.getUrlFromBlob(peli.imagenPortada.data),
             calificacion: peli.calificacionAvg
           });
         });
@@ -94,7 +94,7 @@ export class MovieService {
           this.pelisEdad.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
-            img: this.getUrlFromBlob(peli.imagenPortada.data),
+            imagenPortada: this.getUrlFromBlob(peli.imagenPortada.data),
             calificacion: peli.calificacionAvg
           })
 
@@ -117,7 +117,7 @@ export class MovieService {
           fechaEmision: peli.fechaEmision,
           sinopsis: peli.sinopsis,
           linkTrailer: peli.linkTrailer,
-          img: this.getUrlFromBlob(peli.imagenPortada.data),
+          imagenPortada: this.getUrlFromBlob(peli.imagenPortada.data),
           pais: peli.nombrePais,
           clasificacion: peli.tipoClasificacion,
           tipoMaterial: peli.tipo,

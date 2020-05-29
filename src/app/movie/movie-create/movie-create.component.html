@@ -268,9 +268,41 @@
     </div>
   </table>
 
-  <button mat-raised-button color="accent" (click)="openModal()"><span class="material-icons">add</span>Agregar persona</button>
+  <button mat-raised-button color="accent" (click)="openModal(paises, personaModal)"><span class="material-icons">add</span>Agregar persona</button>
 
-
+<ng-template #personaModal>
+    <div class="modal-header">
+      <h1 class="modal-title">Crear Persona</h1>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <div class="input-headline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" class="form-control" required name="nombre" maxlength="60" matInput ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-headline">
+            <mat-label>País</mat-label>
+            <select matNativeControl required>
+              <div *ngFor="let pais of paises">
+              <option value="{{pais.idPais}}">{{pais.nombrePais}}</option>
+              </div>
+            </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <mat-form-field  class="input-headline">
+              <mat-label>Fecha de nacimiento</mat-label>
+              <input type="date" class="form-control" required name="fechaNacimiento" matInput ngModel>
+            </mat-form-field>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</ng-template>
 
 
 

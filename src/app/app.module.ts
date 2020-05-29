@@ -17,6 +17,7 @@ import { MovieDetailsComponent } from './movie/movie-details/movie-details.compo
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { PersonaModalComponent } from './movie/movie-create/persona-modal/persona-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PersonaModalComponent } from './movie/movie-create/persona-modal/person
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AlifeFileToBase64Module
+    AlifeFileToBase64Module,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
