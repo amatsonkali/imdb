@@ -25,10 +25,15 @@ export class MovieCreateComponent implements OnInit {
   tipoMateriales: TipoMaterial[];
   direccion: string;
   agregarPersona: boolean = false;
-
-  constructor(private movieService: MovieService, public modalService: NgbModal) { }
   generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
   generosSub: Subscription;
+
+  personas: Persona[];
+  selectedDirectores: Persona[]=[];
+  selectedEscritores: Persona[]=[];
+  selectedActores: Persona[]=[];
+  personasSub: Subscription;
+  constructor(private movieService: MovieService, public modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.movieService.catalogoClasificaciones().subscribe((clasificacion: Clasificacion[])=>{
@@ -43,6 +48,19 @@ export class MovieCreateComponent implements OnInit {
       console.log(tipoMaterial);
       this.tipoMateriales = tipoMaterial;
     });
+
+    this.movieService.catalogoGeneros().subscribe(
+      (generos: Genero[])=>{
+        this.generosCatalogo= generos;
+      }
+    )
+
+    this.movieService.getAllPersonas();
+    this.personasSub = this.movieService.getPersonasListener().subscribe(
+      (personas: Persona[])=>{
+        this.personas= personas;
+      }
+    );
   }
 
   openModal(paises: Pais[], modal) {
@@ -62,7 +80,10 @@ export class MovieCreateComponent implements OnInit {
       }else{
         pelicula. imagenPortada = "";
       }
-      this.movieService.savePelicula(pelicula).subscribe(data => { });
+      //this.movieService.savePelicula(pelicula).subscribe(data => { });
+      console.log(this.selectedDirectores);
+      console.log(this.selectedEscritores);
+      console.log(this.selectedActores);
       Swal.fire({
         icon: 'success',
         title: 'La pelicula fue creada con éxito',

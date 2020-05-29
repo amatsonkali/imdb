@@ -18,6 +18,7 @@ import { MovieCreateComponent } from './movie/movie-create/movie-create.componen
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { PersonaModalComponent } from './movie/movie-create/persona-modal/persona-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MovieAddPersonaComponent } from './movie/movie-add-persona/movie-add-persona.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SecondviewComponent,
     MovieDetailsComponent,
     MovieCreateComponent,
-    PersonaModalComponent
+    PersonaModalComponent,
+    MovieAddPersonaComponent
   ],
   imports: [
     BrowserModule,

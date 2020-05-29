@@ -7,6 +7,8 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Genero } from 'src/app/models/genero';
+import { Persona } from 'src/app/models/persona';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +21,13 @@ export class MovieService {
   urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
   urlPeliDetails: string = "api/peliculas/pelicula/";
   urlGenerosById: string = "api/peliculas/genero/";
-
+  urlPersonasTotal: string = 'api/personas';
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
   private pelisEdadUpdated = new Subject < Pelicula[] > ();
   private selectedPeliUpdated= new Subject<Pelicula>();
+  private personasUpdated = new Subject<Persona[]>();
+  personas: Persona[];
   pelisCalif: Pelicula[];
   pelisGenero: Pelicula[];
   pelisEdad : Pelicula[];
@@ -33,7 +37,7 @@ export class MovieService {
   private urlPaises = 'api/paises';
   private urlTipoMaterial = 'api/tipoMaterial';
   private urlsavePelicula = 'api/peliculas/pelicula';
-
+  private urlGeneros= 'api/generos';
   clasificacion: Clasificacion[];
   pais: Pais[];
   tipoMaterial: TipoMaterial[];
@@ -139,6 +143,15 @@ export class MovieService {
     });
   }
 
+  getAllPersonas(){
+    this.http.get<Persona[]>(this.urlPersonasTotal).subscribe(
+      (personas: Persona[])=>{
+        this.personas= personas;
+        this.personasUpdated.next([...this.personas]);
+      }
+    );
+  }
+
   getPelisCalifListener(){
     return this.pelisCalifUpdated.asObservable();
   }
@@ -153,6 +166,10 @@ export class MovieService {
 
   getSelectedPeliListener(){
     return this.selectedPeliUpdated.asObservable();
+  }
+
+  getPersonasListener(){
+    return this.personasUpdated.asObservable();
   }
 
   getUrlFromBlob(blobData){
@@ -190,6 +207,10 @@ export class MovieService {
 
   catalogoTipoMaterial() {
     return this.http.get<TipoMaterial[]>(this.urlTipoMaterial);
+  }
+
+  catalogoGeneros(){
+    return this.http.get<Genero[]>(this.urlGeneros);
   }
 
   savePelicula(pelicula: Pelicula) {
