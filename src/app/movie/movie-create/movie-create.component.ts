@@ -7,7 +7,6 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import { Persona } from 'src/app/models/persona';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Genero } from 'src/app/models/genero';
 import { Subscription } from 'rxjs';
 
@@ -33,7 +32,7 @@ export class MovieCreateComponent implements OnInit {
   selectedEscritores: Persona[]=[];
   selectedActores: Persona[]=[];
   personasSub: Subscription;
-  constructor(private movieService: MovieService, public modalService: NgbModal) { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.movieService.catalogoClasificaciones().subscribe((clasificacion: Clasificacion[])=>{
@@ -61,12 +60,6 @@ export class MovieCreateComponent implements OnInit {
         this.personas= personas;
       }
     );
-  }
-
-  openModal(paises: Pais[], modal) {
-    this.paises = paises;
-    console.log("Hola", paises[1].nombrePais);
-    this.modalService.open(modal);
   }
 
   onFileChanges(files){
