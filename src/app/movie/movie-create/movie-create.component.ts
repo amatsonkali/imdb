@@ -7,6 +7,7 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import Swal from 'sweetalert2';
 import { Genero } from 'src/app/models/genero';
 import { Subscription } from 'rxjs';
+import { Persona } from 'src/app/models/persona';
 
 @Component({
   selector: 'app-movie-create',
@@ -23,7 +24,12 @@ export class MovieCreateComponent implements OnInit {
   direccion: string;
 
   generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
-  generosSub: Subscription;
+
+  personas: Persona[];
+  selectedDirectores: Persona[]=[];
+  selectedEscritores: Persona[]=[];
+  selectedActores: Persona[]=[];
+  personasSub: Subscription;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -39,6 +45,19 @@ export class MovieCreateComponent implements OnInit {
       console.log(tipoMaterial);
       this.tipoMateriales = tipoMaterial;
     });
+
+    this.movieService.catalogoGeneros().subscribe(
+      (generos: Genero[])=>{
+        this.generosCatalogo= generos;
+      }
+    )
+
+    this.movieService.getAllPersonas();
+    this.personasSub = this.movieService.getPersonasListener().subscribe(
+      (personas: Persona[])=>{
+        this.personas= personas;
+      }
+    );
   }
 
   onFileChanges(files){
@@ -52,7 +71,10 @@ export class MovieCreateComponent implements OnInit {
       }else{
         pelicula.img = "";
       }
-      this.movieService.savePelicula(pelicula).subscribe(data => { });
+      //this.movieService.savePelicula(pelicula).subscribe(data => { });
+      console.log(this.selectedDirectores);
+      console.log(this.selectedEscritores);
+      console.log(this.selectedActores);
       Swal.fire({
         icon: 'success',
         title: 'La pelicula fue creada con éxito',

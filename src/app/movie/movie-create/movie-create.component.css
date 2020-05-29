@@ -1,4 +1,4 @@
-input[type=time]::-webkit-datetime-edit-ampm-field {
+/* input[type=time]::-webkit-datetime-edit-ampm-field {
   display: none;
 }
 
@@ -48,4 +48,13 @@ h1 {
   font-family: arial, sans-serif;
   font-size: 30px;
   font-weight: bold;
+} */
+
+.form-group img{
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.form-group mat-checkbox{
+  margin: 1em;
 }

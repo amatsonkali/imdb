@@ -1,4 +1,6 @@
 export interface Persona{
   idPersona: number,
-  nombre: string
+  nombre: string,
+  estelar?: boolean,
+  personajes?: string[]
 }

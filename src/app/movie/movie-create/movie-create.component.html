@@ -1,3 +1,4 @@
+<div class="container">
   <div class="titulo">
     <h1>Agregar nueva pelicula</h1>
   </div>
@@ -115,151 +116,26 @@
               </mat-checkbox>
           </div>
         </td>
+      </tr>
+    </div>
 
-        <td>
-          <div class="example-button-container">
-            <button mat-fab color="accent" aria-label="Add">
-              <mat-icon><span class="material-icons">add</span></mat-icon>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </div>
-    <div class="card">
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Directores</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <div class="example-button-container">
-            <button mat-fab color="accent" aria-label="Add">
-              <mat-icon><span class="material-icons">add</span></mat-icon>
-            </button>
-          </div>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput placeholder="Nombre del Director">
-            </mat-form-field>
-        </td>
-        <td>
-          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
-        </td>
-      </tr>
-    </div>
-    <div class="card">
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Escritores</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <div class="example-button-container">
-            <button mat-fab color="accent" aria-label="Add">
-              <mat-icon><span class="material-icons">add</span></mat-icon>
-            </button>
-          </div>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput  placeholder="Nombre del Escritor">
-            </mat-form-field>
-        </td>
-        <td>
-          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
-        </td>
-      </tr>
-    </div>
-    <div class="card">
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Estrellas</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <div class="example-button-container">
-            <button mat-fab color="accent" aria-label="Add">
-              <mat-icon><span class="material-icons">add</span></mat-icon>
-            </button>
-          </div>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput placeholder="Nombre de la Estrella">
-            </mat-form-field>
-        </td>
-        <td>
-          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
-        </td>
-      </tr>
-    </div>
-    <div class="card">
-      <tr>
-        <td>
-          <mat-form-field class="input-headline">
-            <mat-label>Actores</mat-label>
-            <mat-select #fontSize value="selected">
-              <mat-option value="10px">10px</mat-option>
-              <mat-option value="12px">12px</mat-option>
-              <mat-option value="14px">14px</mat-option>
-              <mat-option value="16px">16px</mat-option>
-              <mat-option value="18px">18px</mat-option>
-              <mat-option value="20px">20px</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </td>
-        <td>
-          <div class="example-button-container">
-            <button mat-fab color="accent" aria-label="Add">
-              <mat-icon><span class="material-icons">add</span></mat-icon>
-            </button>
-          </div>
-        </td>
-        <td>
-          <mat-form-field  class="input-headline">
-            <mat-label>Otro</mat-label>
-            <input type="text" maxlength="60" matInput placeholder="Nombre del Actor">
-            </mat-form-field>
-        </td>
-        <td>
-          <button mat-raised-button color="accent"><span class="material-icons">add</span>Agregar director</button>
-        </td>
-      </tr>
-    </div>
+    <app-movie-add-persona 
+      [personaList]="personas" 
+      [selectedPersonas]="selectedDirectores"
+      titulo="Directores">
+    </app-movie-add-persona>
+
+    <app-movie-add-persona 
+      [personaList]="personas" 
+      [selectedPersonas]="selectedEscritores"
+      titulo="Escritores">
+    </app-movie-add-persona>
+
+    <app-movie-add-persona 
+      [personaList]="personas" 
+      [selectedPersonas]="selectedActores"
+      [actorMode]="true"
+      titulo="Actores/Personajes">
+    </app-movie-add-persona>
   </table>
-
-
-
-
-
+</div>
