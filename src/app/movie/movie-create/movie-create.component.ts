@@ -24,6 +24,7 @@ export class MovieCreateComponent implements OnInit {
   paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
   direccion: string;
+  agregarPersona: boolean = false;
 
   constructor(private movieService: MovieService, public modalService: NgbModal) { }
   generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];

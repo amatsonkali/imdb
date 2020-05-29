@@ -261,6 +261,9 @@
   </table>
 
   <button mat-raised-button color="accent" (click)="openModal(paises, personaModal)"><span class="material-icons">add</span>Agregar persona</button>
+  <div *ngIf="agregarPersona">
+    
+  </div>
 
 <ng-template #personaModal>
     <div class="modal-header">
