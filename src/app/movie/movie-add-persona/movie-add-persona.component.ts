@@ -41,9 +41,9 @@ export class MovieAddPersonaComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      if(!this.selectedPersonas[iPersona].personajes) this.selectedPersonas[iPersona].personajes=[];
+      //if(!this.selectedPersonas[iPersona].personajes) this.selectedPersonas[iPersona].personajes=[];
       //this.fruits.push({name: value.trim()});
-      this.selectedPersonas[iPersona].personajes.push(value.trim());
+      //this.selectedPersonas[iPersona].personajes.push(value.trim());
     }
 
     // Reset the input value
@@ -54,7 +54,7 @@ export class MovieAddPersonaComponent implements OnInit {
 
 
   borrarPersonaje(iPersona,iPersonaje){
-    this.selectedPersonas[iPersona].personajes.splice(iPersonaje,1);
+    //this.selectedPersonas[iPersona].personajes.splice(iPersonaje,1);
   }
 
   trackByFn(index: any, item: any) {

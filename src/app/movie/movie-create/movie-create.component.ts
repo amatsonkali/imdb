@@ -76,9 +76,9 @@ export class MovieCreateComponent implements OnInit {
 
   saveMovie(pelicula: Pelicula){
       if(this.direccion){
-        pelicula. imagenPortada = this.direccion;
+        pelicula. img = this.direccion;
       }else{
-        pelicula. imagenPortada = "";
+        pelicula. img = "";
       }
       //this.movieService.savePelicula(pelicula).subscribe(data => { });
       console.log(this.selectedDirectores);
