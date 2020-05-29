@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import { Persona } from 'src/app/models/persona';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Genero } from 'src/app/models/genero';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-create',
@@ -19,11 +21,13 @@ export class MovieCreateComponent implements OnInit {
 
   pelicula: Pelicula;
   clasificaciones: Clasificacion[]=[];
-  paises: Pais[];
+  paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
   direccion: string;
 
   constructor(private movieService: MovieService, public modalService: NgbModal) { }
+  generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
+  generosSub: Subscription;
 
   ngOnInit(): void {
     this.movieService.catalogoClasificaciones().subscribe((clasificacion: Clasificacion[])=>{

@@ -110,17 +110,9 @@
       <tr>
         <td>
           <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Género</mat-label>
-              <mat-select name="genero" value="selected">
-                <mat-option value="10px">10px</mat-option>
-                <mat-option value="12px">12px</mat-option>
-                <mat-option value="14px">14px</mat-option>
-                <mat-option value="16px">16px</mat-option>
-                <mat-option value="18px">18px</mat-option>
-                <mat-option value="20px">20px</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-checkbox *ngFor="let genero of generosCatalogo"  [(ngModel)]="genero.isChecked">
+                {{genero.tipoGenero}}
+              </mat-checkbox>
           </div>
         </td>
 
