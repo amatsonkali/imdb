@@ -1,6 +1,10 @@
 export interface Persona{
-  idPersona: number,
+  idPersona?: number,
   nombre: string,
   estelar?: boolean,
-  personajes?: string[]
+  personajes?: string[],
+  fechaNacimiento?: Date,
+  miniBiografia?: string,
+  imagenPersona?: any,
+  idPais?: number
 }

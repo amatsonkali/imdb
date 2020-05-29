@@ -37,6 +37,7 @@ export class MovieService {
   private urlPaises = 'api/paises';
   private urlTipoMaterial = 'api/tipoMaterial';
   private urlsavePelicula = 'api/peliculas/pelicula';
+  private urlsavePersona = 'api/personas';
   private urlGeneros= 'api/generos';
   clasificacion: Clasificacion[];
   pais: Pais[];
@@ -217,6 +218,9 @@ export class MovieService {
     return this.http.post<Pelicula>(this.urlsavePelicula, pelicula);
   }
 
+  savePersona(persona: Persona) {
+    return this.http.post<Pelicula>(this.urlsavePersona, persona);
+  }
 
   utf8ArrayToStr = (function () {
     var charCache = new Array(128);  // Preallocate the cache for the common single byte chars

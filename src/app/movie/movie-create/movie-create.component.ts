@@ -22,7 +22,8 @@ export class MovieCreateComponent implements OnInit {
   paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
   direccion: string;
-
+  direccionPersona: string;
+  agregarPersonaForm: boolean = false;
   generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
 
   personas: Persona[];
@@ -81,5 +82,23 @@ export class MovieCreateComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
+  }
+
+  onFilePersona(files){
+    console.log("File is not null ::", files);
+    this.direccionPersona = files[0].base64;
+  }
+
+  newPersona(){
+    this.agregarPersonaForm = true;
+  }
+
+  savePersona(persona: Persona){
+    if(this.direccionPersona){
+      persona.imagenPersona = this.direccionPersona;
+    }else{
+      persona.imagenPersona = "";
+    }
+    this.movieService.savePersona(persona).subscribe(data => { });
   }
 }
