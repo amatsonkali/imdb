@@ -64,7 +64,7 @@
 				<section class="Descripcion">
 					<img [src]="peli.img">
 					<ul>
-						<li>{{peli.titulo}} {{peli.fechaEmision}}</li>
+						<li>{{peli.titulo}} {{peli.fechaEmision | date: 'dd/MM/yyyy'}}</li>
 						<li>{{peli.sinopsis}}</li>
             <li><a>{{peli.generos}}</a></li>
             <li><a> Clasificación: {{peli.clasificacion}}</a></li>
@@ -82,7 +82,7 @@
             <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                  <img src="../../../assets/images/Indiana.jpg"/>
+                  <img src="../../../assets/images/silueta.png"/>
               </mat-panel-title>
               <mat-panel-description>
                 {{key.nombre}}
@@ -91,7 +91,7 @@
                   {{key.nombrePapel}}
               </mat-panel-description>
               </mat-expansion-panel-header>
-              <p>{{key.fechaNacimiento}}</p>
+              <p>{{key.fechaNacimiento  | date: 'dd/MM/yyyy'}}</p>
               <p>{{key.miniBiografia}}</p>
             </mat-expansion-panel>
           </div>

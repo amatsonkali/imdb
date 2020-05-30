@@ -283,7 +283,7 @@ getPersonaDirectores(){
       });
       this.selectedPersonaUpdated.next({...this.Allpersonas});
     });
-}
+  }
 
 getPersonaEscritores(){
   this.http.get<{nombre:string}[]>(this.urlGETEscritores + this.getselectedIdPeli()).subscribe(
