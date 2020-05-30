@@ -27,11 +27,10 @@ export class MovieDetailsComponent implements OnInit {
     nombre: "No ha cargado el nombre"
   };
 
-  actores: Star = {
-    nombre: "No ha cargado el nombre",
-    nombrePapel: "No ha cargado el nombre"
-  }
-  
+  actores: Star[]=[];
+  actoresSub: Subscription;
+
+
   constructor(public movieService: MovieService, public imageService: ImageService) {
   }
 
@@ -47,7 +46,13 @@ export class MovieDetailsComponent implements OnInit {
     this.personaSub = this.movieService.getSelectedPersonaListener().subscribe(
       (persona: Persona) => {
         this.persona = persona;
-        this.actores = persona;
       });
+
+    this.movieService.getActores();
+    this.actoresSub = this.movieService.getActoresUpdateListener()
+    .subscribe((actores: Star[])=>{
+      console.log(actores);
+      this.actores= actores;
+    });
   }
 }

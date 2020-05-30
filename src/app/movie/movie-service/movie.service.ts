@@ -47,8 +47,9 @@ export class MovieService {
 
   private selectedPersonaUpdated = new Subject<Persona>();
   private selectEscritoresUpdated = new Subject<Persona>();
-
+  private actoresUpdated = new Subject <Star[]>();
   Allpersonas: Star
+  Actores: Star[]
   personaDirector: Persona[]
   personaEscritor: Persona[]
 
@@ -261,7 +262,7 @@ export class MovieService {
 getPersonaDirectores(){
   this.http.get<{nombre:string}[]>(this.urlGETDirectores + this.getselectedIdPeli()).subscribe(
     (nombreDirectores)=>{
-      //this.personaDirector=[];
+      this.personaDirector=[];
       nombreDirectores.forEach( (persona,index)=>{
         this.Allpersonas.nombreDirectores.push(persona.nombre)
         console.log(this.Allpersonas.nombreDirectores);
@@ -285,24 +286,31 @@ getPersonaEscritores(){
 getSelectedPersona(){
   this.http.get<any>(this.urlGETPersonas).subscribe(
     (personaData)=>{
-
-      let perso = personaData[0];
+      let perso = personaData;
       console.log(personaData);
       this.Allpersonas = {
-        idPersona: perso.idPersona,
         nombre: perso.nombre,
-        fechaNacimiento: perso.fechaNacimiento,
-        miniBiografia: perso.miniBiografia,
-        nombrePapel: perso.nombrePapel,
         nombreDirectores: [],
         nombreEscritores: []
-        //imagenPersona: this.getUrlFromBlob(perso.imagenPersona.data),
       }
       this.getPersonaDirectores();
       this.getPersonaEscritores();
       });
 }
 
+
+getActores() {
+  this.http.get <Star[]> (this.urlGETPersonas)
+    .subscribe((resultado) => {
+      this.Actores = resultado;
+      this.actoresUpdated.next([...this.Actores]);
+    });
+  // return this.encuestas;
+}
+
+getActoresUpdateListener() {
+  return this.actoresUpdated.asObservable();
+}
 
 getSelectedPersonaListener(){
   return this.selectedPersonaUpdated.asObservable();

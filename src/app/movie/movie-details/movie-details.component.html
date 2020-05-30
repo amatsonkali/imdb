@@ -70,7 +70,7 @@
             <li><a> Clasificación: {{peli.clasificacion}}</a></li>
             <li><a> Directores: {{persona.nombreDirectores}}</a></li>
             <li><a> Escritores: {{persona.nombreEscritores}}</a></li>
-						<li> <a>Stars: </a> <a>Harrison Ford</a>, <a>Sean Connery</a></li>
+            <li> <a>Stars: </a> <div *ngFor="let key of actores "> <a>{{key.nombre}}</a>, </div></li>
 						<li>34,000 Views</li>
 					</ul>
         </section>
@@ -88,11 +88,11 @@
                 {{key.nombre}}
               </mat-panel-description>
               <mat-panel-description>
-                  {{actores[key].nombrePapel}}
+                  {{key.nombrePapel}}
               </mat-panel-description>
               </mat-expansion-panel-header>
-              <p>{{actores[key].fechaNacimiento}}</p>
-              <p>{{actores[key].miniBiografia}}</p>
+              <p>{{key.fechaNacimiento}}</p>
+              <p>{{key.miniBiografia}}</p>
             </mat-expansion-panel>
           </div>
 				</section>
@@ -100,19 +100,6 @@
           <div class= "row">
             <h3>Comments</h3>
           </div>
-          <mat-card class="card-container">
-            <img src="../../../assets/images/silueta.png" />
-            <mat-card-header>
-              <mat-card-title class="card-container-titulo">Nombre del usuario</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-          </mat-card>
 				</section>
 			</div>
 		</main>
