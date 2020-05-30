@@ -1,6 +1,6 @@
 export interface Persona {
   idPersona?: number,
-  nombre: string,
+  nombre?: string,
   fechaNacimiento?: Date,
   miniBiografia?: string,
   imagenPersona?: any,

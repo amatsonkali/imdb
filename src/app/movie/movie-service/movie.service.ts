@@ -305,7 +305,6 @@ getActores() {
       this.Actores = resultado;
       this.actoresUpdated.next([...this.Actores]);
     });
-  // return this.encuestas;
 }
 
 getActoresUpdateListener() {
