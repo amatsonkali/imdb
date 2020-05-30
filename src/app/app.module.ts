@@ -16,6 +16,7 @@ import { MovieDetailsComponent } from './movie/movie-details/movie-details.compo
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { MovieAddPersonaComponent } from './movie/movie-add-persona/movie-add-persona.component';
+import { MovieCalifComponent } from './movie/movie-calif/movie-calif.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MovieAddPersonaComponent } from './movie/movie-add-persona/movie-add-pe
     RegisterComponent,
     MovieDetailsComponent,
     MovieCreateComponent,
-    MovieAddPersonaComponent
+    MovieAddPersonaComponent,
+    MovieCalifComponent
   ],
   imports: [
     BrowserModule,

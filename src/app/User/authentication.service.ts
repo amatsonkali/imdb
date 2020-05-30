@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   private saveUsuarioUrl = '/api/usuarios';
   private loginUsuarioUrl = '/api/usuarios/login';
-  var = 1;
+
   constructor(private http: HttpClient, private router: Router) {
   }
 
@@ -53,7 +53,18 @@ export class AuthenticationService {
     this.http.post(this.loginUsuarioUrl, Usuario)
     .subscribe(response => {
       console.log(response[0][0]);
-      if ('1' in response[0][0]){
+      for (var key in response[0][0]) {
+        console.log(response[0][0][key]);
+      }
+      if ('0' in response[0][0]){
+        Swal.fire({
+          icon: 'error',
+          title: 'Datos invalidos',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+      else {
         Swal.fire({
           icon: 'success',
           title: 'BIENVENIDO',
@@ -62,16 +73,8 @@ export class AuthenticationService {
         });
         setTimeout(() => {
           this.gotoHome();
-          localStorage.setItem('usuario', username);
+          localStorage.setItem('usuario', response[0][0][key]);
         }, 2025);
-      }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Datos invalidos',
-          showConfirmButton: false,
-          timer: 2000
-        });
       }
       });
   }

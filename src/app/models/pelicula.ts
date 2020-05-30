@@ -4,7 +4,7 @@ export interface Pelicula {
     duracion?: string,
     fechaEmision?: Date,
     sinopsis?: string,
-    linkTrailer?: string,
+    linkTrailer?: any,
     clasificacion?: string,
     calificacion?: number,
     pais?:string,
