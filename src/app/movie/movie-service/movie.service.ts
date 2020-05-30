@@ -7,6 +7,7 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Calificacion } from 'src/app/models/calificacion';
 import { Persona, Star } from 'src/app/models/persona';
 
 @Injectable({
@@ -20,6 +21,7 @@ export class MovieService {
   urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
   urlPeliDetails: string = "api/peliculas/pelicula/";
   urlGenerosById: string = "api/peliculas/genero/";
+  urlCalificacionById: string = "api/peliculas/calificacionesPelicula/";
 
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
@@ -35,10 +37,12 @@ export class MovieService {
   private urlPaises = 'api/paises';
   private urlTipoMaterial = 'api/tipoMaterial';
   private urlsavePelicula = 'api/peliculas/pelicula';
+  private urlSaveCalificacion = 'api/peliculas/calificacion/';
 
   clasificacion: Clasificacion[];
   pais: Pais[];
   tipoMaterial: TipoMaterial[];
+  calificaciones: Calificacion[];
 
 
   urlGETPersonas = 'api/personas/aleatorio'
@@ -178,15 +182,16 @@ export class MovieService {
           console.log(TYPED_ARRAY);
           console.log("base64String:");
           console.log(base64String);*/
-    let image = "" ;
-    let imageUrl;
-    if (STRING_CHAR != "") {
-      if (!STRING_CHAR.startsWith('data:')) {
-         image = 'data:image/jpg;base64,' + STRING_CHAR;
-         imageUrl = this.getImgContent(image);
-      }else{ imageUrl = STRING_CHAR; }
-    }
-    return imageUrl;
+          let image="";
+          let imageUrl;
+          if(STRING_CHAR != ""){
+            if(!STRING_CHAR.startsWith('data:')){
+              image = 'data:image/jpg;base64,' + STRING_CHAR;
+              imageUrl = this.getImgContent(image);
+            }else imageUrl= STRING_CHAR;
+
+          }
+          return imageUrl;
   }
 
   getVideoIframe(url) {
@@ -220,6 +225,15 @@ export class MovieService {
   savePelicula(pelicula: Pelicula) {
     return this.http.post<Pelicula>(this.urlsavePelicula, pelicula);
   }
+
+  getCalificacionesById(){
+    return this.http.get<Calificacion[]>(this.urlCalificacionById + this.selectedIdPeli);
+  }
+
+  saveCalificacion(calificacion: Calificacion){
+    return this.http.post<Calificacion>(this.urlSaveCalificacion, calificacion);
+  }
+
 
 
   utf8ArrayToStr = (function () {
