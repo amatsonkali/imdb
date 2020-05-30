@@ -8,6 +8,7 @@ import { TipoMaterial } from 'src/app/models/tipoMaterial';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Calificacion } from 'src/app/models/calificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class MovieService {
   urlPelisEdad: string = "api/peliculas/peliculasClasificacion/";
   urlPeliDetails: string = "api/peliculas/pelicula/";
   urlGenerosById: string = "api/peliculas/genero/";
+  urlCalificacionById: string = "api/peliculas/calificacionesPelicula/";
 
   private pelisCalifUpdated = new Subject < Pelicula[] > ();
   private pelisGeneroUpdated = new Subject < Pelicula[] > ();
@@ -34,10 +36,12 @@ export class MovieService {
   private urlPaises = 'api/paises';
   private urlTipoMaterial = 'api/tipoMaterial';
   private urlsavePelicula = 'api/peliculas/pelicula';
+  private urlSaveCalificacion = 'api/peliculas/calificacion/';
 
   clasificacion: Clasificacion[];
   pais: Pais[];
   tipoMaterial: TipoMaterial[];
+  calificaciones: Calificacion[];
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -173,7 +177,7 @@ export class MovieService {
               image = 'data:image/jpg;base64,' + STRING_CHAR;
               imageUrl = this.getImgContent(image);
             }else imageUrl= STRING_CHAR;
-          
+
           }
           return imageUrl;
   }
@@ -196,6 +200,15 @@ export class MovieService {
   savePelicula(peli: Peli) {
     return this.http.post<Pelicula>(this.urlsavePelicula, peli);
   }
+
+  getCalificacionesById(){
+    return this.http.get<Calificacion[]>(this.urlCalificacionById + this.selectedPeli);
+  }
+
+  saveCalificacion(calificacion: Calificacion){
+    return this.http.post<Calificacion>(this.urlSaveCalificacion, calificacion);
+  }
+
 
 
   utf8ArrayToStr = (function () {
