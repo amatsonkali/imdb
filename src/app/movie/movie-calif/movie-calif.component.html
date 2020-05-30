@@ -15,12 +15,12 @@
 <mat-card class="example-card">
   <div class="card">
       <mat-label>Título del comentario</mat-label>
-      <input [(ngModel)]="calificacionUsuario.subtitulo" type="text" class="form-control" maxlength="60" matInput >
+      <input [(ngModel)]="calificacionUsuario.subtitulo" type="text" class="form-control"  maxlength="50" required  matInput >
       <mat-label>Calificación</mat-label>
-      <mat-slider [(ngModel)]="calificacionUsuario.calificacion" min="0" max="10" step="1"></mat-slider>
+      <mat-slider [(ngModel)]="calificacionUsuario.calificacion" min="0" max="10" step="1" required></mat-slider>
       <mat-label>Comentario</mat-label>
-      <input  [(ngModel)]="calificacionUsuario.comentario" type="text" class="form-control" maxlength="60" matInput >
+      <input  [(ngModel)]="calificacionUsuario.comentario" type="text" class="form-control" maxlength="5050" required matInput >
   </div>
-  <button mat-raised-button (click)= "saveCalificacion()" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
+  <button mat-raised-button (click)= "saveCalificacion(calificacionUsuario)" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
 </mat-card>
 
