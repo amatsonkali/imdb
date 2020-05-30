@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Genero } from 'src/app/models/genero';
 import { Subscription } from 'rxjs';
 import { Persona } from 'src/app/models/persona';
+import { TipoProfesion } from 'src/app/models/tipoProfesion';
 
 @Component({
   selector: 'app-movie-create',
@@ -21,6 +22,9 @@ export class MovieCreateComponent implements OnInit {
   clasificaciones: Clasificacion[]=[];
   paises: Pais[]=[];
   tipoMateriales: TipoMaterial[];
+  tipoProfesionesCatalogo: TipoProfesion[] = [{idtipoProfesion:1,tipo:"accion", isChecked:false}];
+  nombre: string = "";
+  idPersona: number=-1;
   direccion: string;
   direccionPersona: string;
   agregarPersonaForm: boolean = false;
@@ -91,6 +95,12 @@ export class MovieCreateComponent implements OnInit {
 
   newPersona(){
     this.agregarPersonaForm = true;
+
+    this.movieService.catalogoTipoProfesion().subscribe(
+      (tipoProfesion: TipoProfesion[]) => {
+        this.tipoProfesionesCatalogo = tipoProfesion;
+      }
+    )
   }
 
   savePersona(persona: Persona){
@@ -99,6 +109,24 @@ export class MovieCreateComponent implements OnInit {
     }else{
       persona.imagenPersona = "";
     }
-    this.movieService.savePersona(persona).subscribe(data => { });
+    this.nombre = persona.nombre;
+    this.movieService.savePersona(persona).subscribe(data => {
+      console.log("Data",data[0][0].persona_insertada);
+      this.idPersona=data[0][0].persona_insertada;
+      if(this.idPersona != -1){
+        this.savePersonaTipoProfesion();
+       }
+     });
+  }
+
+  savePersonaTipoProfesion(){
+    for(var i = 0; i<this.tipoProfesionesCatalogo.length; i++){
+      if(this.tipoProfesionesCatalogo[i].isChecked === true){
+        this.tipoProfesionesCatalogo[i].idPersona = this.idPersona;
+        console.log(this.tipoProfesionesCatalogo[i]);
+        this.movieService.savePersonaTipoProfesion(this.tipoProfesionesCatalogo[i]).subscribe(data => { });
+      }
+    }
+    this.idPersona=-1;
   }
 }

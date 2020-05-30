@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Genero } from 'src/app/models/genero';
 import { Persona } from 'src/app/models/persona';
+import { TipoProfesion } from 'src/app/models/tipoProfesion';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,12 @@ export class MovieService {
   private urlsavePelicula = 'api/peliculas/pelicula';
   private urlsavePersona = 'api/personas';
   private urlGeneros= 'api/generos';
+  private urlTipoProfesion= 'api/tipoProfesion';
+  private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
   clasificacion: Clasificacion[];
   pais: Pais[];
-  tipoMaterial: TipoMaterial[];
+  tipoMateriales: TipoMaterial[];
+  tipoProfesiones: TipoProfesion[];
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -212,6 +216,14 @@ export class MovieService {
 
   catalogoGeneros(){
     return this.http.get<Genero[]>(this.urlGeneros);
+  }
+
+  catalogoTipoProfesion(){
+    return this.http.get<TipoProfesion[]>(this.urlTipoProfesion);
+  }
+
+  savePersonaTipoProfesion(tipoProfesion: TipoProfesion) {
+    return this.http.post<Pelicula>(this.urlSavePersonaTipoProf, tipoProfesion);
   }
 
   savePelicula(pelicula: Pelicula) {

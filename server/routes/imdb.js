@@ -52,5 +52,7 @@ router.get('/clasificaciones', peliculasController.clasificaciones);
 router.get('/paises', peliculasController.paises);
 router.get('/tipoMaterial', peliculasController.tipoMaterial);
 router.get('/generos', peliculasController.generos);
+router.get('/tipoProfesion', personasController.tipoProfesion);
+router.post('/personas/tipoProfesion', personasController.personaTipoProfesion_save);
 
 module.exports = router;

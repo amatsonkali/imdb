@@ -193,18 +193,6 @@
               </mat-form-field>
             </div>
         </td>
-        <td>
-          <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Profesión</mat-label>
-              <mat-select class="form-control" required name="profesion" value="selected" ngModel>
-              <div *ngFor="let pais of paises">
-                <mat-option value="{{pais.idPais}}">{{pais.nombrePais}}</mat-option>
-              </div>
-              </mat-select>
-              </mat-form-field>
-            </div>
-        </td>
       </tr>
       <div class="center">
         <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar persona</button><br/><br/>
@@ -214,6 +202,14 @@
     </div>
   </table>
   </form>
+
+  <div class="form-group">
+    <mat-label>Profesión</mat-label>
+    <mat-checkbox *ngFor="let tipoProfesion of tipoProfesionesCatalogo"  [(ngModel)]="tipoProfesion.isChecked">
+      {{tipoProfesion.tipo}}
+    </mat-checkbox>
+  </div>
+  
   </div>
 </div>
 
