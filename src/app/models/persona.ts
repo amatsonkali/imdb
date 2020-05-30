@@ -1,6 +1,15 @@
-export interface Persona{
-  idPersona: number,
+export interface Persona {
+  idPersona?: number,
   nombre: string,
-  estelar?: boolean,
-  personajes?: string[]
+  fechaNacimiento?: Date,
+  miniBiografia?: string,
+  imagenPersona?: any,
+  nombreDirectores?: string[]
+  nombreEscritores?: string[]
+  idPais?: number
+}
+
+export interface Star extends Persona{
+  idActor?: number,
+  nombrePapel?: string
 }
