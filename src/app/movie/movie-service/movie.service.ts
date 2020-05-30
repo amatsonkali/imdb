@@ -10,6 +10,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Genero } from 'src/app/models/genero';
 import { Calificacion } from 'src/app/models/calificacion';
 import { Persona, Star } from 'src/app/models/persona';
+import { TipoProfesion } from 'src/app/models/tipoProfesion';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +41,12 @@ export class MovieService {
   private urlPaises = 'api/paises';
   private urlTipoMaterial = 'api/tipoMaterial';
   private urlsavePelicula = 'api/peliculas/pelicula';
+  private urlsavePersona = 'api/personas';
   private urlGeneros= 'api/generos';
   private urlSaveCalificacion = 'api/peliculas/calificacion/';
 
   clasificacion: Clasificacion[];
   pais: Pais[];
-  tipoMaterial: TipoMaterial[];
   calificaciones: Calificacion[];
 
 
@@ -61,6 +62,10 @@ export class MovieService {
   personaDirector: Persona[]
   personaEscritor: Persona[]
 
+  private urlTipoProfesion= 'api/tipoProfesion';
+  private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
+  tipoMateriales: TipoMaterial[];
+  tipoProfesiones: TipoProfesion[];
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -243,6 +248,14 @@ export class MovieService {
     return this.http.get<Genero[]>(this.urlGeneros);
   }
 
+  catalogoTipoProfesion(){
+    return this.http.get<TipoProfesion[]>(this.urlTipoProfesion);
+  }
+
+  savePersonaTipoProfesion(tipoProfesion: TipoProfesion) {
+    return this.http.post<Pelicula>(this.urlSavePersonaTipoProf, tipoProfesion);
+  }
+
   savePelicula(pelicula: Pelicula) {
     return this.http.post<Pelicula>(this.urlsavePelicula, pelicula);
   }
@@ -256,6 +269,9 @@ export class MovieService {
   }
 
 
+  savePersona(persona: Persona) {
+    return this.http.post<Pelicula>(this.urlsavePersona, persona);
+  }
 
   utf8ArrayToStr = (function () {
     var charCache = new Array(128);  // Preallocate the cache for the common single byte chars

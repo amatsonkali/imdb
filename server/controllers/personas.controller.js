@@ -63,6 +63,17 @@ module.exports.personasTotal = (req,res,next) =>{
   });
 }
 
+//catalogo de tipo profesión
+module.exports.tipoProfesion = (req,res,next) =>{
+  let sql= 'SELECT idtipoProfesion, tipo FROM tipoprofesion;';
+  config.query(sql, (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+}
+
 module.exports.persona_save = (req, res, next)=>{
   var persona = req.body;
   let sql='call Crear_Persona(?,?,?,?,?)';
@@ -112,6 +123,17 @@ module.exports.actorEstrella_save = (req, res, next)=>{
   var actor = req.body;
   let sql = 'call insertActorEstrella(?,?,?)';
   config.query(sql, [actor._nombrePapel, actor._star, actor._idPersonaPelicula] , (error, results, fields) =>{
+    if(error){
+      res.send(error);
+    }
+    res.json(results)
+  })
+}
+
+module.exports.personaTipoProfesion_save = (req, res, next)=>{
+  var perTipoProf = req.body;
+  let sql='INSERT INTO personatipoprofesion (Persona_idPersona, tipoProfesion_idtipoProfesion) VALUES (?,?);';
+  config.query(sql, [perTipoProf.idPersona, perTipoProf.idtipoProfesion] , (error, results, fields) =>{
     if(error){
       res.send(error);
     }
