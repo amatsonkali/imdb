@@ -6,7 +6,8 @@ export interface Persona {
   imagenPersona?: any,
   nombreDirectores?: string[]
   nombreEscritores?: string[]
-  idPais?: number
+  idPais?: number,
+  personajes?: string[]
 }
 
 export interface Star extends Persona{

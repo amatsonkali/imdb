@@ -12,6 +12,7 @@ import { TipoProfesion } from 'src/app/models/tipoProfesion';
 import { Calificacion } from 'src/app/models/calificacion';
 import { Persona, Star } from 'src/app/models/persona';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -65,7 +66,6 @@ export class MovieService {
   Actores: Star[]
   personaDirector: Persona[]
   personaEscritor: Persona[]
-
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -270,8 +270,6 @@ export class MovieService {
   saveCalificacion(calificacion: Calificacion){
     return this.http.post<Calificacion>(this.urlSaveCalificacion, calificacion);
   }
-
-
 
   utf8ArrayToStr = (function () {
     var charCache = new Array(128);  // Preallocate the cache for the common single byte chars
