@@ -9,7 +9,7 @@ import { Pelicula } from 'src/app/models/pelicula';
   styleUrls: ['./movie-home.component.css']
 })
 export class MovieHomeComponent implements OnInit {
-  dato = localStorage.getItem('usuario');
+  dato = (localStorage.getItem('usuario'));
 
   peliCaliSub : Subscription;
   peliGenSub: Subscription;

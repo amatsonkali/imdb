@@ -304,7 +304,7 @@ getPersonaDirectores(){
       });
       this.selectedPersonaUpdated.next({...this.Allpersonas});
     });
-}
+  }
 
 getPersonaEscritores(){
   this.http.get<{nombre:string}[]>(this.urlGETEscritores + this.getselectedIdPeli()).subscribe(
@@ -340,7 +340,6 @@ getActores() {
       this.Actores = resultado;
       this.actoresUpdated.next([...this.Actores]);
     });
-  // return this.encuestas;
 }
 
 getActoresUpdateListener() {

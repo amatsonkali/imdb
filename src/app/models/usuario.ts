@@ -1,4 +1,5 @@
 export interface usuarioLogin {
+   id?: string;
    username: string;
    password: string;
 }
