@@ -44,7 +44,10 @@ export class MovieService {
   private urlsavePersona = 'api/personas';
   private urlGeneros= 'api/generos';
   private urlSaveCalificacion = 'api/peliculas/calificacion/';
-
+  private urlSavePersonaPelicula= 'api/personas/pelicula';
+  private urlSaveDirector = 'api/personas/director';
+  private urlSaveEscritor = 'api/personas/escritor';
+  private urlSaveActor = 'api/personas/actor';
   clasificacion: Clasificacion[];
   pais: Pais[];
   calificaciones: Calificacion[];
@@ -64,6 +67,7 @@ export class MovieService {
 
   private urlTipoProfesion= 'api/tipoProfesion';
   private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
+  private urlSavePeliculaGenero= 'api/peliculas/peliculaGenero';
   tipoMateriales: TipoMaterial[];
   tipoProfesiones: TipoProfesion[];
 
@@ -83,6 +87,7 @@ export class MovieService {
       (peliculasData)=>{
         this.pelisCalif=[];
         peliculasData.forEach( (peli,index)=>{
+          if(!peli.imagenPortada) peli.imagenPortada={data:''};
           this.pelisCalif.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
@@ -100,6 +105,7 @@ export class MovieService {
       (peliculasData)=>{
         this.pelisGenero=[];
         peliculasData.forEach( (peli,index)=>{
+          if(!peli.imagenPortada) peli.imagenPortada={data:''};
           this.pelisGenero.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
@@ -119,6 +125,7 @@ export class MovieService {
       (peliculasData)=>{
         this.pelisEdad=[];
         peliculasData.forEach( (peli,index)=>{
+          if(!peli.imagenPortada) peli.imagenPortada={data:''};
           this.pelisEdad.push({
             idPelicula:peli.idPelicula,
             titulo: peli.titulo,
@@ -135,7 +142,8 @@ export class MovieService {
     this.http.get<any>(this.urlPeliDetails + this.selectedIdPeli).subscribe(
       (peliculaData)=>{
         let peli = peliculaData[0];
-        console.log(peliculaData);
+        //console.log(peliculaData);
+        if(!peli.imagenPortada) peli.imagenPortada={data:''};
         this.selectedPeli = {
           idPelicula: peli.idPelicula,
           titulo: peli.titulo,
@@ -258,6 +266,31 @@ export class MovieService {
 
   savePelicula(pelicula: Pelicula) {
     return this.http.post<Pelicula>(this.urlsavePelicula, pelicula);
+  }
+
+  saveGenerosPelicula(idPelicula: number, idGenero: number){
+    return this.http.post<{idPelicula:number,idGenero:number}>
+    (this.urlSavePeliculaGenero,{idPelicula:idPelicula,idGenero:idGenero});
+  }
+
+  savePersonaPelicula(idPelicula: number,idPersona: number){
+    return this.http.post<{idPelicula:number,idPersona:number}>
+    (this.urlSavePersonaPelicula,{idPelicula:idPelicula,idPersona:idPersona});
+  }
+
+  saveDirector(idPersonaPelicula: number){
+    return this.http.post<{_idPersonaPelicula:number}>
+    (this.urlSaveDirector,{_idPersonaPelicula:idPersonaPelicula});
+  }
+
+  saveEscritor(idPersonaPelicula:number){
+    return this.http.post<{_idPersonaPelicula:number}>
+    (this.urlSaveEscritor,{_idPersonaPelicula:idPersonaPelicula});
+  }
+
+  saveActor(idPersonaPelicula:number,nombrePapel:string,estelar:boolean){
+    return this.http.post<{_nombrePapel:string,_star:boolean,_idPersonaPelicula:number}>
+    (this.urlSaveActor,{_nombrePapel:nombrePapel,_star:estelar,_idPersonaPelicula:idPersonaPelicula});
   }
 
   getCalificacionesById(){

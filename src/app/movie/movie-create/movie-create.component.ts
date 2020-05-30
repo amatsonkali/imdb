@@ -76,16 +76,98 @@ export class MovieCreateComponent implements OnInit {
       }else{
         pelicula.img = "";
       }
-      //this.movieService.savePelicula(pelicula).subscribe(data => { });
-      console.log(this.selectedDirectores);
-      console.log(this.selectedEscritores);
-      console.log(this.selectedActores);
-      Swal.fire({
-        icon: 'success',
-        title: 'La pelicula fue creada con éxito',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      this.movieService.savePelicula(pelicula).subscribe(data => {
+        console.log(data);
+        if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
+          this.saveGeneros(data[0][0]['last_insert_id()']);
+          this.saveDirectores(data[0][0]['last_insert_id()']);
+          this.saveEscritores(data[0][0]['last_insert_id()']);
+          this.saveActores(data[0][0]['last_insert_id()']);
+          Swal.fire({
+            icon: 'success',
+            title: 'La pelicula fue creada con éxito',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+       });
+  }
+
+  saveGeneros(idPelicula: number) {
+    this.generosCatalogo.forEach((genero, index) => {
+      if (genero.isChecked) {
+        console.log("Insertando genero...")
+        this.movieService.saveGenerosPelicula(idPelicula, genero.idGenero).subscribe(
+          (data) => {
+            console.log(data);
+          });
+      }
+    });
+  }
+  saveDirectores(idPelicula: number) {
+    this.selectedDirectores.forEach((director, index) => {
+      this.movieService.savePersonaPelicula(idPelicula, director.idPersona).subscribe(
+        (data) => {
+          let idPersonaPeli = 0;
+          if (data[0][0]['personaPeli_exists']) {
+            console.log("Director: Persona-pelicula ya existía, ntp");
+            idPersonaPeli = data[0][0]['personaPeli_exists'];
+          } else if (data[0][0]['personaPelicula_insertada']) {
+            console.log("Persona-pelicula insertado, insertando en director..");
+            idPersonaPeli = data[0][0]['personaPelicula_insertada'];
+          }
+          this.movieService.saveDirector(idPersonaPeli).subscribe(
+            (data) => {
+              console.log("Inserción del director: ");
+            }
+          )
+        }
+      );
+    });
+  }
+
+  saveEscritores(idPelicula: number) {
+    this.selectedEscritores.forEach((escritor, index) => {
+      this.movieService.savePersonaPelicula(idPelicula, escritor.idPersona).subscribe(
+        (data) => {
+          let idPersonaPeli = 0;
+          if (data[0][0]['personaPeli_exists']) {
+            console.log("Escritor: Persona-pelicula ya existía, ntp");
+            idPersonaPeli = data[0][0]['personaPeli_exists'];
+          } else if (data[0][0]['personaPelicula_insertada']) {
+            console.log("Persona-pelicula insertado, insertando en escritores..");
+            idPersonaPeli = data[0][0]['personaPelicula_insertada'];
+          }
+          this.movieService.saveEscritor(idPersonaPeli).subscribe(
+            (data) => {
+              console.log("Inserción de escritor... ");
+            }
+          )
+        }
+      );
+    });
+  }
+
+  saveActores(idPelicula: number) {
+    this.selectedActores.forEach((actor, index) => {
+      this.movieService.savePersonaPelicula(idPelicula, actor.idPersona).subscribe(
+        (data) => {
+          let idPersonaPeli = 0;
+          if (data[0][0]['personaPeli_exists']) {
+            console.log("Actor :Persona-pelicula ya existía, ntp " + data[0][0]['personaPeli_exists']);
+            idPersonaPeli = data[0][0]['personaPeli_exists'];
+          } else if (data[0][0]['personaPelicula_insertada']) {
+            console.log("Persona-pelicula insertado, insertando en actores..");
+            idPersonaPeli = data[0][0]['personaPelicula_insertada'];
+          }
+          this.movieService.saveActor(idPersonaPeli, actor.personajes[0], actor.estelar).subscribe(
+            (data) => {
+              console.log("Inserción de actor... ");
+            }
+          )
+        }
+      );
+    });
   }
 
   onFilePersona(files){

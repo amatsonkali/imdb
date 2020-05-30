@@ -146,7 +146,7 @@ module.exports.generos = (req,res,next) =>{
 module.exports.pelicula_save = (req, res, next) => {
   var pelicula= req.body;
   let sql = `call insertPelicula(?,?,?,?,?,?,?,?,?)`;
-  config.query(sql, [pelicula.titulo, pelicula.duracion, pelicula.fechaEmision, pelicula.sinopsis, pelicula.linkTrailer, pelicula.imagenPortada, pelicula.idClasificacion, pelicula.idPais, pelicula.idTipoMaterial] , (error, results, fields) =>{
+  config.query(sql, [pelicula.titulo, pelicula.duracion, pelicula.fechaEmision, pelicula.sinopsis, pelicula.linkTrailer, pelicula.img, pelicula.idClasificacion, pelicula.idPais, pelicula.idTipoMaterial] , (error, results, fields) =>{
     if(error){
       res.send(error);
     }

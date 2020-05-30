@@ -7,7 +7,8 @@ export interface Persona {
   nombreDirectores?: string[]
   nombreEscritores?: string[]
   idPais?: number,
-  personajes?: string[]
+  personajes?: string[],
+  estelar?: boolean
 }
 
 export interface Star extends Persona{
