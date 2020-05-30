@@ -3,6 +3,8 @@ import { Pelicula } from 'src/app/models/pelicula';
 import { MovieService } from '../movie-service/movie.service';
 import { ImageService } from 'src/app/imageService/image.service';
 import { Subscription } from 'rxjs';
+import { Persona, Star } from 'src/app/models/persona';
+
 
 @Component({
   selector: 'app-movie-details',
@@ -16,19 +18,41 @@ export class MovieDetailsComponent implements OnInit {
     duracion: "Sin duracion",
     clasificacion: "Sin clasificacion"
   };
-  generos: string[]=["Accion","Aventura","Anime"];
   peliSub: Subscription;
-  loading: boolean = true;
+  loading = true;
 
-  constructor(public movieService: MovieService, public imageService: ImageService) {}
+  personaSub: Subscription;
+  persona: Persona = {
+    idPersona: -1,
+    nombre: "No ha cargado el nombre"
+  };
+
+  actores: Star[]=[];
+  actoresSub: Subscription;
+
+
+  constructor(public movieService: MovieService, public imageService: ImageService) {
+  }
 
   ngOnInit(): void {
     this.movieService.getSelectedPeli();
     this.peliSub = this.movieService.getSelectedPeliListener().subscribe(
-      (pelicula: Pelicula)=>{
-        this.peli= pelicula;
-        this.loading=false;
+      (pelicula: Pelicula) => {
+        this.peli = pelicula;
+        this.loading = false;
+    });
+
+    this.movieService.getSelectedPersona();
+    this.personaSub = this.movieService.getSelectedPersonaListener().subscribe(
+      (persona: Persona) => {
+        this.persona = persona;
+      });
+
+    this.movieService.getActores();
+    this.actoresSub = this.movieService.getActoresUpdateListener()
+    .subscribe((actores: Star[])=>{
+      console.log(actores);
+      this.actores= actores;
     });
   }
-
 }

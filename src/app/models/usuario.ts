@@ -7,3 +7,4 @@ export interface usuario extends usuarioLogin {
   nombre: string;
   email: string;
 }
+

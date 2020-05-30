@@ -51,5 +51,6 @@ router.post('/personas/escritor', personasController.escritor_save);
 router.get('/clasificaciones', peliculasController.clasificaciones);
 router.get('/paises', peliculasController.paises);
 router.get('/tipoMaterial', peliculasController.tipoMaterial);
+router.get('/generos', peliculasController.generos);
 
 module.exports = router;
