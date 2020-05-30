@@ -1,5 +1,5 @@
 export interface Calificacion{
-  nombre: string;
+  nombre?: string;
   idCalificacion ?: number;
   calificacion : number;
   fechaCalif ?: Date;

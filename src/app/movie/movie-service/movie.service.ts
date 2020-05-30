@@ -227,7 +227,7 @@ export class MovieService {
   }
 
   getCalificacionesById(){
-    return this.http.get<Calificacion[]>(this.urlCalificacionById + this.selectedPeli);
+    return this.http.get<Calificacion[]>(this.urlCalificacionById + this.selectedIdPeli);
   }
 
   saveCalificacion(calificacion: Calificacion){
