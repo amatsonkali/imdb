@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'home',  component: MovieHomeComponent, canActivate: [AuthGuard]},
   {path: 'movie', component: MovieDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'crear', component: MovieCreateComponent/*, canActivate: [AuthGuard]*/},
+  {path: 'crear', component: MovieCreateComponent, canActivate: [AuthGuard]},
   {path: 'persona',component: PersonaBrowserComponent}
 ];
 
