@@ -13,7 +13,7 @@ module.exports.personasAleatorias = (req,res,next) =>{
 };
 
 module.exports.estrellasPeli = (req,res,next) =>{
-  let sql='select idPersona, nombre from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ? and a.star=1' ;
+  let sql='select nombre from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ? and a.star=1' ;
   config.query(sql, [req.params.idPelicula], (error, results, fields) => {
     if(error){
       res.send(error);
@@ -43,7 +43,7 @@ module.exports.escritoresPeli = (req,res,next) =>{
 }
 
 module.exports.actoresPeli = (req,res,next) =>{
-  let sql='select idPersona, nombre from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ?' ;
+  let sql='select idPersona, nombre, fechaNacimiento, miniBiografia, a.nombrePapel from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ? ' ;
   config.query(sql, [req.params.idPelicula], (error, results, fields) => {
     if(error){
       res.send(error);
