@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs'
+import { AuthenticationService } from '../User/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,11 @@ export class HeaderComponent implements OnInit {
 
   routerSub: Subscription;
   isInLogin: boolean = true;
-  constructor(private router: Router) { }
+  isAdmin: boolean;
+
+  constructor(private router: Router, public auth: AuthenticationService) {
+    this.isAdmin = auth.checkAdmin();
+  }
 
   ngOnInit(): void {
     this.routerSub = this.router.events.subscribe(
@@ -19,7 +24,9 @@ export class HeaderComponent implements OnInit {
   }
 
   handleRouteChange(){
-     this.isInLogin = (this.router.url.includes('login') || this.router.url.includes('register') );
+     this.isInLogin = (this.router.url.includes('login') || this.router.url.includes('register'));
+     this.isAdmin = this.auth.checkAdmin();
+     console.log(this.isAdmin);
   }
 
   ngOnDestroy() {

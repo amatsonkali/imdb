@@ -20,7 +20,7 @@ export class MovieHomeComponent implements OnInit {
   constructor(public movieService:MovieService) { }
 
   ngOnInit(): void {
-    console.log(this.dato);
+    //console.log(this.dato);
     console.log(this.user);
     this.movieService.getPelisCalif();
     this.movieService.getPelisByGenero("Acción");

@@ -7,8 +7,13 @@
 </mat-toolbar>
 
 <mat-toolbar color="primary" class="app-header" *ngIf="!isInLogin">
-  <div><a target="_blank">IMDB</a></div>
+  <Span class = "crear">
+    <a target="_blank">IMDB</a>
+    <a *ngIf="isAdmin" mat-button mat-raised-button routerLink="crear" routerLinkActive="active">Crear</a>
+  </Span>
+
     <span class="nav-tool-items">
+      <a mat-button routerLink="home" routerLinkActive="active">Home</a>
       <a mat-button mat-raised-button routerLink="login" routerLinkActive="active">Log out</a>
     </span>
 </mat-toolbar>
