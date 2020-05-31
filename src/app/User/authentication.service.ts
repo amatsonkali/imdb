@@ -10,6 +10,8 @@ export class AuthenticationService {
 
   private saveUsuarioUrl = '/api/usuarios';
   private loginUsuarioUrl = '/api/usuarios/login';
+  isLogged = false;
+
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -57,6 +59,7 @@ export class AuthenticationService {
         console.log(response[0][0][key]);
       }
       if ('0' in response[0][0]){
+        this.isLogged = false;
         Swal.fire({
           icon: 'error',
           title: 'Datos invalidos',
@@ -65,6 +68,7 @@ export class AuthenticationService {
         });
       }
       else {
+        this.isLogged = true;
         Swal.fire({
           icon: 'success',
           title: 'BIENVENIDO',
@@ -73,10 +77,16 @@ export class AuthenticationService {
         });
         setTimeout(() => {
           this.gotoHome();
+          localStorage.setItem('admin', username);
           localStorage.setItem('usuario', response[0][0][key]);
         }, 2025);
       }
       });
+  }
+
+  isLoggedUser(){
+    console.log(this.isLogged);
+    return this.isLogged;
   }
 
 }

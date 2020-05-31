@@ -10,7 +10,7 @@ import { Pelicula } from 'src/app/models/pelicula';
 })
 export class MovieHomeComponent implements OnInit {
   dato = (localStorage.getItem('usuario'));
-
+  user = localStorage.getItem('admin');
   peliCaliSub : Subscription;
   peliGenSub: Subscription;
   peliEdadSub: Subscription;
@@ -21,7 +21,7 @@ export class MovieHomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.dato);
-
+    console.log(this.user);
     this.movieService.getPelisCalif();
     this.movieService.getPelisByGenero("Acción");
     this.movieService.getPelisEdad("AA");
