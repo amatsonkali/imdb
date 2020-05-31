@@ -43,13 +43,13 @@ export class MovieDetailsComponent implements OnInit {
     });
 
     this.movieService.getSelectedPersona();
-    this.personaSub = this.movieService.getSelectedPersonaListener().subscribe(
+    this.personaSub = this.movieService.getSelectedEscritorListener().subscribe(
       (persona: Persona) => {
         this.persona = persona;
       });
 
     this.movieService.getActores();
-    this.actoresSub = this.movieService.getActoresUpdateListener()
+    this.actoresSub = this.movieService.getSelectedActorListener()
     .subscribe((actores: Star[])=>{
       console.log(actores);
       this.actores= actores;

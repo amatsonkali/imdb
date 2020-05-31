@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     }else{
       Swal.fire({
         icon: 'error',
-        title: 'No se puede acceder así',
+        title: 'No va a poder acceder así :P',
         showConfirmButton: false,
         timer: 2000
       });

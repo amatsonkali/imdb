@@ -6,6 +6,7 @@ export interface Persona {
   imagenPersona?: any,
   nombreDirectores?: string[]
   nombreEscritores?: string[]
+  nombreEstrellas?: string[]
   idPais?: number,
   personajes?: string[],
   estelar?: boolean
