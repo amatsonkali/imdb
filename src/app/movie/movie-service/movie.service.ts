@@ -8,9 +8,10 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Genero } from 'src/app/models/genero';
+import { TipoProfesion } from 'src/app/models/tipoProfesion';
 import { Calificacion } from 'src/app/models/calificacion';
 import { Persona, Star } from 'src/app/models/persona';
-import { TipoProfesion } from 'src/app/models/tipoProfesion';
+
 
 @Injectable({
   providedIn: 'root'
@@ -43,13 +44,18 @@ export class MovieService {
   private urlsavePelicula = 'api/peliculas/pelicula';
   private urlsavePersona = 'api/personas';
   private urlGeneros= 'api/generos';
-  private urlSaveCalificacion = 'api/peliculas/calificacion/';
   private urlSavePersonaPelicula= 'api/personas/pelicula';
   private urlSaveDirector = 'api/personas/director';
   private urlSaveEscritor = 'api/personas/escritor';
   private urlSaveActor = 'api/personas/actor';
+  private urlTipoProfesion= 'api/tipoProfesion';
+  private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
   clasificacion: Clasificacion[];
   pais: Pais[];
+  tipoMateriales: TipoMaterial[];
+  tipoProfesiones: TipoProfesion[];
+  private urlSaveCalificacion = 'api/peliculas/calificacion/';
+  tipoMaterial: TipoMaterial[];
   calificaciones: Calificacion[];
 
 
@@ -65,11 +71,7 @@ export class MovieService {
   personaDirector: Persona[]
   personaEscritor: Persona[]
 
-  private urlTipoProfesion= 'api/tipoProfesion';
-  private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
   private urlSavePeliculaGenero= 'api/peliculas/peliculaGenero';
-  tipoMateriales: TipoMaterial[];
-  tipoProfesiones: TipoProfesion[];
 
   constructor(private router: Router,private http: HttpClient, private sanitizer: DomSanitizer) { }
 
@@ -293,17 +295,15 @@ export class MovieService {
     (this.urlSaveActor,{_nombrePapel:nombrePapel,_star:estelar,_idPersonaPelicula:idPersonaPelicula});
   }
 
+  savePersona(persona: Persona) {
+    return this.http.post<Pelicula>(this.urlsavePersona, persona);
+  }
   getCalificacionesById(){
     return this.http.get<Calificacion[]>(this.urlCalificacionById + this.selectedIdPeli);
   }
 
   saveCalificacion(calificacion: Calificacion){
     return this.http.post<Calificacion>(this.urlSaveCalificacion, calificacion);
-  }
-
-
-  savePersona(persona: Persona) {
-    return this.http.post<Pelicula>(this.urlsavePersona, persona);
   }
 
   utf8ArrayToStr = (function () {
