@@ -53,6 +53,27 @@ module.exports.actoresPeli = (req,res,next) =>{
   });
 }
 
+module.exports.personaDetail = (req,res,next) =>{
+  let sql='select nombre, fechaNacimiento, miniBiografia, imagenPersona, Pais_idPais from persona where idPersona=?';
+  config.query(sql, [req.params.idPersona], (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+}
+
+module.exports.personaProfesionDetail = (req,res,next) =>{
+  let sql='select tipo from tipoprofesion join personatipoprofesion p on tipoprofesion.idtipoProfesion = p.tipoProfesion_idtipoProfesion join persona p2 on p.Persona_idPersona = p2.idPersona where idPersona=?';
+  config.query(sql, [req.params.idPersona], (error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+}
+
+
 //catalogo de personas totales
 module.exports.personasTotal = (req,res,next) =>{
   let sql= 'select idPersona, nombre from persona;';
