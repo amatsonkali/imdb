@@ -43,7 +43,8 @@ module.exports.escritoresPeli = (req,res,next) =>{
 }
 
 module.exports.actoresPeli = (req,res,next) =>{
-  let sql='select idPersona, nombre from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ?' ;
+  let sql=`select idPersona, nombre, a.nombrePapel, a.star from persona join personapelicula p on persona.idPersona = p.Persona_idPersona join pelicula p2 on p.Pelicula_idPelicula = p2.idPelicula
+  join actores a on p.idPersonaPelicula = a.PersonaPelicula_idPersonaPelicula where idPelicula = ?` ;
   config.query(sql, [req.params.idPelicula], (error, results, fields) => {
     if(error){
       res.send(error);
