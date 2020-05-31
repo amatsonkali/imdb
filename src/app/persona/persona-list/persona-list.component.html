@@ -1,1 +1,7 @@
-<p>persona-list works!</p>
+<h2>Lista de personas</h2>
+<div class="collection">
+    <a *ngFor="let persona of personas; let i=index" class="collection-item orange-text" (click)="selectPersona(i)"> 
+        {{persona.nombre}}
+    </a>
+    <!-- <a href="#!" class="collection-item">Alvin</a> -->
+  </div>

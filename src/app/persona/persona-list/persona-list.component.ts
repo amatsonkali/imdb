@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Persona } from 'src/app/models/persona';
 
 @Component({
   selector: 'app-persona-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonaListComponent implements OnInit {
 
+  @Input() personas: Persona[];
+  @Output() selectedPersona= new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectPersona(index:number){
+    this.selectedPersona.emit(this.personas[0]);
   }
 
 }

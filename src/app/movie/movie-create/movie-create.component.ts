@@ -163,6 +163,7 @@ export class MovieCreateComponent implements OnInit {
           this.movieService.saveActor(idPersonaPeli, actor.personajes[0], actor.estelar).subscribe(
             (data) => {
               console.log("Inserción de actor... ");
+              //this.movieService.savePersonaTipoProfesion(actor.idPersona);
             }
           )
         }

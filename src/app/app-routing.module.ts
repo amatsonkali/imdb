@@ -6,13 +6,15 @@ import { RegisterComponent } from './User/register/register.component';
 import { MovieDetailsComponent } from './movie/movie-details/movie-details.component';
 import { MovieCreateComponent } from './movie/movie-create/movie-create.component';
 import {AuthGuard} from './User/guards/auth.guard'
+import { PersonaBrowserComponent } from './persona/persona-browser/persona-browser.component';
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'home',  component: MovieHomeComponent, canActivate: [AuthGuard]},
   {path: 'movie', component: MovieDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'crear', component: MovieCreateComponent, canActivate: [AuthGuard]}
+  {path: 'crear', component: MovieCreateComponent/*, canActivate: [AuthGuard]*/},
+  {path: 'persona',component: PersonaBrowserComponent}
 ];
 
 @NgModule({
