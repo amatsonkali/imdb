@@ -54,7 +54,6 @@ export class AuthenticationService {
     const Usuario: usuarioLogin = {username, password};
     this.http.post(this.loginUsuarioUrl, Usuario)
     .subscribe(response => {
-      console.log(response[0][0]);
       for (var key in response[0][0]) {
         console.log(response[0][0][key]);
       }
@@ -69,12 +68,22 @@ export class AuthenticationService {
       }
       else {
         this.isLogged = true;
-        Swal.fire({
-          icon: 'success',
-          title: 'BIENVENIDO',
-          showConfirmButton: false,
-          timer: 2000
-        });
+        if(username === 'Admin'){
+          Swal.fire({
+            icon: 'success',
+            title: 'BIENVENIDO TODOPODEROSO',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
+        else {
+          Swal.fire({
+            icon: 'success',
+            title: 'BIENVENIDO',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
         setTimeout(() => {
           this.gotoHome();
           localStorage.setItem('admin', username);
@@ -88,5 +97,14 @@ export class AuthenticationService {
     console.log(this.isLogged);
     return this.isLogged;
   }
+
+  checkAdmin() {
+    let user = localStorage.getItem('admin');
+    if (user === 'Admin') {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 }
