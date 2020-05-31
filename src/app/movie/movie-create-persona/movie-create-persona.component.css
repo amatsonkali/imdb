@@ -1,0 +1,45 @@
+.form-group img{
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.form-group mat-checkbox{
+  margin: 30em;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.center{
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+mat-label {
+  font-size: 18px;
+  line-height: 15px;
+  font-weight: 400;
+  margin: 15px;
+}
+
+.titulo{
+  text-align: center;
+  font-size: 80px;
+  color: rgb(197, 152, 28);
+  margin: 40px;
+  font-weight: bold;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #ff9100;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 8px 50px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}

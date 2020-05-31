@@ -12,8 +12,9 @@
       font-size: inherit;
   }
 html, body { height: 100%; }
-body { margin: 0; font-family:'Roboto, monospace'; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+body {
+  margin: 0; font-family:'Roboto, monospace';
+  background: #1a1a17;
+  background: linear-gradient(180deg, #1a1a17 5%, #d1d1d1 20%, #ffffff 100%);
+  background-repeat: no-repeat;
+}
