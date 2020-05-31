@@ -50,6 +50,7 @@ export class MovieService {
   private urlSaveActor = 'api/personas/actor';
   private urlTipoProfesion= 'api/tipoProfesion';
   private urlSavePersonaTipoProf = 'api/personas/tipoProfesion';
+  private urlGetPersonaDetails= 'api/personas/persona/';
   clasificacion: Clasificacion[];
   pais: Pais[];
   tipoMateriales: TipoMaterial[];
@@ -417,6 +418,10 @@ getSelectedDirectorListener(){
 
 getSelectedEscritorListener(){
   return this.selectEscritoresUpdated.asObservable();
+}
+
+getPersonaDetails(idPersona:number){
+  return this.http.get(this.urlGetPersonaDetails+idPersona);
 }
 
 }

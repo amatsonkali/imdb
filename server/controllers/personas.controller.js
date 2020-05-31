@@ -53,7 +53,8 @@ module.exports.actoresPeli = (req,res,next) =>{
 }
 
 module.exports.personaDetail = (req,res,next) =>{
-  let sql='select nombre, fechaNacimiento, miniBiografia, imagenPersona, Pais_idPais from persona where idPersona=?';
+  let sql=`select idPersona,nombre,fechaNacimiento,miniBiografia,fechaNacimiento, p.imagenPersona, p2.nombrePais
+  from persona p inner join pais p2 on p.Pais_idPais = p2.idPais and p.idPersona=?;`;
   config.query(sql, [req.params.idPersona], (error, results, fields) => {
     if(error){
       res.send(error);

@@ -8,6 +8,7 @@ export interface Persona {
   nombreEscritores?: string[]
   nombreEstrellas?: string[]
   idPais?: number,
+  nombrePais? : string,
   personajes?: string[],
   estelar?: boolean
 }

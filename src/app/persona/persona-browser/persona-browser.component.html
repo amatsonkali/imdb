@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col s4">
-            <app-persona-list *ngIf="personas" [personas]="personas"></app-persona-list>
+            <app-persona-list *ngIf="personas" (selectedPersona)="onSelectPersona($event)" [personas]="personas"></app-persona-list>
         </div>
         <div class="col s8">
-            <app-persona-details></app-persona-details>
+            <app-persona-details [persona]="selectedPersona"></app-persona-details>
         </div>
     </div>
 

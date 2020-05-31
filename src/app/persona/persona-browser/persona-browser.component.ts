@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class PersonaBrowserComponent implements OnInit {
   personas: Persona[];
   personasSub: Subscription;
-  selectedPersona: Persona[];
+  selectedPersona: Persona;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -19,6 +19,17 @@ export class PersonaBrowserComponent implements OnInit {
     this.personasSub = this.movieService.getPersonasListener().subscribe(
       (personas: Persona[])=>{
         this.personas= personas;
+      }
+    );
+  }
+
+  onSelectPersona(selectedPersona: any){
+    this.selectedPersona= selectedPersona;
+    this.movieService.getPersonaDetails(this.selectedPersona.idPersona).subscribe(
+      (data:any)=>{
+        console.log(data);
+        this.selectedPersona = data[0];
+        this.selectedPersona.imagenPersona = this.movieService.getUrlFromBlob(data[0].imagenPersona.data); 
       }
     );
   }

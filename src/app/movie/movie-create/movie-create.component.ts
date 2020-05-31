@@ -119,6 +119,7 @@ export class MovieCreateComponent implements OnInit {
           this.movieService.saveDirector(idPersonaPeli).subscribe(
             (data) => {
               console.log("Inserción del director: ");
+              this.movieService.savePersonaTipoProfesion({idPersona:director.idPersona, idtipoProfesion:3});
             }
           )
         }
@@ -141,6 +142,7 @@ export class MovieCreateComponent implements OnInit {
           this.movieService.saveEscritor(idPersonaPeli).subscribe(
             (data) => {
               console.log("Inserción de escritor... ");
+              this.movieService.savePersonaTipoProfesion({idPersona:escritor.idPersona, idtipoProfesion:4});
             }
           )
         }
@@ -163,7 +165,7 @@ export class MovieCreateComponent implements OnInit {
           this.movieService.saveActor(idPersonaPeli, actor.personajes[0], actor.estelar).subscribe(
             (data) => {
               console.log("Inserción de actor... ");
-              //this.movieService.savePersonaTipoProfesion(actor.idPersona);
+              this.movieService.savePersonaTipoProfesion({idPersona:actor.idPersona, idtipoProfesion:1});
             }
           )
         }

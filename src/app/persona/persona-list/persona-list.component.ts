@@ -16,7 +16,7 @@ export class PersonaListComponent implements OnInit {
   }
 
   selectPersona(index:number){
-    this.selectedPersona.emit(this.personas[0]);
+    this.selectedPersona.emit(this.personas[index]);
   }
 
 }
