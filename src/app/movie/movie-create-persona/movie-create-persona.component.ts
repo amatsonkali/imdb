@@ -3,6 +3,7 @@ import { MovieService } from '../movie-service/movie.service';
 import { Pais } from 'src/app/models/pais';
 import { Persona } from 'src/app/models/persona';
 import { TipoProfesion } from 'src/app/models/tipoProfesion';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-movie-create-persona',
@@ -11,11 +12,15 @@ import { TipoProfesion } from 'src/app/models/tipoProfesion';
 })
 export class MovieCreatePersonaComponent implements OnInit {
 
+  agregarPersonaForm: boolean = false;
   direccionPersona: string;
   nombre: string = "";
   paises: Pais[]=[];
   tipoProfesionesCatalogo: TipoProfesion[] = [{idtipoProfesion:1,tipo:"accion", isChecked:false}];
   idPersona: number=-1;
+  undefined: any = undefined;
+  resetForm:HTMLFormElement;
+  resetFormProf:HTMLFormElement;
 
   constructor(private movieService: MovieService) { }
 
@@ -33,6 +38,13 @@ export class MovieCreatePersonaComponent implements OnInit {
   }
 
   savePersona(persona: Persona){
+    if(persona.nombre=="" || !persona.fechaNacimiento || persona.miniBiografia=="" || !this.direccionPersona || persona.idPais==null){
+      Swal.fire({
+        icon: 'info',
+        title: 'Error',
+        text: 'Ingresa los datos completos',
+      })
+    }else{
     if(this.direccionPersona){
       persona.imagenPersona = this.direccionPersona;
     }else{
@@ -40,12 +52,19 @@ export class MovieCreatePersonaComponent implements OnInit {
     }
     this.nombre = persona.nombre;
     this.movieService.savePersona(persona).subscribe(data => {
-      console.log("Data",data[0][0].persona_insertada);
-      this.idPersona=data[0][0].persona_insertada;
-      if(this.idPersona != -1){
+      if (data[0][0].persona_insertada != null) {
+        console.log("Data",data[0][0].persona_insertada);
+        this.idPersona=data[0][0].persona_insertada;
         this.savePersonaTipoProfesion();
+       }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Esa persona ya fue registrada',
+        })
        }
      });
+    }
   }
 
   onFilePersona(files){
@@ -62,5 +81,27 @@ export class MovieCreatePersonaComponent implements OnInit {
       }
     }
     this.idPersona=-1;
+    Swal.fire({
+      icon: 'success',
+      title: 'La persona fue creada con éxito',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    this.movieService.getAllPersonas();
+    this.clearForm();
+  }
+
+  clearForm(){
+    this.resetForm= <HTMLFormElement>document.getElementById('Persona');
+    this.resetFormProf= <HTMLFormElement>document.getElementById('profesiones');
+    this.direccionPersona = '';
+    if(this.resetForm)
+        this.resetForm.reset();
+    for(var i = 0; i<this.tipoProfesionesCatalogo.length; i++)
+      this.tipoProfesionesCatalogo[i].isChecked = false;
+  }
+
+  newPersona(){
+    this.agregarPersonaForm = true;
   }
 }

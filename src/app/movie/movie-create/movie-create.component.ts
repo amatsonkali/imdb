@@ -23,7 +23,6 @@ export class MovieCreateComponent implements OnInit {
   tipoMateriales: TipoMaterial[];
   idPersona: number=-1;
   direccion: string;
-  agregarPersonaForm: boolean = false;
   generosCatalogo: Genero[] = [{idGenero:1,tipoGenero:"accion", isChecked:false}];
   personas: Persona[];
   selectedDirectores: Persona[]=[];
@@ -168,7 +167,5 @@ export class MovieCreateComponent implements OnInit {
     });
   }
 
-  newPersona(){
-    this.agregarPersonaForm = true;
-  }
+
 }

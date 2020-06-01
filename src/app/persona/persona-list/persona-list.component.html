@@ -1,7 +1,11 @@
-<h2>Lista de personas</h2>
+<div class="card">
+<div class="titulo">
+  <h1>Lista de personas</h1>
+</div>
 <div class="collection">
-    <a *ngFor="let persona of personas; let i=index" class="collection-item orange-text" (click)="selectPersona(i)"> 
+    <a *ngFor="let persona of personas; let i=index" class="collection-item orange-text" (click)="selectPersona(i)">
         {{persona.nombre}}
     </a>
     <!-- <a href="#!" class="collection-item">Alvin</a> -->
   </div>
+</div>

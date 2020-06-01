@@ -1,9 +1,17 @@
+
 <div class="container">
+
+<div class="center">
+  <button mat-raised-button type="button" color="accent" (click)=newPersona()><span class="material-icons">playlist_add</span> Agregar Persona</button>
+</div>
+
+<div *ngIf="agregarPersonaForm">
+
 <div class="titulo">
   <h1>Agregar nueva persona</h1>
 </div>
 <div class="card">
-  <form #form="ngForm" (ngSubmit)="savePersona(form.value)" class="well">
+  <form #form="ngForm" (ngSubmit)="savePersona(form.value)" class="well" id="Persona">
   <table class="example-full-width" cellspacing="0">
 
       <tr>
@@ -27,12 +35,12 @@
           <div class="form-group">
             <mat-form-field class="input-headline">
               <mat-label>Biografía</mat-label>
-              <textarea matInput class="form-control" required name="miniBiografia" ngModel></textarea>
+              <textarea matInput class="form-control" required name="miniBiografia" maxlength="390" ngModel></textarea>
             </mat-form-field>
           </div>
         </td>
         <td>
-          <input mat-raised-button type="button" color="accent" value="Limpiar" onClick="this.form.reset()" />
+          <input mat-raised-button type="button" color="accent" value="Limpiar" (click)="clearForm()" onClick="this.form.reset()" />
         </td>
       </tr>
       <tr>
@@ -40,7 +48,7 @@
           <div class="form-group">
             <mat-label class="input-headline">Elegir imagen de la persona</mat-label><br/>
             <input type="file" alife-file-to-base64 (onFileChanged)="onFilePersona($event)"/>
-            <img src="{{direccionPersona}}">
+            <img id="imagen" src="{{direccionPersona}}">
           </div>
         </td>
         <td>
@@ -56,6 +64,9 @@
             </div>
         </td>
         <td>
+          
+        </td>
+        <td>
             <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar persona</button>
         </td>
       </tr>
@@ -63,12 +74,16 @@
   </table>
   </form>
 
-  <div class="form-group">
-    <mat-label>Profesión</mat-label><br/><br/><br/>
-    <mat-checkbox *ngFor="let tipoProfesion of tipoProfesionesCatalogo"  [(ngModel)]="tipoProfesion.isChecked">
-      {{tipoProfesion.tipo}}
-    </mat-checkbox>
-  </div>
+
+    <div class="form-group">
+      <mat-label>Profesión</mat-label><br/><br/><br/>
+      <mat-checkbox *ngFor="let tipoProfesion of tipoProfesionesCatalogo" [(ngModel)]="tipoProfesion.isChecked">
+        {{tipoProfesion.tipo}}
+      </mat-checkbox>
+    </div>
+
   <br/><br/>
 </div>
+</div>
+
 </div>
