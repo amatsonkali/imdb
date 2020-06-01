@@ -20,6 +20,7 @@ import { MovieCalifComponent } from './movie/movie-calif/movie-calif.component';
 import { PersonaListComponent } from './persona/persona-list/persona-list.component';
 import { PersonaDetailsComponent } from './persona/persona-details/persona-details.component';
 import { PersonaBrowserComponent } from './persona/persona-browser/persona-browser.component';
+import { MovieCreatePersonaComponent } from './movie/movie-create-persona/movie-create-persona.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PersonaBrowserComponent } from './persona/persona-browser/persona-brows
     MovieCalifComponent,
     PersonaListComponent,
     PersonaDetailsComponent,
-    PersonaBrowserComponent
+    PersonaBrowserComponent,
+    MovieCreatePersonaComponent
   ],
   imports: [
     BrowserModule,
