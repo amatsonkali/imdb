@@ -12,6 +12,7 @@
   </mat-card-content>
 </mat-card>
 
+<!--
 <mat-card class="example-card">
   <div class="card">
       <mat-label>Título del comentario</mat-label>
@@ -23,4 +24,15 @@
   </div>
   <button mat-raised-button (click)= "saveCalificacion(calificacionUsuario)" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
 </mat-card>
+-->
 
+
+
+<div class="form-style-3">
+  <fieldset><legend>Review</legend>
+  <label for="field1"><span>Título de comentario <span class="required">*</span></span><input [(ngModel)]="calificacionUsuario.subtitulo" type="text" class="input-field" maxlength="50" required matInput/></label>
+  <label for="field2"><span>Calificación <span class="required">*</span></span><mat-slider class="input-field" [(ngModel)]="calificacionUsuario.calificacion" min="0" max="10" step="1" required></mat-slider></label>
+  <label for="field6"><span>Comentario <span class="required">*</span></span><textarea [(ngModel)]="calificacionUsuario.comentario" name="field6" class="textarea-field" maxlength="5050" required matInput></textarea></label>
+  <button mat-raised-button (click)= "saveCalificacion(calificacionUsuario)" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
+</fieldset>
+</div>
