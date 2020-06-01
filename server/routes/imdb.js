@@ -32,7 +32,7 @@ router.get('/peliculas/calificacionesPelicula/:idPelicula', peliculasController.
 router.post('/peliculas/pelicula', peliculasController.pelicula_save);
 router.post('/peliculas/peliculaGenero', peliculasController.peliculaGenero_save);
 router.post('/peliculas/calificacion', peliculasController.calificacion_save);
-
+router.delete('/peliculas/pelicula/:idPelicula',peliculasController.pelicula_delete);
 //Personas
 router.get('/personas/aleatorio', personasController.personasAleatorias);
 router.get('/personas/estrellas/:idPelicula', personasController.estrellasPeli);

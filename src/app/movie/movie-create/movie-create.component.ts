@@ -65,26 +65,36 @@ export class MovieCreateComponent implements OnInit {
   }
 
   saveMovie(pelicula: Pelicula){
-      if(this.direccion){
-        pelicula.img = this.direccion;
-      }else{
-        pelicula.img = "";
-      }
-      this.movieService.savePelicula(pelicula).subscribe(data => {
-        console.log(data);
-        if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
-          this.saveGeneros(data[0][0]['last_insert_id()']);
-          this.saveDirectores(data[0][0]['last_insert_id()']);
-          this.saveEscritores(data[0][0]['last_insert_id()']);
-          this.saveActores(data[0][0]['last_insert_id()']);
-          Swal.fire({
-            icon: 'success',
-            title: 'La pelicula fue creada con éxito',
-            showConfirmButton: false,
-            timer: 1500
-          });
+    if(this.checkStaff()){
+      if(this.checkActores()){
+        if(this.direccion){
+          pelicula.img = this.direccion;
+        }else{
+          pelicula.img = "";
         }
-       });
+        //console.log("longitud: "+this.selectedDirectores.length);
+        console.log(this.checkActores());
+        console.log(this.selectedActores);
+        this.movieService.savePelicula(pelicula).subscribe(data => {
+          console.log(data);
+          if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
+            this.saveGeneros(data[0][0]['last_insert_id()']);
+            this.saveDirectores(data[0][0]['last_insert_id()']);
+            this.saveEscritores(data[0][0]['last_insert_id()']);
+            this.saveActores(data[0][0]['last_insert_id()']);
+            Swal.fire({
+              icon: 'success',
+              title: 'La pelicula fue creada con éxito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+         });
+
+      }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
+    } else{
+      this.warningToast('Directores/Escritores/Actores inválidos');
+    }
   }
 
   saveGeneros(idPelicula: number) {
@@ -149,6 +159,7 @@ export class MovieCreateComponent implements OnInit {
       this.movieService.savePersonaPelicula(idPelicula, actor.idPersona).subscribe(
         (data) => {
           let idPersonaPeli = 0;
+          console.log(data);
           if (data[0][0]['personaPeli_exists']) {
             console.log("Actor :Persona-pelicula ya existía, ntp " + data[0][0]['personaPeli_exists']);
             idPersonaPeli = data[0][0]['personaPeli_exists'];
@@ -165,6 +176,40 @@ export class MovieCreateComponent implements OnInit {
         }
       );
     });
+  }
+
+  checkStaff(){
+    return this.selectedDirectores.length>0 && this.selectedEscritores.length>0 && this.selectedActores.length>0;
+  }
+  checkActores(){
+    let check: boolean = true;
+    this.selectedActores.forEach(
+      (actor,index)=>{
+        //console.log(actor.personajes);
+        if(!('personajes' in actor)){
+          check = false;
+        }else if(actor.personajes.length<=0) check = false;
+    });
+    return check;
+  }
+
+  warningToast(mensaje: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'warning',
+      title: mensaje
+    })
   }
 
 

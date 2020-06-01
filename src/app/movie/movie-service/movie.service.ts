@@ -424,6 +424,10 @@ getPersonaDetails(idPersona:number){
   return this.http.get(this.urlGetPersonaDetails+idPersona);
 }
 
+deletePelicula(idPelicula : number){
+  return this.http.delete(this.urlPeliDetails+idPelicula);
+}
+
 }
 
 

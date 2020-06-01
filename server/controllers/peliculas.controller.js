@@ -166,6 +166,16 @@ module.exports.peliculaGenero_save = (req, res, next) => {
   })
 }
 
+module.exports.pelicula_delete = (req,res,next) =>{
+  let sql = 'call deletePelicula(?);';
+  config.query(sql,[req.params.idPelicula],(error, results, fields) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(results);
+  });
+}
+
 module.exports.calificacion_save = (req, res, next) => {
   var calif = req.body;
   let sql= 'insert into calificacion (calificacion, fechaCalif, subtitulo, comentario, Pelicula_idPelicula, Usuario_idUsuario) VALUES (?, CURDATE(),? ,?  ,? ,?)';

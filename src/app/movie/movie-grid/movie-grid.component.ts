@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ImageService } from '../../imageService/image.service';
 import { Pelicula } from 'src/app/models/pelicula';
 import { MovieService } from '../movie-service/movie.service';
+import Swal from 'sweetalert2';
 export interface Tile {
   color: string;
   cols: number;
@@ -48,6 +49,42 @@ viewPeli(idPeli: number){
 
  getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+deletePelicula(idPelicula: number){
+  Swal.fire({
+    title: 'Estás seguro?',
+    text: "El borrado es permanente",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, borrar!'
+  }).then((result) => {
+    if (result.value) {
+      this.movieService.deletePelicula(idPelicula).subscribe(
+        (data)=>{
+          if(data[0][0]['resultado']==0){
+            Swal.fire(
+              'Peli borrada!',
+              'Permanentemente, claro.',
+              'success'
+            )
+            this.movieService.getPelisCalif();
+            this.movieService.getPelisByGenero("Acción");
+            this.movieService.getPelisEdad("AA");
+          }else{
+            Swal.fire(
+              'Whoops!',
+              'Algo ocurrió, sorry.',
+              'error'
+            )
+          }
+        }
+      );
+    }
+  })
+  
 }
 
 }
