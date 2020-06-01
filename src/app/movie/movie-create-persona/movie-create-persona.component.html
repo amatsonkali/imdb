@@ -1,13 +1,19 @@
 
 <div class="container">
 
-<div class="center">
-  <button mat-raised-button type="button" color="accent" (click)=newPersona()><span class="material-icons">playlist_add</span> Agregar Persona</button>
-</div>
+  <div *ngIf="!agregarPersonaForm">
+    <div class="center">
+      <button mat-raised-button type="button" color="accent" (click)=newPersona()><span class="material-icons">playlist_add</span> Agregar Persona</button>
+    </div>
+  </div>
 
 <div *ngIf="agregarPersonaForm">
 
-<div class="titulo">
+  <div class="center">
+    <button mat-raised-button type="button" color="accent" (click)=quitPersona()><span class="material-icons">playlist_add_check</span> Quitar Form</button>
+  </div>
+
+<div>
   <h1>Agregar nueva persona</h1>
 </div>
 <div class="card">
@@ -64,7 +70,7 @@
             </div>
         </td>
         <td>
-          
+
         </td>
         <td>
             <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar persona</button>

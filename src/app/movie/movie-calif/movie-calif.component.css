@@ -20,26 +20,26 @@
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	margin: 0px 0px 10px 0px;
-	border: 1px solid #FFD2D2;
+	border: 1px solid #FCC862;
 	padding: 20px;
-	background: #FFF4F4;
-	box-shadow: inset 0px 0px 15px #FFE5E5;
-	-moz-box-shadow: inset 0px 0px 15px #FFE5E5;
-	-webkit-box-shadow: inset 0px 0px 15px #FFE5E5;
+	background: rgb(255, 252, 244);
+	box-shadow: inset 0px 0px 15px #FCB062;
+	-moz-box-shadow: inset 0px 0px 15px #FCB062;
+	-webkit-box-shadow: inset 0px 0px 15px #FCB062;
 }
 .form-style-3 fieldset legend{
-	color: #FFA0C9;
-	border-top: 1px solid #FFD2D2;
-	border-left: 1px solid #FFD2D2;
-	border-right: 1px solid #FFD2D2;
+	color: rgb(223, 146, 44);
+	border-top: 1px solid #FCC862;
+	border-left: 1px solid #FCC862;
+	border-right: 1px solid #FCC862;
 	border-radius: 5px 5px 0px 0px;
 	-webkit-border-radius: 5px 5px 0px 0px;
 	-moz-border-radius: 5px 5px 0px 0px;
-	background: #FFF4F4;
+	background: rgb(255, 253, 244);
 	padding: 0px 8px 3px 8px;
-	box-shadow: -0px -1px 2px #F1F1F1;
-	-moz-box-shadow:-0px -1px 2px #F1F1F1;
-	-webkit-box-shadow:-0px -1px 2px #F1F1F1;
+	box-shadow: -0px -1px 2px rgb(241, 241, 241);
+	-moz-box-shadow:-0px -1px 2px rgb(241, 241, 241);
+	-webkit-box-shadow:-0px -1px 2px rgb(241, 241, 241);
 	font-weight: normal;
 	font-size: 12px;
 }
@@ -60,14 +60,14 @@
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	border: 1px solid #FFC2DC;
+	border: 1px solid #FFCA8B;
 	outline: none;
 	color: rgb(0, 0, 0);
 	padding: 5px 8px 5px 8px;
-	box-shadow: inset 1px 1px 4px #FFD5E7;
-	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
-	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
-	background: #FFEFF6;
+	box-shadow: inset 1px 1px 4px rgb(255, 240, 213);
+	-moz-box-shadow: inset 1px 1px 4px rgb(255, 240, 213);
+	-webkit-box-shadow: inset 1px 1px 4px rgb(255, 240, 213);
+	background: rgb(250, 234, 214);
 	width:50%;
 }
 .form-style-3  input[type=submit],
@@ -75,10 +75,10 @@
 	background: rgb(0, 0, 0);
 	border: 1px solid rgb(0, 0, 0);
 	padding: 5px 15px 5px 15px;
-	color: #FFCBE2;
-	box-shadow: inset -1px -1px 3px #FF62A7;
-	-moz-box-shadow: inset -1px -1px 3px #FF62A7;
-	-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+	color: #FCC862;
+	box-shadow: inset -1px -1px 3px #FF9100;
+	-moz-box-shadow: inset -1px -1px 3px #FF9100;
+	-webkit-box-shadow: inset -1px -1px 3px #FF9100;
 	border-radius: 3px;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -86,6 +86,6 @@
 	font-weight: bold;
 }
 .required{
-	color:red;
+	color: #D17600;
 	font-weight:normal;
 }

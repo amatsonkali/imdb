@@ -104,4 +104,8 @@ export class MovieCreatePersonaComponent implements OnInit {
   newPersona(){
     this.agregarPersonaForm = true;
   }
+
+  quitPersona(){
+    this.agregarPersonaForm = false;
+  }
 }

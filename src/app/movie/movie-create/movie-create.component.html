@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="titulo">
+  <div>
     <h1>Agregar nueva pelicula</h1>
   </div>
   <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well">
@@ -139,8 +139,9 @@
     </app-movie-add-persona>
   </table>
 
+  <app-movie-create-persona>
+  </app-movie-create-persona>
 
 </div>
 
-  <app-movie-create-persona>
-  </app-movie-create-persona>
+

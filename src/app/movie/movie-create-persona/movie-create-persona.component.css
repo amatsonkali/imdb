@@ -24,14 +24,6 @@ mat-label {
   margin: 15px;
 }
 
-.titulo{
-  text-align: center;
-  font-size: 80px;
-  color: rgb(197, 152, 28);
-  margin: 40px;
-  font-weight: bold;
-}
-
 input[type=button], input[type=submit], input[type=reset] {
   background-color: #ff9100;
   border: none;
@@ -49,3 +41,5 @@ input[type=button], input[type=submit], input[type=reset] {
   margin-bottom: 30px;
   margin-top: 20px;
 }
+
+
