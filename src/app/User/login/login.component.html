@@ -1,4 +1,5 @@
 
+<!--
 <div class="limiter">
   <div fxLayout="row">
     <div class="imagen">
@@ -24,4 +25,33 @@
       </div>
     </form>
   </div>
+</div>
+-->
+
+
+
+<div class="container">
+  <div class="left">
+    <div class="header">
+      <h2 class="animation a1">Bienvenido a IMDB</h2>
+      <h4 class="animation a2">Ingresa con tu cuenta de usuario y contraseña</h4>
+    </div>
+    <div class="form">
+      <form class="login100-form" (submit)="onLogin(loginForm)" #loginForm="ngForm" validate-form>
+        <span class="login100-form-title p-b-34">Account Login </span>
+        <div class="wrap-input100 rs1-wrap-input100  m-b-20">
+          <input class="input100" matInput name="username" type="text" ngModel placeholder="Username" #usernameInput="ngModel" required>
+          <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 rs2-wrap-input100  m-b-20">
+          <input  class="input100" matInput name="password" ngModel placeholder="Password" type="password" #passwordInput="ngModel" required>
+          <span class="focus-input100"></span>
+        </div>
+          <button class="animation a6">SIGN IN</button>
+        <div class="p-t-27 p-b-239">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="right"></div>
 </div>
