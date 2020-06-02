@@ -33,7 +33,6 @@ export class MovieGridComponent implements OnInit, OnChanges{
   }
   ngOnChanges(changes: SimpleChanges): void {
 
-    console.log(changes);
     this.pelis= changes.pelis.currentValue;
     this.convertirArregloDado();
     // You can also use categoryId.previousValue and 
