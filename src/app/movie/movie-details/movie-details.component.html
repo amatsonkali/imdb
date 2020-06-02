@@ -62,16 +62,17 @@
 					</div>
 				</section>
 				<section class="Descripcion">
-					<img [src]="peli.img">
+          <img *ngIf="peli.img" [src]="peli.img">
+          <img *ngIf="!peli.img" src="assets/images/movies.jpg" alt="placeholder">
 					<ul>
 						<li>{{peli.titulo}} {{peli.fechaEmision | date: 'dd/MM/yyyy'}}</li>
+						<li>{{peli.calificacion}}</li>
 						<li>{{peli.sinopsis}}</li>
             <li><a>{{peli.generos}}</a></li>
             <li><a> Clasificación: {{peli.clasificacion}}</a></li>
             <li><a> Directores: {{persona.nombreDirectores}}</a></li>
             <li><a> Escritores: {{persona.nombreEscritores}}</a></li>
             <li><a> Estrellas: {{persona.nombreEstrellas}}</a></li>
-						<li>34,000 Views</li>
 					</ul>
         </section>
         <section class="Casts">

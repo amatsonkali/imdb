@@ -88,6 +88,9 @@ export class MovieCreateComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             });
+            setTimeout(() => {
+              this.movieService.goToHome();
+            }, 2025);
           }
          });
 

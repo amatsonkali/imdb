@@ -428,6 +428,10 @@ deletePelicula(idPelicula : number){
   return this.http.delete(this.urlPeliDetails+idPelicula);
 }
 
+goToHome(){
+  this.router.navigate(['/home']);
+}
+
 }
 
 

@@ -57,7 +57,7 @@
         <td>
             <div class="form-group">
               <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
-              <input type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)"/>
+              <input accept="image/*" type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)"/>
               <img src="{{direccion}}">
             </div>
           </td>
