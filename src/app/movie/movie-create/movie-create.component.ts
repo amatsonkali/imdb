@@ -129,15 +129,12 @@ export class MovieCreateComponent implements OnInit {
                     })
                 }
               }
-
-
            });
-
         }
-
       }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
     } else{
       this.warningToast('Directores/Escritores/Actores inválidos');
+    }
     }
   }
 
