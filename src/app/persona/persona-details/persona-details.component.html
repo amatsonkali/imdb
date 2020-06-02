@@ -1,9 +1,11 @@
-<div class="card" *ngIf="persona">
+<div class="card" *ngIf="persona;else placeholder">
     
     <div class="card-content">
         <div class="row">
             <div class="col s2">
-                <img class="circle" [src]="persona.imagenPersona">
+                <img class="circle" *ngIf="persona.imagenPersona" [src]="persona.imagenPersona">
+                <span class="material-icons" *ngIf="!persona.imagenPersona">account_circle</span>
+                
             </div>
 
             <div class="col 10">
@@ -21,3 +23,12 @@
         </div>
     </div>
 </div>
+<ng-template #placeholder>
+    <div class="card" #placeholder>
+        <div class="card-content">
+            <span class="card-title">Selecciona una persona!</span>
+            <p>Aquí verás su fecha de nacimiento, una pequeña biografía, imagen, y más</p>
+          </div>
+    </div>
+
+</ng-template>

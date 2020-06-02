@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Genero } from 'src/app/models/genero';
 import { Subscription } from 'rxjs';
 import { Persona } from 'src/app/models/persona';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-movie-create',
@@ -76,6 +77,7 @@ export class MovieCreateComponent implements OnInit {
     }else{
       if(this.checkStaff()){
         if(this.checkActores()){
+          if(this.checkTrailerLink(pelicula.linkTrailer)){
           if(this.direccion){
             pelicula.img = this.direccion;
           }else{
@@ -98,8 +100,13 @@ export class MovieCreateComponent implements OnInit {
                 timer: 1500
               });
               this.clearInputs();
+              setTimeout(() => {
+                this.movieService.goToHome();
+              }, 2025);
             }
-          });
+           });
+
+        }
 
         }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
       } else{
@@ -202,6 +209,16 @@ export class MovieCreateComponent implements OnInit {
         }else if(actor.personajes.length<=0) check = false;
     });
     return check;
+  }
+
+  checkTrailerLink(link: string){
+    console.log("Comparando: "+link);
+    if(!/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/.test(link)){
+      this.warningToast("Link de trailer inválido (solo YT pls)")
+      return false;
+    }
+    return true;
+
   }
 
   warningToast(mensaje: string){

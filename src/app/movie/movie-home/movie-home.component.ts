@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MovieService } from '../movie-service/movie.service';
 import { Subscription } from 'rxjs';
 import { Pelicula } from 'src/app/models/pelicula';
@@ -31,6 +31,8 @@ export class MovieHomeComponent implements OnInit {
   susbscribeToAll(){
     this.peliCaliSub = this.movieService.getPelisCalifListener().subscribe(
       (pelis: Pelicula[])=>{
+        console.log("Si actualizó");
+        console.log(pelis);
         this.pelisCalif=pelis;
       });
     this.peliGenSub = this.movieService.getPelisGeneroListener().subscribe(

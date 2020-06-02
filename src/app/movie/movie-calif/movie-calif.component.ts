@@ -37,6 +37,7 @@ export class MovieCalifComponent implements OnInit {
       this.movieService.getCalificacionesById().subscribe((calificaciones: Calificacion[]) =>{
         console.log(calificaciones);
         this.calificaciones = calificaciones;
+        this.movieService.getSelectedPeli();
       });
       calificacionUsuario.calificacion = 0;
       calificacionUsuario.subtitulo = '';
