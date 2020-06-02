@@ -23,7 +23,7 @@ export class MovieCreatePersonaComponent implements OnInit {
   resetForm:HTMLFormElement;
   resetFormProf:HTMLFormElement;
   isAdmin: boolean;
-
+  sizeImg : number;
   constructor(private movieService: MovieService, public auth: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -73,6 +73,15 @@ export class MovieCreatePersonaComponent implements OnInit {
   onFilePersona(files){
     console.log("File is not null ::", files);
     this.direccionPersona = files[0].base64;
+    this.sizeImg = files[0].size;
+    if(this.sizeImg>900000){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Inserta imagen de otro tamaño',
+      })
+      this.direccionPersona = '';
+    }
   }
 
   savePersonaTipoProfesion(){

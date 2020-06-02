@@ -4,8 +4,9 @@
 <div class="container">
 
   <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well" id="Pelicula">
+    <div class="card">
       <table class="example-full-width" cellspacing="0">
-          <div class="card">
+
             <tr>
             <td>
               <div class="form-group">
@@ -40,8 +41,7 @@
               </div>
             </td>
           </tr>
-        </div>
-      <div class="card">
+      
       <tr>
         <td>
             <div class="form-group">
@@ -73,26 +73,17 @@
               </mat-select>
               </mat-form-field>
             </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Tipo Material</mat-label>
-              <mat-select  class="form-control" required name="idTipoMaterial" value="selected" ngModel>
-                <div *ngFor="let tipoMaterial of tipoMateriales">
-                <mat-option value="{{tipoMaterial.idTipoMaterial}}">{{tipoMaterial.tipo}}</mat-option>
-                </div>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </td>
-      </tr>
-    </div>
-  </table>
-  <div class="center">
-    <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar pelicula</button>
+          </td>
+        </tr>
+
+    </table>
+    <br>
   </div>
-</form>
+    <div class="center">
+      <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar pelicula</button>
+    </div>
+  </form>
+
 
 
   <table class="example-full-width" cellspacing="0">

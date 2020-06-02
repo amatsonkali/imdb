@@ -1,16 +1,24 @@
-<mat-card *ngFor="let calificacion of calificaciones" class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image">Calificación: {{calificacion.calificacion}}</div>
-    <mat-card-title>{{calificacion.subtitulo}}</mat-card-title>
-    <mat-card-subtitle>{{calificacion.nombre}}</mat-card-subtitle>
-    <mat-card-subtitle>Fecha de comentario: {{calificacion.fechaCalif}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{calificacion.comentario}}
-    </p>
-  </mat-card-content>
-</mat-card>
+<div *ngFor="let calificacion of calificaciones">
+  <div class="row">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Usuario de comentario: {{calificacion.nombre}}</span>
+        <hr>
+        <h2>Título de comentario: {{calificacion.subtitulo}}</h2>
+        <li>Calificación: {{calificacion.calificacion}}</li>
+        <li>Fecha de comentario: {{calificacion.fechaCalif | date: 'dd/MM/yyyy'}}</li>
+        <hr>
+        <h4><b>
+          Comentario:
+        </b></h4>
+        <p>{{calificacion.comentario}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!--
 <mat-card class="example-card">

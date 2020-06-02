@@ -30,6 +30,8 @@ export class MovieCreateComponent implements OnInit {
   selectedEscritores: Persona[]=[];
   selectedActores: Persona[]=[];
   personasSub: Subscription;
+  resetForm:HTMLFormElement;
+  sizeImg: number;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -63,12 +65,30 @@ export class MovieCreateComponent implements OnInit {
   onFileChanges(files){
     console.log("File is not null ::", files);
     this.direccion = files[0].base64;
+    this.sizeImg = files[0].size;
+    if(this.sizeImg>900000){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Inserta imagen de otro tamaño',
+      })
+      this.direccion = '';
+    }
+
   }
 
   saveMovie(pelicula: Pelicula){
-    if(this.checkStaff()){
-      if(this.checkActores()){
-        if(this.checkTrailerLink(pelicula.linkTrailer)){
+    console.log(pelicula.titulo == "" || pelicula.duracion == "" || !pelicula.fechaEmision || pelicula.sinopsis == "" || pelicula.linkTrailer == "" || !this.direccion || pelicula.clasificacion == "" || pelicula.pais == "" || pelicula.tipoMaterial == "");
+    if(pelicula.titulo == "" || pelicula.duracion == "" || !pelicula.fechaEmision || pelicula.sinopsis == "" || pelicula.linkTrailer == "" || !this.direccion || pelicula.clasificacion == "" || pelicula.pais == "" || pelicula.tipoMaterial == ""){
+      Swal.fire({
+        icon: 'info',
+        title: 'Error',
+        text: 'Ingresa los datos de pelicula completos',
+      });
+    }else{
+      if(this.checkStaff()){
+        if(this.checkActores()){
+          if(this.checkTrailerLink(pelicula.linkTrailer)){
           if(this.direccion){
             pelicula.img = this.direccion;
           }else{
@@ -100,7 +120,7 @@ export class MovieCreateComponent implements OnInit {
                         title: 'Oops...',
                         text: 'Peli duplicada! Intenta con otro nombre',
                         })
-                  
+
                 }else{
                   Swal.fire({
                     icon: 'error',
@@ -108,9 +128,9 @@ export class MovieCreateComponent implements OnInit {
                     text: 'Ocurrió un error, código '+data['errno'],
                     })
                 }
-              } 
-              
-            
+              }
+
+
            });
 
         }
@@ -239,7 +259,7 @@ export class MovieCreateComponent implements OnInit {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-    
+
     Toast.fire({
       icon: 'warning',
       title: mensaje
