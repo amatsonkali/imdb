@@ -3,14 +3,14 @@
 
   <div *ngIf="!agregarPersonaForm">
     <div class="center">
-      <button mat-raised-button type="button" color="accent" (click)=newPersona()><span class="material-icons">playlist_add</span> Agregar Persona</button>
+      <button  id="join-btn" mat-raised-button type="button" color="accent" (click)=newPersona()>Agregar Persona</button>
     </div>
   </div>
 
 <div *ngIf="agregarPersonaForm">
 
   <div class="center">
-    <button mat-raised-button type="button" color="accent" (click)=quitPersona()><span class="material-icons">playlist_add_check</span> Quitar Form</button>
+    <button id="join-btn" mat-raised-button type="button" color="accent" (click)=quitPersona()>Quitar Form</button>
   </div>
 
 <div>
@@ -23,10 +23,10 @@
       <tr>
         <td>
           <div class="form-group">
-            <mat-form-field  class="input-headline">
-              <mat-label>Nombre</mat-label>
-              <input type="text" class="form-control" required name="nombre" maxlength="40" matInput ngModel>
-            </mat-form-field>
+            <div>
+              <label>Nombre</label>
+              <input type="text" class="form-control" required name="nombre" maxlength="40"  ngModel>
+            </div>
           </div>
         </td>
         <td>
@@ -39,14 +39,14 @@
         </td>
         <td>
           <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Biografía</mat-label>
-              <textarea matInput class="form-control" required name="miniBiografia" maxlength="390" ngModel></textarea>
-            </mat-form-field>
+            <div>
+              <label>Biografía</label>
+              <textarea  class="form-control" required name="miniBiografia" maxlength="390" ngModel></textarea>
+            </div>
           </div>
         </td>
         <td>
-          <input mat-raised-button type="button" color="accent" value="Limpiar" (click)="clearForm()" onClick="this.form.reset()" />
+        <button id="join-btn" mat-raised-button type="button" color="accent" value="Limpiar" (click)="clearForm()" onClick="this.form.reset()">Limpiar</button>
         </td>
       </tr>
       <tr>
@@ -73,7 +73,7 @@
 
         </td>
         <td>
-            <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar persona</button>
+            <button id="join-btn" mat-raised-button type="submit" color="accent">Guardar persona</button>
         </td>
       </tr>
       <br/>
