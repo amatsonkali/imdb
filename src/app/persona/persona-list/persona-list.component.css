@@ -5,3 +5,6 @@
   margin: 20px;
   font-weight: bold;
 }
+.collection{
+  cursor: pointer;
+}
