@@ -13,7 +13,7 @@
   }
 html, body { height: 100%; }
 body {
-  margin: 0; font-family:'Roboto, monospace';
+  margin: 0;
   background: #7e7e7e;
   background: linear-gradient(180deg, rgb(29, 29, 29) 2%, #d1d1d1 70%, #ffffff 100%);
   background-repeat: no-repeat;
@@ -32,7 +32,7 @@ h1 {
 
 .titulo {
   display: block;
-  margin:50px auto;
+  margin:15px auto;
   font-size: 25px;
   text-align: center;
   text-shadow: /*relieve*/
