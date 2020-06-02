@@ -1,8 +1,9 @@
+<div class="titulo">
+  Agregar nueva pelicula
+</div>
 <div class="container">
-  <div>
-    <h1>Agregar nueva pelicula</h1>
-  </div>
-  <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well">
+
+  <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well" id="Pelicula">
       <table class="example-full-width" cellspacing="0">
           <div class="card">
             <tr>
@@ -34,11 +35,7 @@
               <div class="form-group">
                 <mat-form-field class="input-headline">
                   <mat-label>Sinopsis</mat-label>
-                  <textarea matInput
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="1"
-                            cdkAutosizeMaxRows="10" class="form-control" required name="sinopsis" ngModel></textarea>
+                  <textarea matInput class="form-control" required name="sinopsis" maxlength="999" ngModel></textarea>
                 </mat-form-field>
               </div>
             </td>
@@ -46,7 +43,7 @@
               <div class="form-group">
                 <mat-form-field class="input-headline">
                   <mat-label>Link del trailer</mat-label>
-                  <input type="url"  class="form-control" required name="linkTrailer"  matInput ngModel>
+                  <input type="url"  class="form-control" required name="linkTrailer" maxlength="199"  matInput ngModel>
                   </mat-form-field>
               </div>
             </td>
@@ -100,7 +97,7 @@
       </tr>
     </div>
   </table>
-  <div>
+  <div class="center">
     <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar pelicula</button>
   </div>
 </form>
@@ -111,6 +108,7 @@
       <tr>
         <td>
           <div class="form-group">
+              <mat-label class="input-headline">Selecciona géneros</mat-label><br/>
               <mat-checkbox *ngFor="let genero of generosCatalogo"  [(ngModel)]="genero.isChecked">
                 {{genero.tipoGenero}}
               </mat-checkbox>
