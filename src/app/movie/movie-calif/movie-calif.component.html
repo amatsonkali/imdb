@@ -1,16 +1,23 @@
-<mat-card *ngFor="let calificacion of calificaciones" class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image">Calificación: {{calificacion.calificacion}}</div>
-    <mat-card-title>{{calificacion.subtitulo}}</mat-card-title>
-    <mat-card-subtitle>{{calificacion.nombre}}</mat-card-subtitle>
-    <mat-card-subtitle>Fecha de comentario: {{calificacion.fechaCalif}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{calificacion.comentario}}
-    </p>
-  </mat-card-content>
-</mat-card>
+<div *ngFor="let calificacion of calificaciones">
+  <div class="row">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <h2></h2>
+        <span class="card-title">Título de comentario: {{calificacion.subtitulo}}</span>
+        <span class="mat-card-subtitle">Calificación: {{calificacion.calificacion}}</span>
+        <span class="mat-card-subtitle">Usuario de comentario: {{calificacion.nombre}}</span>
+        <span class="mat-card-subtitle">Fecha de comentario: {{calificacion.fechaCalif | date: 'dd/MM/yyyy'}}</span>
+        <h4><b>
+          Comentario:
+        </b></h4>
+        <p>{{calificacion.comentario}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!--
 <mat-card class="example-card">
@@ -29,10 +36,12 @@
 
 
 <div class="form-style-3">
-  <fieldset><legend>Review</legend>
-  <label for="field1"><span>Título de comentario <span class="required">*</span></span><input [(ngModel)]="calificacionUsuario.subtitulo" type="text" class="input-field" maxlength="50" required matInput/></label>
-  <label for="field2"><span>Calificación <span class="required">*</span></span><mat-slider class="input-field" [(ngModel)]="calificacionUsuario.calificacion" min="0" max="10" step="1" required></mat-slider></label>
-  <label for="field6"><span>Comentario <span class="required">*</span></span><textarea [(ngModel)]="calificacionUsuario.comentario" name="field6" class="textarea-field" maxlength="5050" required matInput></textarea></label>
-  <button mat-raised-button (click)= "saveCalificacion(calificacionUsuario)" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
-</fieldset>
+  <form #form="ngForm" (ngSubmit)= "saveCalificacion(form.value)">
+    <fieldset><legend>Review</legend>
+      <label for="field1"><span>Título de comentario <span class="required">*</span></span><input [(ngModel)]="calificacionUsuario.subtitulo" type="text" class="input-field" maxlength="50" required matInput/></label>
+      <label for="field2"><span>Calificación <span class="required">*</span></span><mat-slider class="input-field" [(ngModel)]="calificacionUsuario.calificacion" min="0" max="10" step="1" required></mat-slider></label>
+      <label for="field6"><span>Comentario <span class="required">*</span></span><textarea [(ngModel)]="calificacionUsuario.comentario" name="field6" class="textarea-field" maxlength="5050" required matInput></textarea></label>
+      <button mat-raised-button (click)= "saveCalificacion(calificacionUsuario)" color="accent"><span class="material-icons">done</span>Guardar Comentario</button>
+      </fieldset>
+  </form>
 </div>

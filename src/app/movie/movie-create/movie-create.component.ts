@@ -30,6 +30,8 @@ export class MovieCreateComponent implements OnInit {
   selectedEscritores: Persona[]=[];
   selectedActores: Persona[]=[];
   personasSub: Subscription;
+  resetForm:HTMLFormElement;
+
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -66,9 +68,16 @@ export class MovieCreateComponent implements OnInit {
   }
 
   saveMovie(pelicula: Pelicula){
-    if(this.checkStaff()){
-      if(this.checkActores()){
-        if(this.checkTrailerLink(pelicula.linkTrailer)){
+    if(pelicula.titulo == "" || pelicula.duracion == "" || !pelicula.fechaEmision || pelicula.sinopsis == "" || pelicula.linkTrailer == "" || !this.direccion || pelicula.clasificacion == "" || pelicula.pais == "" || pelicula.tipoMaterial == ""){
+      Swal.fire({
+        icon: 'info',
+        title: 'Error',
+        text: 'Ingresa los datos de pelicula completos',
+      });
+    }else{
+      if(this.checkStaff()){
+        if(this.checkActores()){
+          if(this.checkTrailerLink(pelicula.linkTrailer)){
           if(this.direccion){
             pelicula.img = this.direccion;
           }else{
@@ -115,9 +124,10 @@ export class MovieCreateComponent implements OnInit {
 
         }
 
-      }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
-    } else{
-      this.warningToast('Directores/Escritores/Actores inválidos');
+        }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
+      } else{
+        this.warningToast('Directores/Escritores/Actores inválidos');
+      }
     }
   }
 
@@ -239,12 +249,17 @@ export class MovieCreateComponent implements OnInit {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-    
+
     Toast.fire({
       icon: 'warning',
       title: mensaje
     })
   }
 
-
+  clearInputs(){
+    this.resetForm= <HTMLFormElement>document.getElementById('Pelicula');
+    this.direccion = '';
+    if(this.resetForm)
+        this.resetForm.reset();
+  }
 }

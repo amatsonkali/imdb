@@ -1,147 +1,149 @@
-<div class="container">
-  <div>
-    <h1>Agregar nueva pelicula</h1>
-  </div>
-  <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well">
-      <table class="example-full-width" cellspacing="0">
-          <div class="card">
-            <tr>
-            <td>
-              <div class="form-group">
-                <mat-form-field  class="input-headline">
-                  <mat-label>Título</mat-label>
-                  <input type="text" class="form-control" required name="titulo" maxlength="60" matInput ngModel>
-                </mat-form-field>
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <mat-form-field  class="input-headline">
-                  <mat-label>Duración</mat-label>
-                  <input type="number" class="form-control" required name="duracion" matInput min="1" ngModel>
-                </mat-form-field>
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <mat-form-field  class="input-headline">
-                  <mat-label>Fecha de emisión</mat-label>
-                  <input type="date" class="form-control" required name="fechaEmision" matInput ngModel>
-                </mat-form-field>
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <mat-form-field class="input-headline">
-                  <mat-label>Sinopsis</mat-label>
-                  <textarea matInput
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="1"
-                            cdkAutosizeMaxRows="10" class="form-control" required name="sinopsis" ngModel></textarea>
-                </mat-form-field>
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <mat-form-field class="input-headline">
-                  <mat-label>Link del trailer</mat-label>
-                  <input type="url"  class="form-control" required name="linkTrailer"  matInput ngModel>
-                  </mat-form-field>
-              </div>
-            </td>
-          </tr>
-        </div>
+<body>
+  <br>
+  <div class="container">
+    <br>
+    <div class="titulo">
+      Agregar nueva pelicula
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="saveMovie(form.value)" class="well" id="Pelicula">
       <div class="card">
-      <tr>
-        <td>
+        <table class="example-full-width" cellspacing="0">
+              <tr>
+              <td>
+                <div class="form-group">
+                  <mat-form-field  class="input-headline">
+                    <mat-label>Título</mat-label>
+                    <input type="text" class="form-control" required name="titulo" maxlength="60" matInput ngModel>
+                  </mat-form-field>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <mat-form-field  class="input-headline">
+                    <mat-label>Duración</mat-label>
+                    <input type="number" class="form-control" required name="duracion" matInput min="1" ngModel>
+                  </mat-form-field>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <mat-form-field  class="input-headline">
+                    <mat-label>Fecha de emisión</mat-label>
+                    <input type="date" class="form-control" required name="fechaEmision" matInput ngModel>
+                  </mat-form-field>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <mat-form-field class="input-headline">
+                    <mat-label>Sinopsis</mat-label>
+                    <textarea matInput class="form-control" id="sinopsis" cols="30" rows="10" required name="sinopsis" maxlength="999" ngModel></textarea>
+                  </mat-form-field>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <mat-form-field class="input-headline">
+                    <mat-label>Link del trailer</mat-label>
+                    <input type="url"  class="form-control" required name="linkTrailer" maxlength="199"  matInput ngModel>
+                    </mat-form-field>
+                </div>
+              </td>
+            </tr>
+        <tr>
+          <td>
+              <div class="form-group">
+                <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
+                <input accept="image/*" type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)"/>
+                <img src="{{direccion}}">
+              </div>
+            </td>
+          <td>
             <div class="form-group">
-              <mat-label class="input-headline">Elegir portada de pelicula</mat-label><br/>
-              <input accept="image/*" type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)"/>
-              <img src="{{direccion}}">
+              <mat-form-field class="input-headline">
+                <mat-label>Clasificación</mat-label>
+                <mat-select class="form-control" required name="idClasificacion" value="selected" ngModel>
+                  <div *ngFor="let clasificacion of clasificaciones">
+                  <mat-option value="{{clasificacion.idClasificacion}}">{{clasificacion.tipoClasificacion}}</mat-option>
+                  </div>
+                </mat-select>
+                </mat-form-field>
             </div>
           </td>
-        <td>
-          <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Clasificación</mat-label>
-              <mat-select class="form-control" required name="idClasificacion" value="selected" ngModel>
-                <div *ngFor="let clasificacion of clasificaciones">
-                <mat-option value="{{clasificacion.idClasificacion}}">{{clasificacion.tipoClasificacion}}</mat-option>
+          <td>
+            <div class="form-group">
+              <mat-form-field class="input-headline">
+                <mat-label>País</mat-label>
+                <mat-select class="form-control" required name="idPais" value="selected" ngModel>
+                <div *ngFor="let pais of paises">
+                  <mat-option value="{{pais.idPais}}">{{pais.nombrePais}}</mat-option>
                 </div>
-              </mat-select>
-              </mat-form-field>
-          </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>País</mat-label>
-              <mat-select class="form-control" required name="idPais" value="selected" ngModel>
-              <div *ngFor="let pais of paises">
-                <mat-option value="{{pais.idPais}}">{{pais.nombrePais}}</mat-option>
+                </mat-select>
+                </mat-form-field>
               </div>
-              </mat-select>
+          </td>
+          <td>
+            <div class="form-group">
+              <mat-form-field class="input-headline">
+                <mat-label>Tipo Material</mat-label>
+                <mat-select  class="form-control" required name="idTipoMaterial" value="selected" ngModel>
+                  <div *ngFor="let tipoMaterial of tipoMateriales">
+                  <mat-option value="{{tipoMaterial.idTipoMaterial}}">{{tipoMaterial.tipo}}</mat-option>
+                  </div>
+                </mat-select>
               </mat-form-field>
             </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <mat-form-field class="input-headline">
-              <mat-label>Tipo Material</mat-label>
-              <mat-select  class="form-control" required name="idTipoMaterial" value="selected" ngModel>
-                <div *ngFor="let tipoMaterial of tipoMateriales">
-                <mat-option value="{{tipoMaterial.idTipoMaterial}}">{{tipoMaterial.tipo}}</mat-option>
-                </div>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </td>
-      </tr>
-    </div>
-  </table>
-  <div>
+          </td>
+        </tr>
+
+    </table>
+    <br>
+  </div>
+  </form>
+
+  <div class="center">
     <button mat-raised-button type="submit" color="accent"><span class="material-icons">done</span>Guardar pelicula</button>
   </div>
-</form>
 
+    <table class="example-full-width" cellspacing="0">
+      <div class="card">
+        <tr>
+          <td>
+            <div class="form-group">
+                <mat-label class="input-headline">Selecciona géneros</mat-label><br/>
+                <mat-checkbox *ngFor="let genero of generosCatalogo"  [(ngModel)]="genero.isChecked">
+                  {{genero.tipoGenero}}
+                </mat-checkbox>
+            </div>
+          </td>
+        </tr>
+      </div>
 
-  <table class="example-full-width" cellspacing="0">
-    <div class="card">
-      <tr>
-        <td>
-          <div class="form-group">
-              <mat-checkbox *ngFor="let genero of generosCatalogo"  [(ngModel)]="genero.isChecked">
-                {{genero.tipoGenero}}
-              </mat-checkbox>
-          </div>
-        </td>
-      </tr>
-    </div>
+      <app-movie-add-persona
+        [personaList]="personas"
+        [selectedPersonas]="selectedDirectores"
+        titulo="Directores">
+      </app-movie-add-persona>
 
-    <app-movie-add-persona
-      [personaList]="personas"
-      [selectedPersonas]="selectedDirectores"
-      titulo="Directores">
-    </app-movie-add-persona>
+      <app-movie-add-persona
+        [personaList]="personas"
+        [selectedPersonas]="selectedEscritores"
+        titulo="Escritores">
+      </app-movie-add-persona>
 
-    <app-movie-add-persona
-      [personaList]="personas"
-      [selectedPersonas]="selectedEscritores"
-      titulo="Escritores">
-    </app-movie-add-persona>
+      <app-movie-add-persona
+        [personaList]="personas"
+        [selectedPersonas]="selectedActores"
+        [actorMode]="true"
+        titulo="Actores/Personajes">
+      </app-movie-add-persona>
+    </table>
 
-    <app-movie-add-persona
-      [personaList]="personas"
-      [selectedPersonas]="selectedActores"
-      [actorMode]="true"
-      titulo="Actores/Personajes">
-    </app-movie-add-persona>
-  </table>
+    <app-movie-create-persona>
+    </app-movie-create-persona>
+    <br>
+  </div>
 
-  <app-movie-create-persona>
-  </app-movie-create-persona>
-
-</div>
-
-
+  <br>
+</body>
