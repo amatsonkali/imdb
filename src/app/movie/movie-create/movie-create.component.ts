@@ -75,25 +75,42 @@ export class MovieCreateComponent implements OnInit {
             pelicula.img = "";
           }
           //console.log("longitud: "+this.selectedDirectores.length);
-          console.log(this.checkActores());
-          console.log(this.selectedActores);
           this.movieService.savePelicula(pelicula).subscribe(data => {
             console.log(data);
-            if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
-              this.saveGeneros(data[0][0]['last_insert_id()']);
-              this.saveDirectores(data[0][0]['last_insert_id()']);
-              this.saveEscritores(data[0][0]['last_insert_id()']);
-              this.saveActores(data[0][0]['last_insert_id()']);
-              Swal.fire({
-                icon: 'success',
-                title: 'La pelicula fue creada con éxito',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              setTimeout(() => {
-                this.movieService.goToHome();
-              }, 2025);
-            }
+            if(!('errno' in data)){
+              if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
+                this.saveGeneros(data[0][0]['last_insert_id()']);
+                this.saveDirectores(data[0][0]['last_insert_id()']);
+                this.saveEscritores(data[0][0]['last_insert_id()']);
+                this.saveActores(data[0][0]['last_insert_id()']);
+                Swal.fire({
+                  icon: 'success',
+                  title: 'La pelicula fue creada con éxito',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                setTimeout(() => {
+                  this.movieService.goToHome();
+                }, 2025);
+              }
+            }else{
+                if(data['errno']==1062){
+                  Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Peli duplicada! Intenta con otro nombre',
+                        })
+                  
+                }else{
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ocurrió un error, código '+data['errno'],
+                    })
+                }
+              } 
+              
+            
            });
 
         }
