@@ -91,7 +91,7 @@ module.exports.generoByPeliId = (req,res,next) =>{
 
 //Sacar calificaciones de una pelicula con idPelicula
 module.exports.calificacionesPelicula = (req,res,next) =>{
-  let sql= 'select nombre, calificacion, fechaCalif, subtitulo, comentario from calificacion join usuario u on calificacion.Usuario_idUsuario = u.idUsuario join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula where idPelicula=?';
+  let sql= 'select u.idUsuario, nombre, calificacion, fechaCalif, subtitulo, comentario from calificacion join usuario u on calificacion.Usuario_idUsuario = u.idUsuario join pelicula p on calificacion.Pelicula_idPelicula = p.idPelicula where idPelicula=?';
   config.query(sql,[req.params.idPelicula],(error, results, fields) => {
     if(error){
       res.send(error);

@@ -8,7 +8,7 @@ span.material-icons{
 
 
 /*TODO: clean it all up, finish flex, add aesthetics, icons, redefine to be relative to vh-vw, maybe rework v2 variant using scss and frames and real transitions? */
-html body {
+/*html body {
   background-color: black;
   margin: 0 0 0 0;
 }
@@ -38,7 +38,7 @@ a:visited {
 a:hover {
   text-decoration: underline;
 }
-.infocardContainer {
+ .infocardContainer {
   display: flex;
   height: 200px;
   width: 200px;
@@ -125,7 +125,7 @@ a:hover {
   border-radius: 25px;
 }
 /*TODO: animate copy main transition style for info*/
-.infocardContainer #textbois #hotlinks *:hover {
+/*.infocardContainer #textbois #hotlinks *:hover {
 
 
-}
+} */

@@ -13,30 +13,35 @@ export class MovieCalifComponent implements OnInit {
 
   idUsuario = Number(localStorage.getItem('usuario'));
 
-  califU : boolean;
+  califU : boolean=false;
   calificaciones : Calificacion[];
   calificacionUsuario: Calificacion = {
     calificacion : 0,
-    subtitulo : '',
-    comentario : '',
+    subtitulo : "",
+    comentario : "",
     idPelicula : 0,
     idUsuario : 0
   };
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
+    this.califU=false;
     this.movieService.getCalificacionesById().subscribe((calificaciones: Calificacion[]) =>{
       console.log(calificaciones);
       this.calificaciones = calificaciones;
     });
+    this.idUsuario = Number(localStorage.getItem('usuario'));
     this.calificacionUsuario.idPelicula = this.movieService.getselectedIdPeli();
     this.calificacionUsuario.idUsuario = this.idUsuario;
+    console.log("ID usuario: "+this.calificacionUsuario.idUsuario);
   }
 
   saveCalificacion(calificacionUsuario: Calificacion){
     console.log(this.calificacionUsuario);
+    console.log(calificacionUsuario);
     for(let i=0; i<this.calificaciones.length; i++){
-      if(this.calificaciones[i].idUsuario == calificacionUsuario.idUsuario){
+      console.log("for: "+this.calificaciones[i].idUsuario+" "+this.calificacionUsuario.idUsuario);
+      if(this.calificaciones[i].idUsuario == this.calificacionUsuario.idUsuario){
         this.califU = true;
       }
     };
@@ -56,15 +61,20 @@ export class MovieCalifComponent implements OnInit {
           text: 'Ingresa los datos completos',
         })
       }else{
-        this.movieService.saveCalificacion(calificacionUsuario).subscribe(data =>{
+        this.calificacionUsuario.subtitulo = calificacionUsuario.subtitulo;
+        this.calificacionUsuario.comentario = calificacionUsuario.comentario;
+        this.calificacionUsuario.calificacion = calificacionUsuario.calificacion;
+        this.movieService.saveCalificacion(this.calificacionUsuario).subscribe(data =>{
+          console.log(data);
           this.movieService.getCalificacionesById().subscribe((calificaciones: Calificacion[]) =>{
             console.log(calificaciones);
             this.calificaciones = calificaciones;
             this.movieService.getSelectedPeli();
+            this.califU=false;
           });
-          calificacionUsuario.calificacion = 0;
-          calificacionUsuario.subtitulo = '';
-          calificacionUsuario.comentario = '';
+          // calificacionUsuario.calificacion = 0;
+          // calificacionUsuario.subtitulo = '';
+          // calificacionUsuario.comentario = '';
         });
       }
     }
