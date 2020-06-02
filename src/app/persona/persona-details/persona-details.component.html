@@ -1,24 +1,21 @@
 <div class="card" *ngIf="persona;else placeholder">
-    
+
     <div class="card-content">
         <div class="row">
             <div class="col s2">
-                <img class="circle" *ngIf="persona.imagenPersona" [src]="persona.imagenPersona">
-                <span class="material-icons" *ngIf="!persona.imagenPersona">account_circle</span>
-                
-            </div>
 
-            <div class="col 10">
-                <span class="card-title">{{persona.nombre}}</span>
-                <p>
-                    {{persona.fechaNacimiento | date: 'dd/MM/yyyy'}}
-                </p>
-                <p>
-                    {{persona.nombrePais}}
-                </p>    
-                <p>
-                    {{persona.miniBiografia}}
-                </p>
+              <div class="infocardContainer">
+                <div id="main">
+                  <img *ngIf="persona.imagenPersona" [src]="persona.imagenPersona">
+                  <span class="material-icons" *ngIf="!persona.imagenPersona">account_circle</span>
+                </div>
+                <div id="textbois">
+                  <h2>{{persona.nombre}}</h2>
+                  <h4>{{persona.fechaNacimiento | date: 'dd/MM/yyyy'}}</h4>
+                  <h4>{{persona.nombrePais}}</h4>
+                  <h4>{{persona.miniBiografia}}</h4>
+                </div>
+              </div>
             </div>
         </div>
     </div>
