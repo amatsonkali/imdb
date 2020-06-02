@@ -16,18 +16,18 @@ export class LoginComponent implements OnInit {
   constructor(public LoginService: AuthenticationService) { }
 
   onLogin(form: NgForm){
-     if (form.invalid) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Ingrese todos los datos',
-        showConfirmButton: false,
-        timer: 2000
-      });
-     }else{
-      this.LoginService.loginUsuario(form.value.username, form.value.password);
-     }
-     console.log(form.value);
-  }
+    if (form.invalid) {
+     Swal.fire({
+       icon: 'error',
+       title: 'Ingrese todos los datos',
+       showConfirmButton: false,
+       timer: 2000
+     });
+    }else{
+     this.LoginService.loginUsuario(form.value.username, form.value.password);
+    }
+    console.log(form.value);
+ }
 
   ngOnInit(): void {
     localStorage.clear();
