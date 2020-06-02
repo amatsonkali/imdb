@@ -8,4 +8,6 @@
 .collection{
   max-height: 360px;
   overflow: auto;
+
+  cursor: pointer;
 }

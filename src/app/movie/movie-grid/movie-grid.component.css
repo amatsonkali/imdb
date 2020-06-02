@@ -3,7 +3,7 @@
     padding :0;
     background: #333;
 }
-.contenedor{ 
+.contenedor{
     width: 1200px;
     margin: 20px auto;
     columns: 3;
@@ -31,7 +31,7 @@
 
 
 @media (max-width: 1200px){
-    .contenedor{ 
+    .contenedor{
         columns: 2;
         width: calc(100%-40px);
         box-sizing: border-box;
@@ -39,6 +39,11 @@
     }
 }
  */
+
+ .card:hover {
+	cursor: pointer;
+}
+
 .card{
     margin: 0.5rem;
 }

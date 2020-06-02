@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   isAdmin: boolean;
 
   constructor(private router: Router, public auth: AuthenticationService) {
-    this.isAdmin = auth.checkAdmin();
+    //this.isAdmin = auth.checkAdmin();
   }
 
   ngOnInit(): void {

@@ -3,7 +3,8 @@ import { ImageService } from '../../imageService/image.service';
 import { Pelicula } from 'src/app/models/pelicula';
 import { MovieService } from '../movie-service/movie.service';
 import Swal from 'sweetalert2';
-import { ThrowStmt } from '@angular/compiler';
+import { AuthenticationService } from '../../User/authentication.service';
+
 export interface Tile {
   color: string;
   cols: number;
@@ -20,16 +21,17 @@ export class MovieGridComponent implements OnInit, OnChanges{
 
   @Input() pelis: Pelicula[] = [];
 
+  isAdmin: boolean;
   loading=true;
   imageToShow: any;
   numColumnas: number = 3;
   pelisPerColums: any[]=[];
-  constructor(public imageService: ImageService, public movieService:MovieService) { }
+  constructor(public imageService: ImageService, public movieService:MovieService, public auth: AuthenticationService) { }
 
   ngOnInit(): void {
-
+    this.isAdmin = this.auth.checkAdmin();
     this.convertirArregloDado();
-  
+    
   }
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -48,7 +50,7 @@ convertirArregloDado(){ //lo divide en el numero de tiles
     if(!this.pelisPerColums[index%3])
       this.pelisPerColums[index%3]=[];
 
-    this.pelisPerColums[index%3].push(tile); 
+    this.pelisPerColums[index%3].push(tile);
   });
   //console.log(this.pelisPerColums);
   this.loading=false;
@@ -96,7 +98,7 @@ deletePelicula(idPelicula: number){
       );
     }
   })
-  
+
 }
 
 }
