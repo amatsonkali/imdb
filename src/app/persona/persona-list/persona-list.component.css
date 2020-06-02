@@ -5,3 +5,7 @@
   margin: 20px;
   font-weight: bold;
 }
+.collection{
+  max-height: 360px;
+  overflow: auto;
+}

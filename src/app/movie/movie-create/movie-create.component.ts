@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Genero } from 'src/app/models/genero';
 import { Subscription } from 'rxjs';
 import { Persona } from 'src/app/models/persona';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-movie-create',
@@ -67,32 +68,35 @@ export class MovieCreateComponent implements OnInit {
   saveMovie(pelicula: Pelicula){
     if(this.checkStaff()){
       if(this.checkActores()){
-        if(this.direccion){
-          pelicula.img = this.direccion;
-        }else{
-          pelicula.img = "";
-        }
-        //console.log("longitud: "+this.selectedDirectores.length);
-        console.log(this.checkActores());
-        console.log(this.selectedActores);
-        this.movieService.savePelicula(pelicula).subscribe(data => {
-          console.log(data);
-          if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
-            this.saveGeneros(data[0][0]['last_insert_id()']);
-            this.saveDirectores(data[0][0]['last_insert_id()']);
-            this.saveEscritores(data[0][0]['last_insert_id()']);
-            this.saveActores(data[0][0]['last_insert_id()']);
-            Swal.fire({
-              icon: 'success',
-              title: 'La pelicula fue creada con éxito',
-              showConfirmButton: false,
-              timer: 1500
-            });
-            setTimeout(() => {
-              this.movieService.goToHome();
-            }, 2025);
+        if(this.checkTrailerLink(pelicula.linkTrailer)){
+          if(this.direccion){
+            pelicula.img = this.direccion;
+          }else{
+            pelicula.img = "";
           }
-         });
+          //console.log("longitud: "+this.selectedDirectores.length);
+          console.log(this.checkActores());
+          console.log(this.selectedActores);
+          this.movieService.savePelicula(pelicula).subscribe(data => {
+            console.log(data);
+            if(data[0][0]['last_insert_id()']>0){ //se insertó la peli, a guardar mas cosas
+              this.saveGeneros(data[0][0]['last_insert_id()']);
+              this.saveDirectores(data[0][0]['last_insert_id()']);
+              this.saveEscritores(data[0][0]['last_insert_id()']);
+              this.saveActores(data[0][0]['last_insert_id()']);
+              Swal.fire({
+                icon: 'success',
+                title: 'La pelicula fue creada con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              setTimeout(() => {
+                this.movieService.goToHome();
+              }, 2025);
+            }
+           });
+
+        }
 
       }else{ this.warningToast('Asigna un personaje a cada actor pls'); }
     } else{
@@ -194,6 +198,16 @@ export class MovieCreateComponent implements OnInit {
         }else if(actor.personajes.length<=0) check = false;
     });
     return check;
+  }
+
+  checkTrailerLink(link: string){
+    console.log("Comparando: "+link);
+    if(!/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/.test(link)){
+      this.warningToast("Link de trailer inválido (solo YT pls)")
+      return false;
+    }
+    return true;
+
   }
 
   warningToast(mensaje: string){

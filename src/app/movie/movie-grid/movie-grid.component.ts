@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input,OnChanges, SimpleChanges } from '@angular/core';
 import { ImageService } from '../../imageService/image.service';
 import { Pelicula } from 'src/app/models/pelicula';
 import { MovieService } from '../movie-service/movie.service';
 import Swal from 'sweetalert2';
+import { ThrowStmt } from '@angular/compiler';
 export interface Tile {
   color: string;
   cols: number;
@@ -15,7 +16,7 @@ export interface Tile {
   templateUrl: './movie-grid.component.html',
   styleUrls: ['./movie-grid.component.css']
 })
-export class MovieGridComponent implements OnInit {
+export class MovieGridComponent implements OnInit, OnChanges{
 
   @Input() pelis: Pelicula[] = [];
 
@@ -30,8 +31,19 @@ export class MovieGridComponent implements OnInit {
     this.convertirArregloDado();
   
   }
+  ngOnChanges(changes: SimpleChanges): void {
+
+    this.pelis= changes.pelis.currentValue;
+    this.convertirArregloDado();
+    // You can also use categoryId.previousValue and 
+    // categoryId.firstChange for comparing old and new values
+
+  }
+  
+  
 convertirArregloDado(){ //lo divide en el numero de tiles
   let modCounter;
+  this.pelisPerColums=[];
   this.pelis.forEach((tile,index)=>{
     if(!this.pelisPerColums[index%3])
       this.pelisPerColums[index%3]=[];

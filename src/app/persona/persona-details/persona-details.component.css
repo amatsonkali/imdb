@@ -1,3 +1,7 @@
 .col img{
     width: 100%;
 }
+
+span.material-icons{
+    font-size: 80px;
+}
