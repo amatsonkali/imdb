@@ -4,6 +4,7 @@ import { Pais } from 'src/app/models/pais';
 import { Persona } from 'src/app/models/persona';
 import { TipoProfesion } from 'src/app/models/tipoProfesion';
 import Swal from 'sweetalert2';
+import { AuthenticationService } from '../../User/authentication.service';
 
 @Component({
   selector: 'app-movie-create-persona',
@@ -21,10 +22,12 @@ export class MovieCreatePersonaComponent implements OnInit {
   undefined: any = undefined;
   resetForm:HTMLFormElement;
   resetFormProf:HTMLFormElement;
+  isAdmin: boolean;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, public auth: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.checkAdmin();
     this.movieService.catalogoPaises().subscribe((pais: Pais[])=>{
       console.log(pais);
       this.paises = pais;
