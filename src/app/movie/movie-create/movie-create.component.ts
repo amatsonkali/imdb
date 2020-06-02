@@ -31,7 +31,7 @@ export class MovieCreateComponent implements OnInit {
   selectedActores: Persona[]=[];
   personasSub: Subscription;
   resetForm:HTMLFormElement;
-
+  sizeImg: number;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
@@ -65,9 +65,20 @@ export class MovieCreateComponent implements OnInit {
   onFileChanges(files){
     console.log("File is not null ::", files);
     this.direccion = files[0].base64;
+    this.sizeImg = files[0].size;
+    if(this.sizeImg>900000){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Inserta imagen de otro tamaño',
+      })
+      this.direccion = '';
+    }
+
   }
 
   saveMovie(pelicula: Pelicula){
+    console.log(pelicula.titulo == "" || pelicula.duracion == "" || !pelicula.fechaEmision || pelicula.sinopsis == "" || pelicula.linkTrailer == "" || !this.direccion || pelicula.clasificacion == "" || pelicula.pais == "" || pelicula.tipoMaterial == "");
     if(pelicula.titulo == "" || pelicula.duracion == "" || !pelicula.fechaEmision || pelicula.sinopsis == "" || pelicula.linkTrailer == "" || !this.direccion || pelicula.clasificacion == "" || pelicula.pais == "" || pelicula.tipoMaterial == ""){
       Swal.fire({
         icon: 'info',
