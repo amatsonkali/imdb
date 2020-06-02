@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -17,9 +17,15 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: NgForm){
      if (form.invalid) {
-      return;
+      Swal.fire({
+        icon: 'error',
+        title: 'Ingrese todos los datos',
+        showConfirmButton: false,
+        timer: 2000
+      });
+     }else{
+      this.LoginService.loginUsuario(form.value.username, form.value.password);
      }
-     this.LoginService.loginUsuario(form.value.username, form.value.password);
      console.log(form.value);
   }
 
