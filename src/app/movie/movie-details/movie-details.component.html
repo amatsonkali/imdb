@@ -66,7 +66,8 @@
           <img *ngIf="!peli.img" src="assets/images/movies.jpg" alt="placeholder">
 					<ul>
 						<li>{{peli.titulo}} {{peli.fechaEmision | date: 'dd/MM/yyyy'}}</li>
-						<li>{{peli.calificacion}}</li>
+            <li *ngIf="peli.calificacion != -1">Calificación: {{peli.calificacion}}</li>
+            <li *ngIf="peli.calificacion == -1">CP (Calificación pendiente)</li>
 						<li>{{peli.sinopsis}}</li>
             <li><a>{{peli.generos}}</a></li>
             <li><a> Clasificación: {{peli.clasificacion}}</a></li>

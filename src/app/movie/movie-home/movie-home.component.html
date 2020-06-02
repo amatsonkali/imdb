@@ -13,7 +13,7 @@
 
   <mat-tab-group>
     <div *ngIf="pelisCalif">
-      <mat-tab label="Las favoritas"> <app-movie-grid [pelis]="pelisCalif"></app-movie-grid> </mat-tab>
+      <mat-tab label="Las favoritas"> <app-movie-grid [(pelis)]="pelisCalif"></app-movie-grid> </mat-tab>
     </div>
     <div *ngIf="pelisGenero">
       <mat-tab label="Accion"> <app-movie-grid [pelis]="pelisGenero"></app-movie-grid> </mat-tab>
